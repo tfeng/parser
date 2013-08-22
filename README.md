@@ -10,7 +10,7 @@ The parser builds ASTs for languages, such as Java and Java properties files, an
 License
 ----------
 
-Copyright 2013 Huining (Thomas) Feng
+Copyright 2013 Huining (Thomas) Feng (tfeng@berkeley.edu)
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

@@ -21,13 +21,6 @@
       </dependency>
 
       <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>${junit.version}</version>
-        <scope>test</scope>
-      </dependency>
-
-      <dependency>
         <groupId>log4j</groupId>
         <artifactId>log4j</artifactId>
         <version>${log4j.version}</version>
@@ -43,6 +36,7 @@
 	    <groupId>org.testng</groupId>
 	    <artifactId>testng</artifactId>
 	    <version>${testng.version}</version>
+        <scope>test</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -116,6 +110,25 @@
           <artifactId>antlr4-maven-plugin</artifactId>
           <version>${antlr4.version}</version>
         </plugin>
+
+        <plugin>
+          <groupId>com.mycila</groupId>
+	      <artifactId>license-maven-plugin</artifactId>
+	      <version>${license-maven-plugin.version}</version>
+          <configuration>
+            <header>LICENSE.txt</header>
+            <includes>
+              <include>**/*.java</include>
+            </includes>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>check</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
       </plugins>
     </pluginManagement>
   </build>
@@ -131,7 +144,7 @@
     <antlr4.version>4.0</antlr4.version>
     <build-helper-maven-plugin.version>1.8</build-helper-maven-plugin.version>
     <guava.version>14.0.1</guava.version>
-    <junit.version>4.11</junit.version>
+    <license-maven-plugin.version>2.2</license-maven-plugin.version>
     <lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
     <log4j.version>1.2.17</log4j.version>
     <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
