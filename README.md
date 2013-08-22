@@ -1,4 +1,4 @@
-parser
+BACoder Parser & Analyzer
 ======
 
-Parsers and code analyzers for multiple programming languages
+Parser and source code analyzer for multiple programming languages
