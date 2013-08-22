@@ -1,6 +1,8 @@
 package com.bacoder.parser.javaproperties.test;
 
 import java.io.ByteArrayInputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -83,6 +85,18 @@ public class TestJavaPropertiesParser {
     Assert.assertEquals(properties.getComments().get(0).getEndIndex(), "#\tComment".length() + 1);
   }
 
+  public void testUnicode() {
+    String input = "键1 = 值1\n键\\\t2 = 值2\n键\\\t3 = 值3\t 完 \nkey4 = val\\u1234ue4";
+    Properties properties = parse(input);
+    verify(properties, input);
+  }
+
+  public void testSpecialCharacters() {
+    String input = "key1 = value1\f\nkey2 = value2\\\f\f\\\t\nkey3 = value3\\\nkey4 = value4\nkey5\\\t\\\n\\\r\\\n = value5";
+    Properties properties = parse(input);
+    verify(properties, input);
+  }
+
   private JavaPropertiesParser getParser(String input) {
     JavaPropertiesLexer lexer = new JavaPropertiesLexer(new ANTLRInputStream(input));
     CommonTokenStream tokenStream = new CommonTokenStream(lexer);
@@ -101,18 +115,40 @@ public class TestJavaPropertiesParser {
   private void verify(Properties properties, String input) {
     java.util.Properties expected = new java.util.Properties();
     try {
-      expected.load(new ByteArrayInputStream(input.getBytes("UTF-8")));
+      expected.load(
+          new InputStreamReader(
+              new ByteArrayInputStream(input.getBytes("UTF-8")), Charset.forName("UTF-8")));
     } catch (Exception e) {
       throw new RuntimeException("Unable to load properties" + e);
     }
 
     for (KeyValue keyValue : properties.getKeyValues()) {
-      String key = keyValue.getKey().getText();
+      String key = replaceSpecialCharacters(keyValue.getKey().getText());
       Assert.assertTrue(expected.containsKey(key),
-          "Key " + key + " does not exist in expected Java properties");
-      String value = keyValue.getValue().getText();
+          "Key does not exist in expected Java properties");
+      String value = replaceSpecialCharacters(keyValue.getValue().getText());
       Assert.assertEquals(value, expected.get(key),
-          "Value " + value + " is not equal to expected value " + expected.get(key));
+          "Value does not match expected Java property value");
     }
+  }
+
+  private String replaceSpecialCharacters(String input) {
+    String output = input;
+    String[][] map =
+      {
+        {"\\ ", " "},
+        {"\\\t", "\t"},
+        {"\\\f", "\f"},
+        {"\\\r", "\r"},
+        {"\\\n", "\n"},
+        {"\n", ""},
+        {"\r\n", ""},
+        {"\r", ""},
+        {"\\u1234", "\u1234"}
+      };
+    for (String[] part : map) {
+      output = output.replace(part[0], part[1]);
+    }
+    return output;
   }
 }

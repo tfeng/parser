@@ -5,13 +5,13 @@ properties
   ;
 
 line
-  :  Space* keyValue
+  :  Space* keyValue eol
   |  Space* comment eol
   |  Space* lineBreak
   ;
 
 keyValue
-  :  key (Space Space* (Colon | Equals)? Space* | Colon Space* | Equals Space*) value eol
+  :  key (Space Space* (Colon | Equals)? Space* | Colon Space* | Equals Space*) value
   ;
 
 comment
@@ -27,26 +27,33 @@ key
   ;
 
 keyChar
-  :  AlphaNum 
-  |  Backslash (Colon | Equals)
+  :  AnyChar
+  |  Backslash (Colon | Equals | Space | LineBreak)?
   ;
 
 value
-  : valueChar+
+  : valueChar*
   ;
 
 valueChar
-  :  AlphaNum 
-  |  Space 
-  |  Backslash LineBreak
-  |  Equals
+  :  AnyChar 
+  |  Unicode
+  |  Backslash (Space | LineBreak)?
   |  Colon
+  |  Equals
+  |  Space
   ;
 
 eol
   :  LineBreak
   |  EOF
   ;
+
+AnyChar
+  :  ~(':' | '\\' | '=' | ' ' | '\t' | '\f' | '\r' | '\n')
+  ;
+
+Unicode : '\\u' [0-9]+;
 
 Backslash : '\\';
 Colon     : ':';
@@ -65,10 +72,4 @@ Space
   :  ' ' 
   |  '\t' 
   |  '\f'
-  ;
-
-AlphaNum
-  :  'a'..'z'
-  |  'A'..'Z'
-  |  '0'..'9'
   ;
