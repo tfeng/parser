@@ -141,7 +141,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-    <antlr4.version>4.0</antlr4.version>
+    <antlr4.version>4.1</antlr4.version>
     <build-helper-maven-plugin.version>1.8</build-helper-maven-plugin.version>
     <guava.version>14.0.1</guava.version>
     <license-maven-plugin.version>2.2</license-maven-plugin.version>
