@@ -135,7 +135,7 @@
 
   <modules>
     <module>core</module>
-    <module>java-properties</module>
+    <module>java-properties-parser</module>
   </modules>
 
   <properties>
