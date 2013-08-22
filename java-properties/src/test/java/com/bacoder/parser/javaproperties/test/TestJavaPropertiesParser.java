@@ -123,32 +123,12 @@ public class TestJavaPropertiesParser {
     }
 
     for (KeyValue keyValue : properties.getKeyValues()) {
-      String key = replaceSpecialCharacters(keyValue.getKey().getText());
+      String key = keyValue.getKey().getSanitizedText();
       Assert.assertTrue(expected.containsKey(key),
           "Key does not exist in expected Java properties");
-      String value = replaceSpecialCharacters(keyValue.getValue().getText());
+      String value = keyValue.getValue().getSanitizedText();
       Assert.assertEquals(value, expected.get(key),
           "Value does not match expected Java property value");
     }
-  }
-
-  private String replaceSpecialCharacters(String input) {
-    String output = input;
-    String[][] map =
-      {
-        {"\\ ", " "},
-        {"\\\t", "\t"},
-        {"\\\f", "\f"},
-        {"\\\r", "\r"},
-        {"\\\n", "\n"},
-        {"\n", ""},
-        {"\r\n", ""},
-        {"\r", ""},
-        {"\\u1234", "\u1234"}
-      };
-    for (String[] part : map) {
-      output = output.replace(part[0], part[1]);
-    }
-    return output;
   }
 }
