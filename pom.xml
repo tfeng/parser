@@ -8,7 +8,7 @@
   <groupId>com.bacoder.parser</groupId>
   <artifactId>parent</artifactId>
   <packaging>pom</packaging>
-  <version>1.0-SNAPSHOT</version>
+  <version>0.0.1-SNAPSHOT</version>
   <name>parent</name>
   <url>http://bacoder.com</url>
 
@@ -131,6 +131,17 @@
         </plugin>
       </plugins>
     </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>${maven-deploy-plugin.version}</version>
+        <configuration>
+          <skip>${skip.deploy}</skip>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
 
   <modules>
@@ -139,6 +150,7 @@
   </modules>
 
   <properties>
+    <skip.deploy>true</skip.deploy>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <antlr4.version>4.1</antlr4.version>
@@ -148,7 +160,22 @@
     <lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
     <log4j.version>1.2.17</log4j.version>
     <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+    <maven-deploy-plugin.version>2.7</maven-deploy-plugin.version>
     <maven-gpg-plugin.version>1.4</maven-gpg-plugin.version>
     <testng.version>6.8.5</testng.version>
   </properties>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>sonatype-nexus-snapshots</id>
+      <name>Sonatype Nexus Snapshots</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+
+    <repository>
+      <id>sonatype-nexus-staging</id>
+      <name>Sonatype Nexus Staging</name>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+    </repository>
+  </distributionManagement>
 </project>
