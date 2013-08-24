@@ -35,20 +35,6 @@ import com.bacoder.parser.javaproperties.api.Properties;
 @Test
 public class TestJavaPropertiesParser {
 
-  public void testEquals() {
-    String input = "# Comment\nkey1=value1\nkey2 = value2\nkey3= value3\nkey4 =value4";
-    Properties properties = parse(input);
-
-    verify(properties, input);
-
-    Assert.assertEquals(properties.getComments().size(), 1);
-    Assert.assertEquals(properties.getComments().get(0).getText(), "# Comment");
-    Assert.assertEquals(properties.getComments().get(0).getStartLine(), 1);
-    Assert.assertEquals(properties.getComments().get(0).getStartIndex(), 0);
-    Assert.assertEquals(properties.getComments().get(0).getEndLine(), 1);
-    Assert.assertEquals(properties.getComments().get(0).getEndIndex(), "# Comment".length() - 1);
-  }
-
   public void testColons() {
     String input = "# Comment: colon\nkey1:value1\nkey2 :value2\nkey3: value3\nkey4 : value4\nkey5:value5:";
     Properties properties = parse(input);
@@ -63,13 +49,18 @@ public class TestJavaPropertiesParser {
     Assert.assertEquals(properties.getComments().get(0).getEndIndex(), "# Comment: colon".length() - 1);
   }
 
-  public void testSpaces() {
-    String input = "key1 value1\nkey2  value2\nkey3\tvalue3\nkey4\t value4\n";
+  public void testEquals() {
+    String input = "# Comment\nkey1=value1\nkey2 = value2\nkey3= value3\nkey4 =value4";
     Properties properties = parse(input);
 
     verify(properties, input);
 
-    Assert.assertEquals(properties.getComments().size(), 0);
+    Assert.assertEquals(properties.getComments().size(), 1);
+    Assert.assertEquals(properties.getComments().get(0).getText(), "# Comment");
+    Assert.assertEquals(properties.getComments().get(0).getStartLine(), 1);
+    Assert.assertEquals(properties.getComments().get(0).getStartIndex(), 0);
+    Assert.assertEquals(properties.getComments().get(0).getEndLine(), 1);
+    Assert.assertEquals(properties.getComments().get(0).getEndIndex(), "# Comment".length() - 1);
   }
 
   public void testEqualsWithSpaces() {
@@ -100,14 +91,23 @@ public class TestJavaPropertiesParser {
     Assert.assertEquals(properties.getComments().get(0).getEndIndex(), "#\tComment".length() + 1);
   }
 
-  public void testUnicode() {
-    String input = "键1 = 值1\n键\\\t2 = 值2\n键\\\t3 = 值3\t 完 \nkey4 = val\\u1234ue4";
+  public void testSpaces() {
+    String input = "key1 value1\nkey2  value2\nkey3\tvalue3\nkey4\t value4\n";
     Properties properties = parse(input);
+
     verify(properties, input);
+
+    Assert.assertEquals(properties.getComments().size(), 0);
   }
 
   public void testSpecialCharacters() {
     String input = "key1 = value1\f\nkey2 = value2\\\f\f\\\t\nkey3 = value3\\\nkey4 = value4\nkey5\\\t\\\n\\\r\\\n = value5";
+    Properties properties = parse(input);
+    verify(properties, input);
+  }
+
+  public void testUnicode() {
+    String input = "键1 = 值1\n键\\\t2 = 值2\n键\\\t3 = 值3\t 完 \nkey4 = val\\u1234ue4";
     Properties properties = parse(input);
     verify(properties, input);
   }

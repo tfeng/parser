@@ -16,16 +16,24 @@
 package com.bacoder.parser.core;
 
 import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import com.google.common.base.Function;
+import com.google.common.collect.ImmutableMap;
 
 public abstract class Adapter<C extends ParseTree, D> {
+
+  private static final ImmutableMap<Class<?>, Class<?>> TYPE_MAPPING =
+      ImmutableMap.of((Class<?>) List.class, (Class<?>) ArrayList.class,
+                      (Class<?>) Map.class, (Class<?>) HashMap.class);
 
   private Adapters adapters;
 
@@ -34,8 +42,18 @@ public abstract class Adapter<C extends ParseTree, D> {
   @SuppressWarnings("unchecked")
   public Adapter(Adapters adapters) {
     this.adapters = adapters;
-    dataType = (Class<D>) ((ParameterizedType) getClass().getGenericSuperclass())
-                              .getActualTypeArguments()[1];
+    Type type = ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[1];
+    Class<D> dataType;
+    if (type instanceof ParameterizedType) {
+      ParameterizedType parameterizedType = (ParameterizedType) type;
+      dataType = (Class<D>) parameterizedType.getRawType();
+    } else {
+      dataType = (Class<D>) type;
+    }
+    if (TYPE_MAPPING.containsKey(dataType)) {
+      dataType = (Class<D>) TYPE_MAPPING.get(dataType);
+    }
+    this.dataType = dataType;
   }
 
   public abstract D adapt(C context);
@@ -58,6 +76,10 @@ public abstract class Adapter<C extends ParseTree, D> {
     }
   }
 
+  public <T extends Adapter<?, ?>> T getAdapter(Class<T> clazz) {
+    return adapters.getAdapter(clazz);
+  }
+
   @SuppressWarnings("unchecked")
   protected <T extends ParseTree> void forEachChild(ParserRuleContext context, Class<T> clazz,
       Function<T, Void> function) {
@@ -72,10 +94,6 @@ public abstract class Adapter<C extends ParseTree, D> {
     for (ParseTree child : context.children) {
       function.apply(child);
     }
-  }
-
-  public <T extends Adapter<?, ?>> T getAdapter(Class<T> clazz) {
-    return adapters.getAdapter(clazz);
   }
 
   @SuppressWarnings("unchecked")

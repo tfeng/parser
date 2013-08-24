@@ -11,9 +11,9 @@
     <version>0.0.3-SNAPSHOT</version>
   </parent>
 
-  <artifactId>java-properties-parser</artifactId>
-  <name>java-properties-parser</name>
-  <description>Parser for Java properties files</description>
+  <artifactId>java-parser</artifactId>
+  <name>java-parser</name>
+  <description>Parser for Java files</description>
   <packaging>jar</packaging>
 
   <url>http://bacoder.com</url>

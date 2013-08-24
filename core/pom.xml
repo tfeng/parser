@@ -6,15 +6,16 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <artifactId>parent</artifactId>
     <groupId>com.bacoder.parser</groupId>
-    <version>0.0.1-SNAPSHOT</version>
+    <artifactId>parent</artifactId>
+    <version>0.0.3-SNAPSHOT</version>
   </parent>
 
   <artifactId>core</artifactId>
   <name>core</name>
   <description>Core module for all parsers</description>
   <packaging>jar</packaging>
+
   <url>http://bacoder.com</url>
   <scm>
     <url>https://github.com/tfeng/parser</url>
@@ -51,6 +52,11 @@
     <dependency>
       <groupId>org.antlr</groupId>
       <artifactId>antlr4-runtime</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
     </dependency>
   </dependencies>
 
