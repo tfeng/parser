@@ -15,15 +15,16 @@
  */
 package com.bacoder.parser.javaproperties.api;
 
+import java.util.Collections;
 import java.util.List;
 
 import com.bacoder.parser.core.Node;
 
 public class Properties extends Node {
 
-  private List<Comment> comments;
+  private List<Comment> comments = Collections.emptyList();
 
-  private List<KeyValue> keyValues;
+  private List<KeyValue> keyValues = Collections.emptyList();
 
   public List<Comment> getComments() {
     return comments;

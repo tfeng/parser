@@ -15,7 +15,6 @@
  */
 package com.bacoder.parser.java.api;
 
-
-public abstract class TypeDeclaration extends NodeWithClassOrInterfaceModifiers {
+public abstract class TypeDeclaration extends NodeWithModifiers {
 
 }

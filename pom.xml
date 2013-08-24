@@ -36,6 +36,7 @@
 	    <groupId>org.testng</groupId>
 	    <artifactId>testng</artifactId>
 	    <version>${testng.version}</version>
+        <scope>test</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -209,6 +210,7 @@
     <module>core</module>
     <module>java-parser</module>
     <module>java-properties-parser</module>
+    <module>test-util</module>
   </modules>
 
   <properties>

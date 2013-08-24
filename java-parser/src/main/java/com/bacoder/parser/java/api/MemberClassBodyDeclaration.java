@@ -15,7 +15,9 @@
  */
 package com.bacoder.parser.java.api;
 
-public class MemberClassBodyDeclaration extends ClassBodyDeclaration {
+import com.bacoder.parser.core.Node;
+
+public class MemberClassBodyDeclaration extends Node implements ClassBodyDeclaration {
 
   private MemberDeclaration memberDeclaration;
 

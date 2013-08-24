@@ -15,15 +15,8 @@
  */
 package com.bacoder.parser.java.api;
 
-public class SingleTypeArgument extends TypeArgument {
+import com.bacoder.parser.core.Segment;
 
-  private Type type;
+public interface InterfaceMemberDeclaration extends Segment {
 
-  public Type getType() {
-    return type;
-  }
-
-  public void setType(Type type) {
-    this.type = type;
-  }
 }

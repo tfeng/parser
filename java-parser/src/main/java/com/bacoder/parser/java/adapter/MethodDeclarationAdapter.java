@@ -22,6 +22,7 @@ import com.bacoder.parser.core.Adapters;
 import com.bacoder.parser.java.api.ArrayType;
 import com.bacoder.parser.java.api.MethodDeclaration;
 import com.bacoder.parser.java.api.Type;
+import com.bacoder.parser.java.api.VoidType;
 import com.srctran.backend.parser.java.JavaParser;
 import com.srctran.backend.parser.java.JavaParser.BlockContext;
 import com.srctran.backend.parser.java.JavaParser.FormalParametersContext;
@@ -45,6 +46,11 @@ public class MethodDeclarationAdapter
     TypeContext typeContext = getChild(context, TypeContext.class);
     if (typeContext != null) {
       type = getAdapter(TypeAdapter.class).adapt(typeContext);
+    } else {
+      TerminalNode voidNode = getTerminalNode(context, JavaParser.VOID);
+      if (voidNode != null) {
+        type = createData(VoidType.class, voidNode);
+      }
     }
 
     TerminalNode identifierNode = getTerminalNode(context, JavaParser.Identifier);
@@ -61,7 +67,7 @@ public class MethodDeclarationAdapter
 
     for (ParseTree node : context.children) {
       if (node instanceof TerminalNode
-          && ((TerminalNode) node).getSymbol().getType() == JavaParser.LBRACK) {
+          && ((TerminalNode) node).getSymbol().getType() == JavaParser.RBRACK) {
         ArrayType arrayType = createData(ArrayType.class, typeContext, node);
         arrayType.setElementType(type);
         type = arrayType;
@@ -79,7 +85,9 @@ public class MethodDeclarationAdapter
     MethodBodyContext methodBodyContext = getChild(context, MethodBodyContext.class);
     if (methodBodyContext != null) {
       BlockContext blockContext = getChild(methodBodyContext, BlockContext.class);
-      methodDeclaration.setBody(getAdapter(BlockAdapter.class).adapt(blockContext));
+      if (blockContext != null) {
+        methodDeclaration.setBody(getAdapter(BlockAdapter.class).adapt(blockContext));
+      }
     }
 
     return methodDeclaration;

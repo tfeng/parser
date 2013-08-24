@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bacoder.parser.core.test;
+package com.bacoder.parser.testutil;
 
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.testng.Assert;
@@ -46,9 +46,9 @@ public abstract class BaseTest {
     }
 
     Assert.assertEquals(node.getStartLine(), startLine);
-    Assert.assertEquals(node.getStartIndex(), startIndex);
+    Assert.assertEquals(node.getStartColumn(), startIndex);
     Assert.assertEquals(node.getEndLine(), endLine);
-    Assert.assertEquals(node.getEndIndex(), endIndex);
+    Assert.assertEquals(node.getEndColumn(), endIndex);
   }
 
   protected <A extends Adapter<? extends ParseTree, ?>> A getAdapter(Class<A> clazz) {

@@ -17,31 +17,25 @@ package com.bacoder.parser.java.test;
 
 import java.util.Collections;
 
-import org.antlr.v4.runtime.ANTLRInputStream;
-import org.antlr.v4.runtime.CommonTokenStream;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.bacoder.parser.core.Adapters;
-import com.bacoder.parser.core.test.BaseTest;
-import com.bacoder.parser.java.adapter.JavaAdapters;
 import com.bacoder.parser.java.adapter.PackageDeclarationAdapter;
 import com.bacoder.parser.java.api.Annotation;
 import com.bacoder.parser.java.api.NameValuePair;
 import com.bacoder.parser.java.api.PackageDeclaration;
-import com.srctran.backend.parser.java.JavaLexer;
 import com.srctran.backend.parser.java.JavaParser;
 import com.srctran.backend.parser.java.JavaParser.PackageDeclarationContext;
 
 @Test
-public class TestPackageAndImport extends BaseTest {
+public class TestPackage extends JavaBaseTest {
 
   public void testAnnotation() {
     String input = "@MyAnnotation(param = 1) package com;";
     JavaParser parser = getParser(input);
-    PackageDeclarationContext packageDeclarationContext = parser.packageDeclaration();
+    PackageDeclarationContext context = parser.packageDeclaration();
     PackageDeclarationAdapter adapter = getAdapter(PackageDeclarationAdapter.class);
-    PackageDeclaration packageDeclaration = adapter.adapt(packageDeclarationContext);
+    PackageDeclaration packageDeclaration = adapter.adapt(context);
 
     assertAttributes(packageDeclaration, input);
     Assert.assertEquals(packageDeclaration.getQualifiedName().getFullName(), "com");
@@ -51,8 +45,8 @@ public class TestPackageAndImport extends BaseTest {
     Assert.assertEquals(packageDeclaration.getAnnotations().size(), 1);
     Annotation annotation = packageDeclaration.getAnnotations().get(0);
     assertAttributes(annotation, input, "@MyAnnotation(param = 1)");
-    Assert.assertEquals(annotation.getAnnotationName().getFullName(), "MyAnnotation");
-    assertAttributes(annotation.getAnnotationName(), input, "MyAnnotation");
+    Assert.assertEquals(annotation.getName().getFullName(), "MyAnnotation");
+    assertAttributes(annotation.getName(), input, "MyAnnotation");
     Assert.assertEquals(annotation.getElementValue(), null);
 
     Assert.assertEquals(annotation.getNameValuePairs().size(), 1);
@@ -60,7 +54,6 @@ public class TestPackageAndImport extends BaseTest {
     assertAttributes(nameValuePair, input, "param = 1");
     Assert.assertEquals(nameValuePair.getIdentifier().getText(), "param");
     assertAttributes(nameValuePair.getIdentifier(), input, "param");
-    // FIXME: Assert value.
     // FIXME: assertAttributes(nameValuePair.getValue(), input, "1");
   }
 
@@ -75,23 +68,7 @@ public class TestPackageAndImport extends BaseTest {
     assertAttributes(packageDeclaration, input);
     Assert.assertEquals(packageDeclaration.getQualifiedName().getFullName(), packageName);
     assertAttributes(packageDeclaration.getQualifiedName(), input, packageName);
-    String[] parts = packageName.split("\\.");
-    for (int i = 0; i < parts.length; i++) {
-      assertAttributes(packageDeclaration.getQualifiedName().getIdentifiers().get(i), input,
-          parts[i]);
-    }
+    assertQualifiedName(packageDeclaration.getQualifiedName(), input, packageName);
     Assert.assertEquals(packageDeclaration.getAnnotations(), Collections.emptyList());
-  }
-
-  @Override
-  protected Adapters getAdapters() {
-    return new JavaAdapters();
-  }
-
-  private JavaParser getParser(String input) {
-    JavaLexer lexer = new JavaLexer(new ANTLRInputStream(input));
-    CommonTokenStream tokenStream = new CommonTokenStream(lexer);
-    JavaParser parser = new JavaParser(tokenStream);
-    return parser;
   }
 }

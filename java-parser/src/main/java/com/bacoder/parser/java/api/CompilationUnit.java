@@ -15,15 +15,18 @@
  */
 package com.bacoder.parser.java.api;
 
+import java.util.Collections;
 import java.util.List;
 
 import com.bacoder.parser.core.Node;
 
 public class CompilationUnit extends Node {
 
-  private List<ImportDeclaration> importDeclarations;
+  private List<ImportDeclaration> importDeclarations = Collections.emptyList();
 
   private PackageDeclaration packageDeclaration;
+
+  private List<TypeDeclaration> typeDeclarations = Collections.emptyList();
 
   public List<ImportDeclaration> getImportDeclarations() {
     return importDeclarations;
@@ -33,11 +36,19 @@ public class CompilationUnit extends Node {
     return packageDeclaration;
   }
 
+  public List<TypeDeclaration> getTypeDeclarations() {
+    return typeDeclarations;
+  }
+
   public void setImportDeclarations(List<ImportDeclaration> importDeclarations) {
     this.importDeclarations = importDeclarations;
   }
 
   public void setPackageDeclaration(PackageDeclaration packageDeclaration) {
     this.packageDeclaration = packageDeclaration;
+  }
+
+  public void setTypeDeclarations(List<TypeDeclaration> typeDeclarations) {
+    this.typeDeclarations = typeDeclarations;
   }
 }

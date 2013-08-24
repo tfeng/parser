@@ -16,8 +16,6 @@
 package com.bacoder.parser.java.adapter;
 
 import com.bacoder.parser.core.Adapters;
-import com.bacoder.parser.java.api.Annotation;
-import com.bacoder.parser.java.api.AnnotationExpression;
 import com.bacoder.parser.java.api.AnnotationValue;
 import com.srctran.backend.parser.java.JavaParser.AnnotationContext;
 import com.srctran.backend.parser.java.JavaParser.ElementValueArrayInitializerContext;
@@ -34,15 +32,12 @@ public class ElementValueAdapter extends JavaAdapter<ElementValueContext, Annota
   public AnnotationValue adapt(ElementValueContext context) {
     ExpressionContext expressionContext = getChild(context, ExpressionContext.class);
     if (expressionContext != null) {
-      AnnotationExpression annotationExpression = createData(AnnotationExpression.class, context);
-      annotationExpression.setExpression(
-          getAdapter(ExpressionAdapter.class).adapt(expressionContext));
+      return getAdapter(ExpressionAdapter.class).adapt(expressionContext);
     }
 
     AnnotationContext annotationContext = getChild(context, AnnotationContext.class);
     if (annotationContext != null) {
-      Annotation annotation = getAdapter(AnnotationAdapter.class).adapt(annotationContext);
-      return annotation;
+      return getAdapter(AnnotationAdapter.class).adapt(annotationContext);
     }
 
     ElementValueArrayInitializerContext elementValueArrayInitializerContext =

@@ -15,6 +15,7 @@
  */
 package com.bacoder.parser.java.api;
 
+import java.util.Collections;
 import java.util.List;
 
 import com.bacoder.parser.core.Node;
@@ -23,7 +24,7 @@ public class TypeParameter extends Node {
 
   private Identifier identifier;
 
-  private List<Type> typeBounds;
+  private List<Type> typeBounds = Collections.emptyList();
 
   public Identifier getIdentifier() {
     return identifier;

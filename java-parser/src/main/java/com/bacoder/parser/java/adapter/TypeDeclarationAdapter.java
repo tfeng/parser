@@ -16,9 +16,15 @@
 package com.bacoder.parser.java.adapter;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.api.AnnotationDeclaration;
 import com.bacoder.parser.java.api.ClassDeclaration;
+import com.bacoder.parser.java.api.EnumDeclaration;
+import com.bacoder.parser.java.api.InterfaceDeclaration;
 import com.bacoder.parser.java.api.TypeDeclaration;
+import com.srctran.backend.parser.java.JavaParser.AnnotationTypeDeclarationContext;
 import com.srctran.backend.parser.java.JavaParser.ClassDeclarationContext;
+import com.srctran.backend.parser.java.JavaParser.EnumDeclarationContext;
+import com.srctran.backend.parser.java.JavaParser.InterfaceDeclarationContext;
 import com.srctran.backend.parser.java.JavaParser.TypeDeclarationContext;
 
 public class TypeDeclarationAdapter extends JavaAdapter<TypeDeclarationContext, TypeDeclaration> {
@@ -37,6 +43,34 @@ public class TypeDeclarationAdapter extends JavaAdapter<TypeDeclarationContext, 
       setClassOrInterfaceModifiers(context, classDeclaration);
       return classDeclaration;
     }
+
+    EnumDeclarationContext enumDeclarationContext = getChild(context, EnumDeclarationContext.class);
+    if (enumDeclarationContext != null) {
+      EnumDeclaration enumDeclaration =
+          getAdapter(EnumDeclarationAdapter.class).adapt(enumDeclarationContext);
+      setClassOrInterfaceModifiers(context, enumDeclaration);
+      return enumDeclaration;
+    }
+
+    InterfaceDeclarationContext interfaceDeclarationContext =
+        getChild(context, InterfaceDeclarationContext.class);
+    if (interfaceDeclarationContext != null) {
+      InterfaceDeclaration interfaceDeclaration =
+          getAdapter(InterfaceDeclarationAdapter.class).adapt(interfaceDeclarationContext);
+      setClassOrInterfaceModifiers(context, interfaceDeclaration);
+      return interfaceDeclaration;
+    }
+
+    AnnotationTypeDeclarationContext annotationTypeDeclarationContext =
+        getChild(context, AnnotationTypeDeclarationContext.class);
+    if (annotationTypeDeclarationContext != null) {
+      AnnotationDeclaration annotationDeclaration =
+          getAdapter(AnnotationTypeDeclarationAdapter.class).adapt(
+              annotationTypeDeclarationContext);
+      setClassOrInterfaceModifiers(context, annotationDeclaration);
+      return annotationDeclaration;
+    }
+
     return null;
   }
 }

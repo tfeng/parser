@@ -146,21 +146,23 @@ public abstract class Adapter<C extends ParseTree, D> {
       if (startNode instanceof ParserRuleContext) {
         ParserRuleContext context = (ParserRuleContext) startNode;
         node.setStartLine(context.getStart().getLine());
-        node.setStartIndex(context.getStart().getStartIndex());
+        node.setStartColumn(context.getStart().getCharPositionInLine());
       } else if (startNode instanceof TerminalNode) {
         TerminalNode terminal = (TerminalNode) startNode;
         node.setStartLine(terminal.getSymbol().getLine());
-        node.setStartIndex(terminal.getSymbol().getStartIndex());
+        node.setStartColumn(terminal.getSymbol().getCharPositionInLine());
       }
 
       if (endNode instanceof ParserRuleContext) {
         ParserRuleContext context = (ParserRuleContext) endNode;
         node.setEndLine(context.getStop().getLine());
-        node.setEndIndex(context.getStop().getStopIndex());
+        node.setEndColumn(context.getStop().getCharPositionInLine()
+            + context.getStop().getText().length() - 1);
       } else if (endNode instanceof TerminalNode) {
         TerminalNode terminal = (TerminalNode) endNode;
         node.setEndLine(terminal.getSymbol().getLine());
-        node.setEndIndex(terminal.getSymbol().getStopIndex());
+        node.setEndColumn(terminal.getSymbol().getCharPositionInLine()
+            + terminal.getSymbol().getText().length() - 1);
       }
     }
   }

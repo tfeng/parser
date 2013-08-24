@@ -15,9 +15,30 @@
  */
 package com.bacoder.parser.java.api;
 
-public class NodeWithModifiers extends NodeWithClassOrInterfaceModifiers {
+import java.util.Collections;
+import java.util.List;
+
+import com.bacoder.parser.core.Node;
+
+public class NodeWithModifiers extends Node {
+
+  private List<Annotation> annotations = Collections.emptyList();
+
+  private boolean isAbstract;
+
+  private boolean isFinal;
 
   private boolean isNative;
+
+  private boolean isPrivate;
+
+  private boolean isProtected;
+
+  private boolean isPublic;
+
+  private boolean isStatic;
+
+  private boolean isStrictfp;
 
   private boolean isSynchronized;
 
@@ -25,8 +46,40 @@ public class NodeWithModifiers extends NodeWithClassOrInterfaceModifiers {
 
   private boolean isVolatile;
 
+  public List<Annotation> getAnnotations() {
+    return annotations;
+  }
+
+  public boolean isAbstract() {
+    return isAbstract;
+  }
+
+  public boolean isFinal() {
+    return isFinal;
+  }
+
   public boolean isNative() {
     return isNative;
+  }
+
+  public boolean isPrivate() {
+    return isPrivate;
+  }
+
+  public boolean isProtected() {
+    return isProtected;
+  }
+
+  public boolean isPublic() {
+    return isPublic;
+  }
+
+  public boolean isStatic() {
+    return isStatic;
+  }
+
+  public boolean isStrictfp() {
+    return isStrictfp;
   }
 
   public boolean isSynchronized() {
@@ -41,8 +94,40 @@ public class NodeWithModifiers extends NodeWithClassOrInterfaceModifiers {
     return isVolatile;
   }
 
+  public void setAbstract(boolean isAbstract) {
+    this.isAbstract = isAbstract;
+  }
+
+  public void setAnnotations(List<Annotation> annotations) {
+    this.annotations = annotations;
+  }
+
+  public void setFinal(boolean isFinal) {
+    this.isFinal = isFinal;
+  }
+
   public void setNative(boolean isNative) {
     this.isNative = isNative;
+  }
+
+  public void setPrivate(boolean isPrivate) {
+    this.isPrivate = isPrivate;
+  }
+
+  public void setProtected(boolean isProtected) {
+    this.isProtected = isProtected;
+  }
+
+  public void setPublic(boolean isPublic) {
+    this.isPublic = isPublic;
+  }
+
+  public void setStatic(boolean isStatic) {
+    this.isStatic = isStatic;
+  }
+
+  public void setStrictfp(boolean isStrictfp) {
+    this.isStrictfp = isStrictfp;
   }
 
   public void setSynchronized(boolean isSynchronized) {

@@ -15,6 +15,7 @@
  */
 package com.bacoder.parser.java.api;
 
+import java.util.Collections;
 import java.util.List;
 
 import com.bacoder.parser.core.Node;
@@ -24,7 +25,7 @@ public class QualifiedName extends Node {
 
   private static final String IDENTIFIER_SEPARATOR = ".";
 
-  private List<Identifier> identifiers;
+  private List<Identifier> identifiers = Collections.emptyList();
 
   public String getFullName() {
     StringBuffer buffer = new StringBuffer();

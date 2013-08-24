@@ -17,11 +17,12 @@ package com.bacoder.parser.java.adapter;
 
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-import com.google.common.base.Function;
 import com.bacoder.parser.core.Adapters;
 import com.bacoder.parser.java.api.ClassDeclaration;
 import com.bacoder.parser.java.api.Identifier;
+import com.google.common.base.Function;
 import com.srctran.backend.parser.java.JavaParser;
+import com.srctran.backend.parser.java.JavaParser.ClassBodyContext;
 import com.srctran.backend.parser.java.JavaParser.ClassDeclarationContext;
 import com.srctran.backend.parser.java.JavaParser.TypeContext;
 import com.srctran.backend.parser.java.JavaParser.TypeListContext;
@@ -65,6 +66,12 @@ public class ClassDeclarationAdapter
     TypeListContext typeListContext = getChild(context, TypeListContext.class);
     if (typeListContext != null) {
       classDeclaration.setImplementsTypes(getAdapter(TypeListAdapter.class).adapt(typeListContext));
+    }
+
+    ClassBodyContext classBodyContext = getChild(context, ClassBodyContext.class);
+    if (classBodyContext != null) {
+      classDeclaration.setBodyDeclarations(
+          getAdapter(ClassBodyAdapter.class).adapt(classBodyContext));
     }
 
     return classDeclaration;

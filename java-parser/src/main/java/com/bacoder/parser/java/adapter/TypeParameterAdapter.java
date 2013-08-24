@@ -19,10 +19,10 @@ import java.util.List;
 
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-import com.google.common.base.Function;
 import com.bacoder.parser.core.Adapters;
 import com.bacoder.parser.java.api.Type;
 import com.bacoder.parser.java.api.TypeParameter;
+import com.google.common.base.Function;
 import com.srctran.backend.parser.java.JavaParser;
 import com.srctran.backend.parser.java.JavaParser.TypeBoundContext;
 import com.srctran.backend.parser.java.JavaParser.TypeContext;
@@ -38,8 +38,8 @@ public class TypeParameterAdapter extends JavaAdapter<TypeParameterContext, Type
   public TypeParameter adapt(TypeParameterContext context) {
     TypeParameter typeParameter = createData(context);
 
-    TerminalNode identifierNode = getChild(context, TerminalNode.class);
-    if (identifierNode != null && identifierNode.getSymbol().getType() == JavaParser.Identifier) {
+    TerminalNode identifierNode = getTerminalNode(context, JavaParser.Identifier);
+    if (identifierNode != null) {
       typeParameter.setIdentifier(
           getAdapter(IdentifierAdapter.class).adapt(identifierNode));
     }

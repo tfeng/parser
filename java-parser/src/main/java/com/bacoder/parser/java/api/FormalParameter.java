@@ -16,7 +16,7 @@
 package com.bacoder.parser.java.api;
 
 
-public class FormalParameter extends NodeWithVariableModifiers {
+public class FormalParameter extends NodeWithModifiers {
 
   private Identifier identifier;
 

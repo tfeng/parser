@@ -17,9 +17,9 @@ package com.bacoder.parser.java.adapter;
 
 import java.util.List;
 
-import com.google.common.base.Function;
 import com.bacoder.parser.core.Adapters;
 import com.bacoder.parser.java.api.FormalParameter;
+import com.google.common.base.Function;
 import com.srctran.backend.parser.java.JavaParser.FormalParameterContext;
 import com.srctran.backend.parser.java.JavaParser.FormalParameterListContext;
 import com.srctran.backend.parser.java.JavaParser.FormalParametersContext;
@@ -36,15 +36,13 @@ public class FormalParametersAdapter
   public List<FormalParameter> adapt(FormalParametersContext context) {
     FormalParameterListContext formalParameterListContext =
         getChild(context, FormalParameterListContext.class);
-    if (formalParameterListContext == null) {
-      return null;
-    } else {
+    if (formalParameterListContext != null) {
       List<FormalParameter> formalParameters =
           transform(formalParameterListContext, FormalParameterContext.class,
               new Function<FormalParameterContext, FormalParameter>() {
                 @Override
-                public FormalParameter apply(FormalParameterContext input) {
-                  return null;
+                public FormalParameter apply(FormalParameterContext context) {
+                  return getAdapter(FormalParameterAdapter.class).adapt(context);
                 }
               });
 
@@ -59,5 +57,7 @@ public class FormalParametersAdapter
       }
       return formalParameters;
     }
+
+    return null;
   }
 }

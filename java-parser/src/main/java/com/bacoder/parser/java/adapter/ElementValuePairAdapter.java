@@ -34,14 +34,12 @@ public class ElementValuePairAdapter
   public NameValuePair adapt(ElementValuePairContext context) {
     NameValuePair annotationValuePair = createData(context);
 
-    TerminalNode identifierNode = getChild(context, TerminalNode.class);
-    if (identifierNode != null
-        && identifierNode.getSymbol().getType() != JavaParser.ASSIGN) {
+    TerminalNode identifierNode = getTerminalNode(context, JavaParser.Identifier);
+    if (identifierNode != null) {
       annotationValuePair.setIdentifier(getAdapter(IdentifierAdapter.class).adapt(identifierNode));
     }
 
-    ElementValueContext elementValueContext =
-        getChild(context, ElementValueContext.class);
+    ElementValueContext elementValueContext = getChild(context, ElementValueContext.class);
     if (elementValueContext != null) {
       annotationValuePair.setValue(
           getAdapter(ElementValueAdapter.class).adapt(elementValueContext));

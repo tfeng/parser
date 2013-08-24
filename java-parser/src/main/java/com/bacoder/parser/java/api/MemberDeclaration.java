@@ -15,6 +15,8 @@
  */
 package com.bacoder.parser.java.api;
 
-public class MemberDeclaration extends NodeWithModifiers {
+import com.bacoder.parser.core.Segment;
+
+public interface MemberDeclaration extends Segment {
 
 }

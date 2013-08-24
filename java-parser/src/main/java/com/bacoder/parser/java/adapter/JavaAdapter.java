@@ -21,14 +21,11 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-import com.google.common.base.Function;
 import com.bacoder.parser.core.Adapter;
 import com.bacoder.parser.core.Adapters;
 import com.bacoder.parser.java.api.Annotation;
-import com.bacoder.parser.java.api.NodeWithAnnotations;
-import com.bacoder.parser.java.api.NodeWithClassOrInterfaceModifiers;
 import com.bacoder.parser.java.api.NodeWithModifiers;
-import com.bacoder.parser.java.api.NodeWithVariableModifiers;
+import com.google.common.base.Function;
 import com.srctran.backend.parser.java.JavaParser;
 import com.srctran.backend.parser.java.JavaParser.AnnotationContext;
 import com.srctran.backend.parser.java.JavaParser.ClassOrInterfaceModifierContext;
@@ -41,7 +38,7 @@ public abstract class JavaAdapter<C extends ParseTree, D> extends Adapter<C, D> 
     super(adapters);
   }
 
-  protected void setAnnotations(ParserRuleContext context, final NodeWithAnnotations node) {
+  protected void setAnnotations(ParserRuleContext context, final NodeWithModifiers node) {
     List<Annotation> annotations =
         transform(context, ClassOrInterfaceModifierContext.class,
             new Function<ClassOrInterfaceModifierContext, Annotation>() {
@@ -60,7 +57,7 @@ public abstract class JavaAdapter<C extends ParseTree, D> extends Adapter<C, D> 
   }
 
   protected void setClassOrInterfaceModifiers(ParserRuleContext context,
-      final NodeWithClassOrInterfaceModifiers node) {
+      final NodeWithModifiers node) {
     setAnnotations(context, node);
 
     forEachChild(context, ClassOrInterfaceModifierContext.class,
@@ -130,8 +127,7 @@ public abstract class JavaAdapter<C extends ParseTree, D> extends Adapter<C, D> 
     });
   }
 
-  protected void setVariableModifiers(ParserRuleContext context,
-      final NodeWithVariableModifiers node) {
+  protected void setVariableModifiers(ParserRuleContext context, final NodeWithModifiers node) {
     setAnnotations(context, node);
 
     forEachChild(context, VariableModifierContext.class,

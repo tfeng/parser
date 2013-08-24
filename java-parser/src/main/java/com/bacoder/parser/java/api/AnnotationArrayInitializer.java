@@ -15,11 +15,14 @@
  */
 package com.bacoder.parser.java.api;
 
+import java.util.Collections;
 import java.util.List;
 
-public class AnnotationArrayInitializer extends AnnotationValue {
+import com.bacoder.parser.core.Node;
 
-  private List<AnnotationValue> arrayElementValues;
+public class AnnotationArrayInitializer extends Node implements AnnotationValue {
+
+  private List<AnnotationValue> arrayElementValues = Collections.emptyList();
 
   public List<AnnotationValue> getArrayElementValues() {
     return arrayElementValues;

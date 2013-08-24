@@ -15,19 +15,20 @@
  */
 package com.bacoder.parser.java.api;
 
+import java.util.Collections;
 import java.util.List;
 
 import com.bacoder.parser.core.Node;
 
-public class NodeWithAnnotations extends Node {
+public class ArrayInitializer extends Node implements VariableInitializer {
 
-  private List<Annotation> annotations;
+  private List<VariableInitializer> initializers = Collections.emptyList();
 
-  public List<Annotation> getAnnotations() {
-    return annotations;
+  public List<VariableInitializer> getInitializers() {
+    return initializers;
   }
 
-  public void setAnnotations(List<Annotation> annotations) {
-    this.annotations = annotations;
+  public void setInitializers(List<VariableInitializer> initializers) {
+    this.initializers = initializers;
   }
 }

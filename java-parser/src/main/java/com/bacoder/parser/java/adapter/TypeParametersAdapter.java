@@ -17,9 +17,9 @@ package com.bacoder.parser.java.adapter;
 
 import java.util.List;
 
-import com.google.common.base.Function;
 import com.bacoder.parser.core.Adapters;
 import com.bacoder.parser.java.api.TypeParameter;
+import com.google.common.base.Function;
 import com.srctran.backend.parser.java.JavaParser.TypeParameterContext;
 import com.srctran.backend.parser.java.JavaParser.TypeParametersContext;
 
@@ -34,8 +34,8 @@ public class TypeParametersAdapter extends JavaAdapter<TypeParametersContext, Li
     return transform(context, TypeParameterContext.class,
         new Function<TypeParameterContext, TypeParameter>() {
           @Override
-          public TypeParameter apply(TypeParameterContext input) {
-            return null;
+          public TypeParameter apply(TypeParameterContext context) {
+            return getAdapter(TypeParameterAdapter.class).adapt(context);
           }
         });
   }

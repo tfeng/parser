@@ -15,8 +15,8 @@
  */
 package com.bacoder.parser.java.api;
 
-import com.bacoder.parser.core.Node;
+import com.bacoder.parser.core.Segment;
 
-public abstract class AnnotationValue extends Node {
+public interface AnnotationValue extends Segment {
 
 }

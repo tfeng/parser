@@ -44,9 +44,9 @@ public class TestJavaPropertiesParser {
     Assert.assertEquals(properties.getComments().size(), 1);
     Assert.assertEquals(properties.getComments().get(0).getText(), "# Comment: colon");
     Assert.assertEquals(properties.getComments().get(0).getStartLine(), 1);
-    Assert.assertEquals(properties.getComments().get(0).getStartIndex(), 0);
+    Assert.assertEquals(properties.getComments().get(0).getStartColumn(), 0);
     Assert.assertEquals(properties.getComments().get(0).getEndLine(), 1);
-    Assert.assertEquals(properties.getComments().get(0).getEndIndex(), "# Comment: colon".length() - 1);
+    Assert.assertEquals(properties.getComments().get(0).getEndColumn(), "# Comment: colon".length() - 1);
   }
 
   public void testEquals() {
@@ -58,9 +58,9 @@ public class TestJavaPropertiesParser {
     Assert.assertEquals(properties.getComments().size(), 1);
     Assert.assertEquals(properties.getComments().get(0).getText(), "# Comment");
     Assert.assertEquals(properties.getComments().get(0).getStartLine(), 1);
-    Assert.assertEquals(properties.getComments().get(0).getStartIndex(), 0);
+    Assert.assertEquals(properties.getComments().get(0).getStartColumn(), 0);
     Assert.assertEquals(properties.getComments().get(0).getEndLine(), 1);
-    Assert.assertEquals(properties.getComments().get(0).getEndIndex(), "# Comment".length() - 1);
+    Assert.assertEquals(properties.getComments().get(0).getEndColumn(), "# Comment".length() - 1);
   }
 
   public void testEqualsWithSpaces() {
@@ -72,9 +72,9 @@ public class TestJavaPropertiesParser {
     Assert.assertEquals(properties.getComments().size(), 1);
     Assert.assertEquals(properties.getComments().get(0).getText(), "# Comment");
     Assert.assertEquals(properties.getComments().get(0).getStartLine(), 1);
-    Assert.assertEquals(properties.getComments().get(0).getStartIndex(), 2);
+    Assert.assertEquals(properties.getComments().get(0).getStartColumn(), 2);
     Assert.assertEquals(properties.getComments().get(0).getEndLine(), 1);
-    Assert.assertEquals(properties.getComments().get(0).getEndIndex(), "# Comment".length() + 1);
+    Assert.assertEquals(properties.getComments().get(0).getEndColumn(), "# Comment".length() + 1);
   }
 
   public void testEqualsWithTabs() {
@@ -86,9 +86,9 @@ public class TestJavaPropertiesParser {
     Assert.assertEquals(properties.getComments().size(), 1);
     Assert.assertEquals(properties.getComments().get(0).getText(), "#\tComment");
     Assert.assertEquals(properties.getComments().get(0).getStartLine(), 1);
-    Assert.assertEquals(properties.getComments().get(0).getStartIndex(), 2);
+    Assert.assertEquals(properties.getComments().get(0).getStartColumn(), 2);
     Assert.assertEquals(properties.getComments().get(0).getEndLine(), 1);
-    Assert.assertEquals(properties.getComments().get(0).getEndIndex(), "#\tComment".length() + 1);
+    Assert.assertEquals(properties.getComments().get(0).getEndColumn(), "#\tComment".length() + 1);
   }
 
   public void testSpaces() {
@@ -121,9 +121,9 @@ public class TestJavaPropertiesParser {
 
   private Properties parse(String input) {
     JavaPropertiesParser parser = getParser(input);
-    PropertiesContext propertiesContext = parser.properties();
+    PropertiesContext context = parser.properties();
     PropertiesAdapters adapters = new PropertiesAdapters();
-    Properties properties = adapters.getAdapter(PropertiesAdapter.class).adapt(propertiesContext);
+    Properties properties = adapters.getAdapter(PropertiesAdapter.class).adapt(context);
     return properties;
   }
 

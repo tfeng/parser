@@ -15,25 +15,8 @@
  */
 package com.bacoder.parser.java.api;
 
-public class AnyTypeArgument extends TypeArgument {
+import com.bacoder.parser.core.Segment;
 
-  private Type extendsType;
+public interface AnnotationMemberDeclaration extends Segment {
 
-  private Type superType;
-
-  public Type getExtendsType() {
-    return extendsType;
-  }
-
-  public Type getSuperType() {
-    return superType;
-  }
-
-  public void setExtendsType(Type extendsType) {
-    this.extendsType = extendsType;
-  }
-
-  public void setSuperType(Type superType) {
-    this.superType = superType;
-  }
 }

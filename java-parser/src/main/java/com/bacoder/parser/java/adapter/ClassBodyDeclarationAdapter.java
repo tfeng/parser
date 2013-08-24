@@ -18,9 +18,9 @@ package com.bacoder.parser.java.adapter;
 import com.bacoder.parser.core.Adapters;
 import com.bacoder.parser.java.api.BlockClassBodyDeclaration;
 import com.bacoder.parser.java.api.ClassBodyDeclaration;
-import com.bacoder.parser.java.api.EmptyClassBodyDeclaration;
 import com.bacoder.parser.java.api.MemberClassBodyDeclaration;
 import com.bacoder.parser.java.api.MemberDeclaration;
+import com.bacoder.parser.java.api.NodeWithModifiers;
 import com.srctran.backend.parser.java.JavaParser;
 import com.srctran.backend.parser.java.JavaParser.BlockContext;
 import com.srctran.backend.parser.java.JavaParser.ClassBodyDeclarationContext;
@@ -36,9 +36,6 @@ public class ClassBodyDeclarationAdapter
   @Override
   public ClassBodyDeclaration adapt(ClassBodyDeclarationContext context) {
     BlockContext blockContext = getChild(context, BlockContext.class);
-    MemberDeclarationContext memberDeclarationContext =
-        getChild(context, MemberDeclarationContext.class);
-    
     if (blockContext != null) {
       BlockClassBodyDeclaration blockClassBodyDeclaration =
           createData(BlockClassBodyDeclaration.class, blockContext);
@@ -46,20 +43,20 @@ public class ClassBodyDeclarationAdapter
       blockClassBodyDeclaration.setBlockStatements(
           getAdapter(BlockAdapter.class).adapt(blockContext));
       return blockClassBodyDeclaration;
+    }
 
-    } else if (memberDeclarationContext != null) {
+    MemberDeclarationContext memberDeclarationContext =
+        getChild(context, MemberDeclarationContext.class);
+    if (memberDeclarationContext != null) {
       MemberClassBodyDeclaration memberClassBodyDeclaration =
           createData(MemberClassBodyDeclaration.class, memberDeclarationContext);
       MemberDeclaration memberDeclaration =
           getAdapter(MemberDeclarationAdapter.class).adapt(memberDeclarationContext);
-      setModifiers(context, memberDeclaration);
+      setModifiers(context, (NodeWithModifiers) memberDeclaration);
       memberClassBodyDeclaration.setMemberDeclaration(memberDeclaration);
       return memberClassBodyDeclaration;
-
-    } else {
-      EmptyClassBodyDeclaration emptyClassBodyDeclaration =
-          createData(EmptyClassBodyDeclaration.class, context);
-      return emptyClassBodyDeclaration;
     }
+
+    return null;
   }
 }

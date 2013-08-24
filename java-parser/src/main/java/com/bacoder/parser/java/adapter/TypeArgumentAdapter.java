@@ -16,10 +16,9 @@
 package com.bacoder.parser.java.adapter;
 
 import com.bacoder.parser.core.Adapters;
-import com.bacoder.parser.java.api.AnyTypeArgument;
-import com.bacoder.parser.java.api.SingleTypeArgument;
 import com.bacoder.parser.java.api.Type;
 import com.bacoder.parser.java.api.TypeArgument;
+import com.bacoder.parser.java.api.WildcardTypeArgument;
 import com.srctran.backend.parser.java.JavaParser;
 import com.srctran.backend.parser.java.JavaParser.TypeArgumentContext;
 import com.srctran.backend.parser.java.JavaParser.TypeContext;
@@ -34,24 +33,22 @@ public class TypeArgumentAdapter extends JavaAdapter<TypeArgumentContext, TypeAr
   public TypeArgument adapt(TypeArgumentContext context) {
     TypeContext typeContext = getChild(context, TypeContext.class);
     if (typeContext == null) {
-      AnyTypeArgument anyTypeArgument = createData(AnyTypeArgument.class, context);
-      return anyTypeArgument;
+      WildcardTypeArgument wildcardTypeArgument = createData(WildcardTypeArgument.class, context);
+      return wildcardTypeArgument;
     } else {
       Type type = getAdapter(TypeAdapter.class).adapt(typeContext);
       boolean hasExtends = hasTerminalNode(context, JavaParser.EXTENDS);
       boolean hasSuper = hasTerminalNode(context, JavaParser.SUPER);
       if (hasExtends || hasSuper) {
-        AnyTypeArgument anyTypeArgument = createData(AnyTypeArgument.class, context);
+        WildcardTypeArgument wildcardTypeArgument = createData(WildcardTypeArgument.class, context);
         if (hasExtends) {
-          anyTypeArgument.setExtendsType(type);
+          wildcardTypeArgument.setExtendsType(type);
         } else {
-          anyTypeArgument.setSuperType(type);
+          wildcardTypeArgument.setSuperType(type);
         }
-        return anyTypeArgument;
+        return wildcardTypeArgument;
       } else {
-        SingleTypeArgument singleTypeArgument = createData(SingleTypeArgument.class, context);
-        singleTypeArgument.setType(type);
-        return singleTypeArgument;
+        return type;
       }
     }
   }

@@ -15,11 +15,14 @@
  */
 package com.bacoder.parser.java.api;
 
+import java.util.Collections;
 import java.util.List;
 
-public class BlockClassBodyDeclaration extends ClassBodyDeclaration {
+import com.bacoder.parser.core.Node;
 
-  private List<BlockStatement> blockStatements;
+public class BlockClassBodyDeclaration extends Node implements ClassBodyDeclaration {
+
+  private List<BlockStatement> blockStatements = Collections.emptyList();
 
   private boolean isStatic;
 

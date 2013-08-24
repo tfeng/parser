@@ -15,6 +15,36 @@
  */
 package com.bacoder.parser.java.api;
 
-public class EmptyClassBodyDeclaration extends ClassBodyDeclaration {
+public class AnnotationMethodDeclaration extends NodeWithModifiers
+    implements AnnotationMemberDeclaration {
 
+  private AnnotationValue defaultValue;
+
+  private Identifier name;
+
+  private Type type;
+
+  public AnnotationValue getDefaultValue() {
+    return defaultValue;
+  }
+
+  public Identifier getName() {
+    return name;
+  }
+
+  public Type getType() {
+    return type;
+  }
+
+  public void setDefaultValue(AnnotationValue defaultValue) {
+    this.defaultValue = defaultValue;
+  }
+
+  public void setName(Identifier name) {
+    this.name = name;
+  }
+
+  public void setType(Type type) {
+    this.type = type;
+  }
 }

@@ -15,6 +15,8 @@
  */
 package com.bacoder.parser.java.api;
 
-public abstract class ClassBodyDeclaration {
+import com.bacoder.parser.core.Segment;
+
+public interface ClassBodyDeclaration extends Segment {
 
 }

@@ -15,6 +15,7 @@
  */
 package com.bacoder.parser.java.api;
 
+import java.util.Collections;
 import java.util.List;
 
 public class ClassOrInterfaceType extends Type {
@@ -23,7 +24,7 @@ public class ClassOrInterfaceType extends Type {
 
   private ClassOrInterfaceType scope;
 
-  private List<TypeArgument> typeArguments;
+  private List<TypeArgument> typeArguments = Collections.emptyList();
 
   public Identifier getIdentifier() {
     return identifier;

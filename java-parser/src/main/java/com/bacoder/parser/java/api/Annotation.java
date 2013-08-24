@@ -15,17 +15,20 @@
  */
 package com.bacoder.parser.java.api;
 
+import java.util.Collections;
 import java.util.List;
 
-public class Annotation extends AnnotationValue {
+import com.bacoder.parser.core.Node;
+
+public class Annotation extends Node implements AnnotationValue {
 
   private QualifiedName annotationName;
 
   private AnnotationValue annotationValue;
 
-  private List<NameValuePair> annotationValuePairs;
+  private List<NameValuePair> annotationValuePairs = Collections.emptyList();
 
-  public QualifiedName getAnnotationName() {
+  public QualifiedName getName() {
     return annotationName;
   }
 

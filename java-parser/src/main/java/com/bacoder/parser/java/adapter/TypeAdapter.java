@@ -35,25 +35,22 @@ public class TypeAdapter extends JavaAdapter<TypeContext, Type> {
   @Override
   public Type adapt(TypeContext context) {
     Type type = null;
-    ParseTree typeNode = context;
 
     ClassOrInterfaceTypeContext classOrInterfaceTypeContext =
         getChild(context, ClassOrInterfaceTypeContext.class);
     if (classOrInterfaceTypeContext != null) {
       type = getAdapter(ClassOrInterfaceTypeAdapter.class).adapt(classOrInterfaceTypeContext);
-      typeNode = classOrInterfaceTypeContext;
     }
 
     PrimitiveTypeContext primitiveTypeContext = getChild(context, PrimitiveTypeContext.class);
     if (primitiveTypeContext != null) {
       type = getAdapter(PrimitiveTypeAdapter.class).adapt(primitiveTypeContext);
-      typeNode = primitiveTypeContext;
     }
 
     for (ParseTree node : context.children) {
       if (node instanceof TerminalNode
-          && ((TerminalNode) node).getSymbol().getType() == JavaParser.LBRACK) {
-        ArrayType arrayType = createData(ArrayType.class, typeNode, node);
+          && ((TerminalNode) node).getSymbol().getType() == JavaParser.RBRACK) {
+        ArrayType arrayType = createData(ArrayType.class, context, node);
         arrayType.setElementType(type);
         type = arrayType;
       }

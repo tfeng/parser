@@ -15,17 +15,25 @@
  */
 package com.bacoder.parser.java.api;
 
+import java.util.Collections;
 import java.util.List;
 
-public class ClassDeclaration extends TypeDeclaration {
+public class ClassDeclaration extends TypeDeclaration
+    implements AnnotationMemberDeclaration, InterfaceMemberDeclaration, MemberDeclaration {
+
+  private List<ClassBodyDeclaration> bodyDeclarations = Collections.emptyList();
 
   private Type extendsType;
 
-  private List<Type> implementsTypes;
+  private List<Type> implementsTypes = Collections.emptyList();
 
   private Identifier name;
 
-  private List<TypeParameter> typeParameters;
+  private List<TypeParameter> typeParameters = Collections.emptyList();
+
+  public List<ClassBodyDeclaration> getBodyDeclarations() {
+    return bodyDeclarations;
+  }
 
   public Type getExtendsType() {
     return extendsType;
@@ -41,6 +49,10 @@ public class ClassDeclaration extends TypeDeclaration {
 
   public List<TypeParameter> getTypeParameters() {
     return typeParameters;
+  }
+
+  public void setBodyDeclarations(List<ClassBodyDeclaration> bodyDeclarations) {
+    this.bodyDeclarations = bodyDeclarations;
   }
 
   public void setExtendsType(Type extendsType) {

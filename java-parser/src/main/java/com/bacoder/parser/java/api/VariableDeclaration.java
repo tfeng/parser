@@ -15,15 +15,37 @@
  */
 package com.bacoder.parser.java.api;
 
-public class AnnotationExpressionValue extends AnnotationValue {
+import com.bacoder.parser.core.Node;
 
-  private Expression expression;
+public class VariableDeclaration extends Node {
 
-  public Expression getExpression() {
-    return expression;
+  private VariableInitializer initializer;
+
+  private Identifier name;
+
+  private Type type;
+
+  public VariableInitializer getInitializer() {
+    return initializer;
   }
 
-  public void setExpression(Expression expression) {
-    this.expression = expression;
+  public Identifier getName() {
+    return name;
+  }
+
+  public Type getType() {
+    return type;
+  }
+
+  public void setInitializer(VariableInitializer initializer) {
+    this.initializer = initializer;
+  }
+
+  public void setName(Identifier name) {
+    this.name = name;
+  }
+
+  public void setType(Type type) {
+    this.type = type;
   }
 }

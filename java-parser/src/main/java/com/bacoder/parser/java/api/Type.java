@@ -17,6 +17,6 @@ package com.bacoder.parser.java.api;
 
 import com.bacoder.parser.core.Node;
 
-public abstract class Type extends Node {
+public class Type extends Node implements TypeArgument {
 
 }

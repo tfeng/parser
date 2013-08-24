@@ -15,57 +15,18 @@
  */
 package com.bacoder.parser.java.api;
 
+import java.util.Collections;
 import java.util.List;
 
-public class MethodDeclaration extends MemberDeclaration {
+public class MethodDeclaration extends InterfaceMethodDeclaration implements MemberDeclaration {
 
-  private List<BlockStatement> body;
-
-  private List<FormalParameter> formalParameters;
-
-  private Identifier name;
-
-  private Type returnType;
-
-  private List<QualifiedName> throwsExceptions;
+  private List<BlockStatement> body = Collections.emptyList();
 
   public List<BlockStatement> getBody() {
     return body;
   }
 
-  public List<FormalParameter> getFormalParameters() {
-    return formalParameters;
-  }
-
-  public Identifier getName() {
-    return name;
-  }
-
-  public Type getReturnType() {
-    return returnType;
-  }
-
-  public List<QualifiedName> getThrowsExceptions() {
-    return throwsExceptions;
-  }
-
   public void setBody(List<BlockStatement> body) {
     this.body = body;
-  }
-
-  public void setFormalParameters(List<FormalParameter> formalParameters) {
-    this.formalParameters = formalParameters;
-  }
-
-  public void setName(Identifier name) {
-    this.name = name;
-  }
-
-  public void setReturnType(Type returnType) {
-    this.returnType = returnType;
-  }
-
-  public void setThrowsExceptions(List<QualifiedName> throwsExceptions) {
-    this.throwsExceptions = throwsExceptions;
   }
 }

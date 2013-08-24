@@ -15,16 +15,29 @@
  */
 package com.bacoder.parser.java.api;
 
+import java.util.Collections;
+import java.util.List;
 
-public class NodeWithVariableModifiers extends NodeWithAnnotations {
+public class ConstDeclaration extends NodeWithModifiers
+    implements AnnotationMemberDeclaration, InterfaceMemberDeclaration {
 
-  private boolean isFinal;
+  private Type type;
 
-  public boolean isFinal() {
-    return isFinal;
+  private List<VariableDeclaration> variableDeclarations = Collections.emptyList();
+
+  public Type getType() {
+    return type;
   }
 
-  public void setFinal(boolean isFinal) {
-    this.isFinal = isFinal;
+  public List<VariableDeclaration> getVariableDeclarations() {
+    return variableDeclarations;
+  }
+
+  public void setType(Type type) {
+    this.type = type;
+  }
+
+  public void setVariableDeclarations(List<VariableDeclaration> variableDeclarations) {
+    this.variableDeclarations = variableDeclarations;
   }
 }

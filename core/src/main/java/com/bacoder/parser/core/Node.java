@@ -15,42 +15,46 @@
  */
 package com.bacoder.parser.core;
 
-public abstract class Node {
+public abstract class Node implements Segment {
 
-  private int endIndex;
+  private int endColumn;
 
   private int endLine;
 
-  private int startIndex;
+  private int startColumn;
 
   private int startLine;
 
-  public int getEndIndex() {
-    return endIndex;
+  @Override
+  public int getEndColumn() {
+    return endColumn;
   }
 
+  @Override
   public int getEndLine() {
     return endLine;
   }
 
-  public int getStartIndex() {
-    return startIndex;
+  @Override
+  public int getStartColumn() {
+    return startColumn;
   }
 
+  @Override
   public int getStartLine() {
     return startLine;
   }
 
-  public void setEndIndex(int endIndex) {
-    this.endIndex = endIndex;
+  public void setEndColumn(int endColumn) {
+    this.endColumn = endColumn;
   }
 
   public void setEndLine(int endLine) {
     this.endLine = endLine;
   }
 
-  public void setStartIndex(int startIndex) {
-    this.startIndex = startIndex;
+  public void setStartColumn(int startColumn) {
+    this.startColumn = startColumn;
   }
 
   public void setStartLine(int startLine) {
