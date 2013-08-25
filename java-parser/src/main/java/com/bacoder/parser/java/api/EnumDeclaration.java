@@ -19,19 +19,15 @@ import java.util.Collections;
 import java.util.List;
 
 public class EnumDeclaration extends TypeDeclaration
-    implements AnnotationMemberDeclaration, InterfaceMemberDeclaration, MemberDeclaration {
-
-  private List<ClassBodyDeclaration> bodyDeclarations = Collections.emptyList();
+    implements AnnotationMemberDeclaration, InterfaceMemberDeclaration, ClassMemberDeclaration {
 
   private List<EnumConstant> constants = Collections.emptyList();
 
   private List<Type> implementsTypes = Collections.emptyList();
 
-  private Identifier name;
+  private List<ClassMemberDeclaration> memberDeclarations = Collections.emptyList();
 
-  public List<ClassBodyDeclaration> getBodyDeclarations() {
-    return bodyDeclarations;
-  }
+  private Identifier name;
 
   public List<EnumConstant> getConstants() {
     return constants;
@@ -41,12 +37,16 @@ public class EnumDeclaration extends TypeDeclaration
     return implementsTypes;
   }
 
+  public List<ClassMemberDeclaration> getMemberDeclarations() {
+    return memberDeclarations;
+  }
+
   public Identifier getName() {
     return name;
   }
 
-  public void setBodyDeclarations(List<ClassBodyDeclaration> bodyDeclarations) {
-    this.bodyDeclarations = bodyDeclarations;
+  public void setMemberDeclarations(List<ClassMemberDeclaration> memberDeclarations) {
+    this.memberDeclarations = memberDeclarations;
   }
 
   public void setConstants(List<EnumConstant> constants) {

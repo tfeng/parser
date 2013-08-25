@@ -20,22 +20,22 @@ import java.util.List;
 
 import com.bacoder.parser.core.Node;
 
-public class BlockClassBodyDeclaration extends Node implements ClassBodyDeclaration {
-
-  private List<BlockStatement> blockStatements = Collections.emptyList();
+public class BlockDeclaration extends Node implements ClassMemberDeclaration {
 
   private boolean isStatic;
 
-  public List<BlockStatement> getBlockStatements() {
-    return blockStatements;
+  private List<BlockStatement> statements = Collections.emptyList();
+
+  public List<BlockStatement> getStatements() {
+    return statements;
   }
 
   public boolean isStatic() {
     return isStatic;
   }
 
-  public void setBlockStatements(List<BlockStatement> blockStatements) {
-    this.blockStatements = blockStatements;
+  public void setStatements(List<BlockStatement> statements) {
+    this.statements = statements;
   }
 
   public void setStatic(boolean isStatic) {

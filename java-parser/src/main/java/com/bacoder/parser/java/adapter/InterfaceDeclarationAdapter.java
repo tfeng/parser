@@ -20,8 +20,8 @@ import java.util.List;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import com.bacoder.parser.core.Adapters;
-import com.bacoder.parser.java.api.InterfaceMemberDeclaration;
 import com.bacoder.parser.java.api.InterfaceDeclaration;
+import com.bacoder.parser.java.api.InterfaceMemberDeclaration;
 import com.google.common.base.Function;
 import com.srctran.backend.parser.java.JavaParser;
 import com.srctran.backend.parser.java.JavaParser.InterfaceBodyContext;
@@ -60,7 +60,7 @@ public class InterfaceDeclarationAdapter
 
     InterfaceBodyContext interfaceBodyContext = getChild(context, InterfaceBodyContext.class);
     if (interfaceBodyContext != null) {
-      List<InterfaceMemberDeclaration> bodyDeclarations =
+      List<InterfaceMemberDeclaration> memberDeclarations =
           transform(interfaceBodyContext, InterfaceBodyDeclarationContext.class,
               new Function<InterfaceBodyDeclarationContext, InterfaceMemberDeclaration>() {
                 @Override
@@ -68,7 +68,7 @@ public class InterfaceDeclarationAdapter
                   return getAdapter(InterfaceBodyDeclarationAdapter.class).adapt(context);
                 }
               });
-      interfaceDeclaration.setBodyDeclarations(bodyDeclarations);
+      interfaceDeclaration.setMemberDeclarations(memberDeclarations);
     }
 
     return interfaceDeclaration;

@@ -17,24 +17,24 @@ package com.bacoder.parser.java.adapter;
 
 import java.util.List;
 
-import com.google.common.base.Function;
 import com.bacoder.parser.core.Adapters;
-import com.bacoder.parser.java.api.ClassBodyDeclaration;
+import com.bacoder.parser.java.api.ClassMemberDeclaration;
+import com.google.common.base.Function;
 import com.srctran.backend.parser.java.JavaParser.ClassBodyContext;
 import com.srctran.backend.parser.java.JavaParser.ClassBodyDeclarationContext;
 
-public class ClassBodyAdapter extends JavaAdapter<ClassBodyContext, List<ClassBodyDeclaration>> {
+public class ClassBodyAdapter extends JavaAdapter<ClassBodyContext, List<ClassMemberDeclaration>> {
 
   public ClassBodyAdapter(Adapters adapters) {
     super(adapters);
   }
 
   @Override
-  public List<ClassBodyDeclaration> adapt(ClassBodyContext context) {
+  public List<ClassMemberDeclaration> adapt(ClassBodyContext context) {
     return transform(context, ClassBodyDeclarationContext.class,
-        new Function<ClassBodyDeclarationContext, ClassBodyDeclaration>() {
+        new Function<ClassBodyDeclarationContext, ClassMemberDeclaration>() {
           @Override
-          public ClassBodyDeclaration apply(ClassBodyDeclarationContext context) {
+          public ClassMemberDeclaration apply(ClassBodyDeclarationContext context) {
             return getAdapter(ClassBodyDeclarationAdapter.class).adapt(context);
           }
         });

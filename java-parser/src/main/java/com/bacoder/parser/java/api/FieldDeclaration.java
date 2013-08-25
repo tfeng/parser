@@ -18,7 +18,7 @@ package com.bacoder.parser.java.api;
 import java.util.Collections;
 import java.util.List;
 
-public class FieldDeclaration extends NodeWithModifiers implements MemberDeclaration {
+public class FieldDeclaration extends NodeWithModifiers implements ClassMemberDeclaration {
 
   private Type type;
 

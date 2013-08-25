@@ -35,20 +35,20 @@ public abstract class BaseTest {
     int linesInSubstring = countLines(substring);
     int lastReturnInSubstringBefore = substringBefore.lastIndexOf("\n");
     int startLine = linesInSubstringBefore;
-    int startIndex = substringBefore.length() - lastReturnInSubstringBefore - 1;
+    int startColumn = substringBefore.length() - lastReturnInSubstringBefore - 1;
     int endLine = linesInSubstringBefore + linesInSubstring - 1;
-    int endIndex;
+    int endColumn;
     if (linesInSubstring > 1) {
       int lastReturnInSubstring = substring.lastIndexOf("\n");
-      endIndex = substring.length() - lastReturnInSubstring - 2;
+      endColumn = substring.length() - lastReturnInSubstring - 2;
     } else {
-      endIndex = startIndex + substring.length() - 1;
+      endColumn = startColumn + substring.length() - 1;
     }
 
     Assert.assertEquals(node.getStartLine(), startLine);
-    Assert.assertEquals(node.getStartColumn(), startIndex);
+    Assert.assertEquals(node.getStartColumn(), startColumn);
     Assert.assertEquals(node.getEndLine(), endLine);
-    Assert.assertEquals(node.getEndColumn(), endIndex);
+    Assert.assertEquals(node.getEndColumn(), endColumn);
   }
 
   protected <A extends Adapter<? extends ParseTree, ?>> A getAdapter(Class<A> clazz) {

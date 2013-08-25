@@ -70,7 +70,7 @@ public class ClassDeclarationAdapter
 
     ClassBodyContext classBodyContext = getChild(context, ClassBodyContext.class);
     if (classBodyContext != null) {
-      classDeclaration.setBodyDeclarations(
+      classDeclaration.setMemberDeclarations(
           getAdapter(ClassBodyAdapter.class).adapt(classBodyContext));
     }
 

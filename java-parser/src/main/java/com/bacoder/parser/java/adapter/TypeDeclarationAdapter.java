@@ -40,6 +40,7 @@ public class TypeDeclarationAdapter extends JavaAdapter<TypeDeclarationContext, 
     if (classDeclarationContext != null) {
       ClassDeclaration classDeclaration =
           getAdapter(ClassDeclarationAdapter.class).adapt(classDeclarationContext);
+      setNodeAttributes(classDeclaration, context);
       setClassOrInterfaceModifiers(context, classDeclaration);
       return classDeclaration;
     }

@@ -16,10 +16,8 @@
 package com.bacoder.parser.java.adapter;
 
 import com.bacoder.parser.core.Adapters;
-import com.bacoder.parser.java.api.BlockClassBodyDeclaration;
-import com.bacoder.parser.java.api.ClassBodyDeclaration;
-import com.bacoder.parser.java.api.MemberClassBodyDeclaration;
-import com.bacoder.parser.java.api.MemberDeclaration;
+import com.bacoder.parser.java.api.BlockDeclaration;
+import com.bacoder.parser.java.api.ClassMemberDeclaration;
 import com.bacoder.parser.java.api.NodeWithModifiers;
 import com.srctran.backend.parser.java.JavaParser;
 import com.srctran.backend.parser.java.JavaParser.BlockContext;
@@ -27,34 +25,29 @@ import com.srctran.backend.parser.java.JavaParser.ClassBodyDeclarationContext;
 import com.srctran.backend.parser.java.JavaParser.MemberDeclarationContext;
 
 public class ClassBodyDeclarationAdapter
-    extends JavaAdapter<ClassBodyDeclarationContext, ClassBodyDeclaration> {
+    extends JavaAdapter<ClassBodyDeclarationContext, ClassMemberDeclaration> {
 
   public ClassBodyDeclarationAdapter(Adapters adapters) {
     super(adapters);
   }
 
   @Override
-  public ClassBodyDeclaration adapt(ClassBodyDeclarationContext context) {
+  public ClassMemberDeclaration adapt(ClassBodyDeclarationContext context) {
     BlockContext blockContext = getChild(context, BlockContext.class);
     if (blockContext != null) {
-      BlockClassBodyDeclaration blockClassBodyDeclaration =
-          createData(BlockClassBodyDeclaration.class, blockContext);
-      blockClassBodyDeclaration.setStatic(hasTerminalNode(context, JavaParser.STATIC));
-      blockClassBodyDeclaration.setBlockStatements(
-          getAdapter(BlockAdapter.class).adapt(blockContext));
-      return blockClassBodyDeclaration;
+      BlockDeclaration blockDeclaration = createData(BlockDeclaration.class, blockContext);
+      blockDeclaration.setStatic(hasTerminalNode(context, JavaParser.STATIC));
+      blockDeclaration.setStatements(getAdapter(BlockAdapter.class).adapt(blockContext));
+      return blockDeclaration;
     }
 
     MemberDeclarationContext memberDeclarationContext =
         getChild(context, MemberDeclarationContext.class);
     if (memberDeclarationContext != null) {
-      MemberClassBodyDeclaration memberClassBodyDeclaration =
-          createData(MemberClassBodyDeclaration.class, memberDeclarationContext);
-      MemberDeclaration memberDeclaration =
+      ClassMemberDeclaration memberDeclaration =
           getAdapter(MemberDeclarationAdapter.class).adapt(memberDeclarationContext);
       setModifiers(context, (NodeWithModifiers) memberDeclaration);
-      memberClassBodyDeclaration.setMemberDeclaration(memberDeclaration);
-      return memberClassBodyDeclaration;
+      return memberDeclaration;
     }
 
     return null;

@@ -18,7 +18,7 @@ package com.bacoder.parser.java.api;
 import java.util.Collections;
 import java.util.List;
 
-public class ConstructorDeclaration extends NodeWithModifiers implements MemberDeclaration {
+public class ConstructorDeclaration extends NodeWithModifiers implements ClassMemberDeclaration {
 
   private List<BlockStatement> body = Collections.emptyList();
 

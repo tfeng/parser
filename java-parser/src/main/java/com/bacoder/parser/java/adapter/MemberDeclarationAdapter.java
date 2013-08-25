@@ -16,7 +16,7 @@
 package com.bacoder.parser.java.adapter;
 
 import com.bacoder.parser.core.Adapters;
-import com.bacoder.parser.java.api.MemberDeclaration;
+import com.bacoder.parser.java.api.ClassMemberDeclaration;
 import com.srctran.backend.parser.java.JavaParser.AnnotationTypeDeclarationContext;
 import com.srctran.backend.parser.java.JavaParser.ClassDeclarationContext;
 import com.srctran.backend.parser.java.JavaParser.ConstructorDeclarationContext;
@@ -29,14 +29,14 @@ import com.srctran.backend.parser.java.JavaParser.MemberDeclarationContext;
 import com.srctran.backend.parser.java.JavaParser.MethodDeclarationContext;
 
 public class MemberDeclarationAdapter
-    extends JavaAdapter<MemberDeclarationContext, MemberDeclaration> {
+    extends JavaAdapter<MemberDeclarationContext, ClassMemberDeclaration> {
 
   public MemberDeclarationAdapter(Adapters adapters) {
     super(adapters);
   }
 
   @Override
-  public MemberDeclaration adapt(MemberDeclarationContext context) {
+  public ClassMemberDeclaration adapt(MemberDeclarationContext context) {
     MethodDeclarationContext methodDeclarationContext =
         getChild(context, MethodDeclarationContext.class);
     if (methodDeclarationContext != null) {

@@ -60,7 +60,7 @@ public class EnumConstantAdapter extends JavaAdapter<EnumConstantContext, EnumCo
 
     ClassBodyContext classBodyContext = getChild(context, ClassBodyContext.class);
     if (classBodyContext != null) {
-      enumConstant.setBodyDeclarations(
+      enumConstant.setMemberDeclarations(
           getAdapter(ClassBodyAdapter.class).adapt(classBodyContext));
     }
 

@@ -21,21 +21,36 @@ import junit.framework.Assert;
 
 import org.testng.annotations.Test;
 
-import com.bacoder.parser.java.adapter.ClassDeclarationAdapter;
+import com.bacoder.parser.java.adapter.TypeDeclarationAdapter;
 import com.bacoder.parser.java.api.ClassDeclaration;
+import com.bacoder.parser.java.api.TypeDeclaration;
 import com.srctran.backend.parser.java.JavaParser;
-import com.srctran.backend.parser.java.JavaParser.ClassDeclarationContext;
+import com.srctran.backend.parser.java.JavaParser.TypeDeclarationContext;
 
 @Test
 public class TestClassDeclaration extends JavaBaseTest {
 
+  public void testModifiers() {
+    String input = "public protected private static abstract final strictfp class ClassWithModifiers {\n}";
+    ClassDeclaration classDeclaration = parse(input);
+
+    assertModifiers(classDeclaration, true, true, false, true, true, true, true, true, false, false,
+        false);
+    assertAttributes(classDeclaration, input);
+    Assert.assertEquals(classDeclaration.getName().getText(), "ClassWithModifiers");
+    assertAttributes(classDeclaration.getName(), input, "ClassWithModifiers");
+    Assert.assertEquals(classDeclaration.getAnnotations(), Collections.emptyList());
+    Assert.assertNull(classDeclaration.getExtendsType());
+    Assert.assertEquals(classDeclaration.getImplementsTypes(), Collections.emptyList());
+    Assert.assertEquals(classDeclaration.getTypeParameters(), Collections.emptyList());
+  }
+
   public void testSimpleClassDeclaration() {
     String input = "class SimpleClass {\n}";
-    JavaParser parser = getParser(input);
-    ClassDeclarationContext context = parser.classDeclaration();
-    ClassDeclarationAdapter adapter = getAdapter(ClassDeclarationAdapter.class);
-    ClassDeclaration classDeclaration = adapter.adapt(context);
+    ClassDeclaration classDeclaration = parse(input);
 
+    assertModifiers(classDeclaration, false, false, false, false, false, false, false, false, false,
+        false, false);
     assertAttributes(classDeclaration, input);
     Assert.assertEquals(classDeclaration.getName().getText(), "SimpleClass");
     assertAttributes(classDeclaration.getName(), input, "SimpleClass");
@@ -43,5 +58,13 @@ public class TestClassDeclaration extends JavaBaseTest {
     Assert.assertNull(classDeclaration.getExtendsType());
     Assert.assertEquals(classDeclaration.getImplementsTypes(), Collections.emptyList());
     Assert.assertEquals(classDeclaration.getTypeParameters(), Collections.emptyList());
+  }
+
+  private ClassDeclaration parse(String input) {
+    JavaParser parser = getParser(input);
+    TypeDeclarationContext context = parser.typeDeclaration();
+    TypeDeclarationAdapter adapter = getAdapter(TypeDeclarationAdapter.class);
+    TypeDeclaration typeDeclaration = adapter.adapt(context);
+    return (ClassDeclaration) typeDeclaration;
   }
 }

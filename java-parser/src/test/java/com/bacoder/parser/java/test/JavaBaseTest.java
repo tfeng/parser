@@ -17,15 +17,40 @@ package com.bacoder.parser.java.test;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.testng.Assert;
 
 import com.bacoder.parser.core.Adapters;
 import com.bacoder.parser.java.adapter.JavaAdapters;
+import com.bacoder.parser.java.api.NodeWithModifiers;
 import com.bacoder.parser.java.api.QualifiedName;
 import com.bacoder.parser.testutil.BaseTest;
 import com.srctran.backend.parser.java.JavaLexer;
 import com.srctran.backend.parser.java.JavaParser;
 
 public abstract class JavaBaseTest extends BaseTest {
+
+  protected void assertModifiers(NodeWithModifiers node, boolean isAbstract, boolean isFinal,
+      boolean isNative, boolean isPrivate, boolean isProtected, boolean isPublic, boolean isStatic,
+      boolean isStrictfp, boolean isSynchronized, boolean isTransient, boolean isVolatile) {
+    Assert.assertEquals(node.isAbstract(), isAbstract);
+    Assert.assertEquals(node.isFinal(), isFinal);
+    Assert.assertEquals(node.isNative(), isNative);
+    Assert.assertEquals(node.isPrivate(), isPrivate);
+    Assert.assertEquals(node.isProtected(), isProtected);
+    Assert.assertEquals(node.isPublic(), isPublic);
+    Assert.assertEquals(node.isStatic(), isStatic);
+    Assert.assertEquals(node.isStrictfp(), isStrictfp);
+    Assert.assertEquals(node.isSynchronized(), isSynchronized);
+    Assert.assertEquals(node.isTransient(), isTransient);
+    Assert.assertEquals(node.isVolatile(), isVolatile);
+  }
+
+  protected void assertQualifiedName(QualifiedName qualifiedName, String input, String expected) {
+    String[] parts = expected.split("\\.");
+    for (int i = 0; i < parts.length; i++) {
+      assertAttributes(qualifiedName.getIdentifiers().get(i), input, parts[i]);
+    }
+  }
 
   @Override
   protected Adapters getAdapters() {
@@ -37,12 +62,5 @@ public abstract class JavaBaseTest extends BaseTest {
     CommonTokenStream tokenStream = new CommonTokenStream(lexer);
     JavaParser parser = new JavaParser(tokenStream);
     return parser;
-  }
-
-  protected void assertQualifiedName(QualifiedName qualifiedName, String input, String expected) {
-    String[] parts = expected.split("\\.");
-    for (int i = 0; i < parts.length; i++) {
-      assertAttributes(qualifiedName.getIdentifiers().get(i), input, parts[i]);
-    }
   }
 }

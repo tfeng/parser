@@ -18,8 +18,8 @@ package com.bacoder.parser.java.adapter;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import com.bacoder.parser.core.Adapters;
-import com.bacoder.parser.java.api.AnnotationMemberDeclaration;
 import com.bacoder.parser.java.api.AnnotationDeclaration;
+import com.bacoder.parser.java.api.AnnotationMemberDeclaration;
 import com.google.common.base.Function;
 import com.srctran.backend.parser.java.JavaParser;
 import com.srctran.backend.parser.java.JavaParser.AnnotationTypeBodyContext;
@@ -45,7 +45,7 @@ public class AnnotationTypeDeclarationAdapter
     AnnotationTypeBodyContext annotationTypeBodyContext =
         getChild(context, AnnotationTypeBodyContext.class);
     if (annotationTypeBodyContext != null) {
-      annotationDeclaration.setBodyDeclarations(transform(annotationTypeBodyContext,
+      annotationDeclaration.setMemberDeclarations(transform(annotationTypeBodyContext,
           AnnotationTypeElementDeclarationContext.class,
           new Function<AnnotationTypeElementDeclarationContext, AnnotationMemberDeclaration>() {
             @Override

@@ -19,9 +19,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class InterfaceDeclaration extends TypeDeclaration
-    implements AnnotationMemberDeclaration, InterfaceMemberDeclaration, MemberDeclaration {
+    implements AnnotationMemberDeclaration, InterfaceMemberDeclaration, ClassMemberDeclaration {
 
-  private List<InterfaceMemberDeclaration> bodyDeclarations = Collections.emptyList();
+  private List<InterfaceMemberDeclaration> memberDeclarations = Collections.emptyList();
 
   private List<Type> extendsTypes = Collections.emptyList();
 
@@ -29,8 +29,8 @@ public class InterfaceDeclaration extends TypeDeclaration
 
   private List<TypeParameter> typeParameters = Collections.emptyList();
 
-  public List<InterfaceMemberDeclaration> getBodyDeclarations() {
-    return bodyDeclarations;
+  public List<InterfaceMemberDeclaration> getMemberDeclarations() {
+    return memberDeclarations;
   }
 
   public List<Type> getExtendsTypes() {
@@ -45,8 +45,8 @@ public class InterfaceDeclaration extends TypeDeclaration
     return typeParameters;
   }
 
-  public void setBodyDeclarations(List<InterfaceMemberDeclaration> bodyDeclarations) {
-    this.bodyDeclarations = bodyDeclarations;
+  public void setMemberDeclarations(List<InterfaceMemberDeclaration> memberDeclarations) {
+    this.memberDeclarations = memberDeclarations;
   }
 
   public void setExtendsTypes(List<Type> extendsTypes) {

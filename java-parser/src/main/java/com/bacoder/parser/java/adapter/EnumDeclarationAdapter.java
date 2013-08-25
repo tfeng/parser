@@ -20,7 +20,7 @@ import java.util.List;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import com.bacoder.parser.core.Adapters;
-import com.bacoder.parser.java.api.ClassBodyDeclaration;
+import com.bacoder.parser.java.api.ClassMemberDeclaration;
 import com.bacoder.parser.java.api.EnumConstant;
 import com.bacoder.parser.java.api.EnumDeclaration;
 import com.bacoder.parser.java.api.Type;
@@ -77,15 +77,15 @@ public class EnumDeclarationAdapter extends JavaAdapter<EnumDeclarationContext, 
     EnumBodyDeclarationsContext enumBodyDeclarationsContext =
         getChild(context, EnumBodyDeclarationsContext.class);
     if (enumBodyDeclarationsContext != null) {
-      List<ClassBodyDeclaration> bodyDeclarations =
+      List<ClassMemberDeclaration> memberDeclarations =
           transform(enumBodyDeclarationsContext, ClassBodyDeclarationContext.class,
-              new Function<ClassBodyDeclarationContext, ClassBodyDeclaration>() {
+              new Function<ClassBodyDeclarationContext, ClassMemberDeclaration>() {
                 @Override
-                public ClassBodyDeclaration apply(ClassBodyDeclarationContext context) {
+                public ClassMemberDeclaration apply(ClassBodyDeclarationContext context) {
                   return getAdapter(ClassBodyDeclarationAdapter.class).adapt(context);
                 }
               });
-      enumDeclaration.setBodyDeclarations(bodyDeclarations);
+      enumDeclaration.setMemberDeclarations(memberDeclarations);
     }
 
     return enumDeclaration;

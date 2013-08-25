@@ -26,9 +26,9 @@ public class EnumConstant extends Node {
 
   private List<Expression> arguments = Collections.emptyList();
 
-  private List<ClassBodyDeclaration> bodyDeclarations = Collections.emptyList();
-
   private Identifier identifier;
+
+  private List<ClassMemberDeclaration> memberDeclarations = Collections.emptyList();
 
   public List<Annotation> getAnnotations() {
     return annotations;
@@ -38,8 +38,8 @@ public class EnumConstant extends Node {
     return arguments;
   }
 
-  public List<ClassBodyDeclaration> getBodyDeclarations() {
-    return bodyDeclarations;
+  public List<ClassMemberDeclaration> getMemberDeclarations() {
+    return memberDeclarations;
   }
 
   public Identifier getIdentifier() {
@@ -54,8 +54,8 @@ public class EnumConstant extends Node {
     this.arguments = arguments;
   }
 
-  public void setBodyDeclarations(List<ClassBodyDeclaration> bodyDeclarations) {
-    this.bodyDeclarations = bodyDeclarations;
+  public void setMemberDeclarations(List<ClassMemberDeclaration> memberDeclarations) {
+    this.memberDeclarations = memberDeclarations;
   }
 
   public void setIdentifier(Identifier identifier) {

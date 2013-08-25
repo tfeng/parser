@@ -19,21 +19,17 @@ import java.util.Collections;
 import java.util.List;
 
 public class ClassDeclaration extends TypeDeclaration
-    implements AnnotationMemberDeclaration, InterfaceMemberDeclaration, MemberDeclaration {
-
-  private List<ClassBodyDeclaration> bodyDeclarations = Collections.emptyList();
+    implements AnnotationMemberDeclaration, InterfaceMemberDeclaration, ClassMemberDeclaration {
 
   private Type extendsType;
 
   private List<Type> implementsTypes = Collections.emptyList();
 
+  private List<ClassMemberDeclaration> memberDeclarations = Collections.emptyList();
+
   private Identifier name;
 
   private List<TypeParameter> typeParameters = Collections.emptyList();
-
-  public List<ClassBodyDeclaration> getBodyDeclarations() {
-    return bodyDeclarations;
-  }
 
   public Type getExtendsType() {
     return extendsType;
@@ -41,6 +37,10 @@ public class ClassDeclaration extends TypeDeclaration
 
   public List<Type> getImplementsTypes() {
     return implementsTypes;
+  }
+
+  public List<ClassMemberDeclaration> getMemberDeclarations() {
+    return memberDeclarations;
   }
 
   public Identifier getName() {
@@ -51,8 +51,8 @@ public class ClassDeclaration extends TypeDeclaration
     return typeParameters;
   }
 
-  public void setBodyDeclarations(List<ClassBodyDeclaration> bodyDeclarations) {
-    this.bodyDeclarations = bodyDeclarations;
+  public void setMemberDeclarations(List<ClassMemberDeclaration> memberDeclarations) {
+    this.memberDeclarations = memberDeclarations;
   }
 
   public void setExtendsType(Type extendsType) {

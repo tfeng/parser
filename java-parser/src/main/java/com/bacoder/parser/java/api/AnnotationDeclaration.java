@@ -19,22 +19,22 @@ import java.util.Collections;
 import java.util.List;
 
 public class AnnotationDeclaration extends TypeDeclaration
-    implements AnnotationMemberDeclaration, InterfaceMemberDeclaration, MemberDeclaration {
+    implements AnnotationMemberDeclaration, ClassMemberDeclaration, InterfaceMemberDeclaration {
 
-  private List<AnnotationMemberDeclaration> bodyDeclarations = Collections.emptyList();
+  private List<AnnotationMemberDeclaration> memberDeclarations = Collections.emptyList();
 
   private Identifier name;
 
-  public List<AnnotationMemberDeclaration> getBodyDeclarations() {
-    return bodyDeclarations;
+  public List<AnnotationMemberDeclaration> getMemberDeclarations() {
+    return memberDeclarations;
   }
 
   public Identifier getName() {
     return name;
   }
 
-  public void setBodyDeclarations(List<AnnotationMemberDeclaration> bodyDeclarations) {
-    this.bodyDeclarations = bodyDeclarations;
+  public void setMemberDeclarations(List<AnnotationMemberDeclaration> memberDeclarations) {
+    this.memberDeclarations = memberDeclarations;
   }
 
   public void setName(Identifier name) {

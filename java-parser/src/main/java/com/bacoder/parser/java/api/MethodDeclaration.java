@@ -18,7 +18,7 @@ package com.bacoder.parser.java.api;
 import java.util.Collections;
 import java.util.List;
 
-public class MethodDeclaration extends InterfaceMethodDeclaration implements MemberDeclaration {
+public class MethodDeclaration extends InterfaceMethodDeclaration implements ClassMemberDeclaration {
 
   private List<BlockStatement> body = Collections.emptyList();
 
