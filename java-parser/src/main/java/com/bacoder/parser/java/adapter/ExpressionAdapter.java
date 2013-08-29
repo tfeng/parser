@@ -17,6 +17,7 @@ package com.bacoder.parser.java.adapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -46,6 +47,7 @@ import com.bacoder.parser.java.api.PrefixExpression;
 import com.bacoder.parser.java.api.ScopedExpression;
 import com.bacoder.parser.java.api.SuperExpression;
 import com.bacoder.parser.java.api.SuperInvocation;
+import com.bacoder.parser.java.api.TernaryExpression;
 import com.bacoder.parser.java.api.ThisExpression;
 import com.bacoder.parser.java.api.ThisInvocation;
 import com.bacoder.parser.java.api.Type;
@@ -109,7 +111,6 @@ public class ExpressionAdapter extends JavaAdapter<ExpressionContext, Expression
                   .put(JavaParser.URSHIFT_ASSIGN,
                       InfixExpression.Operator.UNSIGNED_RIGHT_SHIFT_ASSIGN)
                   .put(JavaParser.XOR_ASSIGN, InfixExpression.Operator.BIT_XOR_ASSIGN)
-                  // <<, >>, >>>
                   .build();
 
   private static final Map<Integer, PostfixExpression.Operator> POSTFIX_OPERATOR_MAP =
@@ -273,6 +274,27 @@ public class ExpressionAdapter extends JavaAdapter<ExpressionContext, Expression
       }
 
       return instanceOf;
+    }
+
+    if (hasTerminalNode(context, JavaParser.QUESTION)) {
+      TernaryExpression ternaryExpression = createData(context, TernaryExpression.class);
+
+      Iterator<ExpressionContext> expressionContexts =
+          getChildren(context, ExpressionContext.class).iterator();
+      if (expressionContexts.hasNext()) {
+        ternaryExpression.setCondition(
+            getAdapter(ExpressionAdapter.class).adapt(expressionContexts.next()));
+      }
+      if (expressionContexts.hasNext()) {
+        ternaryExpression.setTrueExpression(
+            getAdapter(ExpressionAdapter.class).adapt(expressionContexts.next()));
+      }
+      if (expressionContexts.hasNext()) {
+        ternaryExpression.setFalseExpression(
+            getAdapter(ExpressionAdapter.class).adapt(expressionContexts.next()));
+      }
+
+      return ternaryExpression;
     }
 
     return null;
