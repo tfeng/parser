@@ -15,9 +15,14 @@
  */
 package com.bacoder.parser.javaproperties.api;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import com.bacoder.parser.core.TextNode;
 
 public abstract class KeyOrValueNode extends TextNode {
+
+  private static final Pattern UNICODE_PATTERN = Pattern.compile("\\\\u([0-9]{4})");
 
   private static final String[][] SPECIAL_CHAR_MAP = {
     {"\\ ", " "},
@@ -27,8 +32,7 @@ public abstract class KeyOrValueNode extends TextNode {
     {"\\\n", "\n"},
     {"\n", ""},
     {"\r\n", ""},
-    {"\r", ""},
-    {"\\u1234", "\u1234"}
+    {"\r", ""}
   };
 
   public String getSanitizedText() {
@@ -36,6 +40,18 @@ public abstract class KeyOrValueNode extends TextNode {
     for (String[] part : SPECIAL_CHAR_MAP) {
       result = result.replace(part[0], part[1]);
     }
+
+    Matcher matcher = UNICODE_PATTERN.matcher(result);
+    if (matcher.find()) {
+      StringBuffer buffer = new StringBuffer();
+      do {
+        String unicode = Character.toString((char) Integer.parseInt(matcher.group(1), 16));
+        matcher.appendReplacement(buffer, unicode);
+      } while (matcher.find());
+      matcher.appendTail(buffer);
+      result = buffer.toString();
+    }
+
     return result;
   }
 }
