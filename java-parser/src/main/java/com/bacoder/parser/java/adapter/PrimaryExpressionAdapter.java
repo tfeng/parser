@@ -1,6 +1,7 @@
 package com.bacoder.parser.java.adapter;
 
 import java.util.List;
+import java.util.Map;
 
 import org.antlr.v4.runtime.tree.TerminalNode;
 
@@ -8,20 +9,33 @@ import com.bacoder.parser.core.Adapters;
 import com.bacoder.parser.java.api.ClassExpression;
 import com.bacoder.parser.java.api.Expression;
 import com.bacoder.parser.java.api.Invocation;
+import com.bacoder.parser.java.api.Literal;
 import com.bacoder.parser.java.api.SuperExpression;
 import com.bacoder.parser.java.api.ThisExpression;
 import com.bacoder.parser.java.api.ThisInvocation;
 import com.bacoder.parser.java.api.Type;
 import com.bacoder.parser.java.api.VoidType;
+import com.google.common.collect.ImmutableMap;
 import com.srctran.backend.parser.java.JavaParser;
 import com.srctran.backend.parser.java.JavaParser.ArgumentsContext;
 import com.srctran.backend.parser.java.JavaParser.ExplicitGenericInvocationSuffixContext;
 import com.srctran.backend.parser.java.JavaParser.ExpressionContext;
+import com.srctran.backend.parser.java.JavaParser.LiteralContext;
 import com.srctran.backend.parser.java.JavaParser.NonWildcardTypeArgumentsContext;
 import com.srctran.backend.parser.java.JavaParser.PrimaryContext;
 import com.srctran.backend.parser.java.JavaParser.TypeContext;
 
 public class PrimaryExpressionAdapter extends JavaAdapter<PrimaryContext, Expression> {
+
+  private static final Map<Integer, Literal.Type> LITERAL_TYPE_MAP =
+      ImmutableMap.<Integer, Literal.Type>builder()
+                  .put(JavaParser.BooleanLiteral, Literal.Type.BOOLEAN)
+                  .put(JavaParser.CharacterLiteral, Literal.Type.CHARACTER)
+                  .put(JavaParser.FloatingPointLiteral, Literal.Type.FLOATING_POINT)
+                  .put(JavaParser.IntegerLiteral, Literal.Type.INTEGER)
+                  .put(JavaParser.NullLiteral, Literal.Type.NULL)
+                  .put(JavaParser.StringLiteral, Literal.Type.STRING)
+                  .build();
 
   public PrimaryExpressionAdapter(Adapters adapters) {
     super(adapters);
@@ -50,6 +64,19 @@ public class PrimaryExpressionAdapter extends JavaAdapter<PrimaryContext, Expres
       }
       default:
       }
+    }
+
+    LiteralContext literalContext = getChild(context, LiteralContext.class);
+    if (literalContext != null) {
+      Literal literal = createData(context, Literal.class);
+
+      TerminalNode terminal = getChild(literalContext, TerminalNode.class);
+      if (terminal != null && LITERAL_TYPE_MAP.containsKey(terminal.getSymbol().getType())) {
+        literal.setType(LITERAL_TYPE_MAP.get(terminal.getSymbol().getType()));
+        literal.setValue(terminal.getText());
+      }
+
+      return literal;
     }
 
     TypeContext typeContext = getChild(context, TypeContext.class);
