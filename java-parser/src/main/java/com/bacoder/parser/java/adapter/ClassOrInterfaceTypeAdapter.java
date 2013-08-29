@@ -39,7 +39,7 @@ public class ClassOrInterfaceTypeAdapter
       if (child instanceof TerminalNode
           && ((TerminalNode) child).getSymbol().getType() == JavaParser.Identifier) {
         ClassOrInterfaceType newClassOrInterfaceType =
-            createData(ClassOrInterfaceType.class, context, child);
+            createData(context, child, ClassOrInterfaceType.class);
         newClassOrInterfaceType.setIdentifier(
             getAdapter(IdentifierAdapter.class).adapt((TerminalNode) child));
         newClassOrInterfaceType.setScope(classOrInterfaceType);

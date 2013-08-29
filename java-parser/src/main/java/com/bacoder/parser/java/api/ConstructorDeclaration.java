@@ -20,7 +20,7 @@ import java.util.List;
 
 public class ConstructorDeclaration extends NodeWithModifiers implements ClassMemberDeclaration {
 
-  private List<BlockStatement> body = Collections.emptyList();
+  private Block body;
 
   private List<FormalParameter> formalParameters = Collections.emptyList();
 
@@ -28,9 +28,9 @@ public class ConstructorDeclaration extends NodeWithModifiers implements ClassMe
 
   private List<QualifiedName> throwsExceptions = Collections.emptyList();
 
-  private List<TypeParameter> typeParameters;
+  private List<TypeParameter> typeParameters = Collections.emptyList();
 
-  public List<BlockStatement> getBody() {
+  public Block getBody() {
     return body;
   }
 
@@ -50,7 +50,7 @@ public class ConstructorDeclaration extends NodeWithModifiers implements ClassMe
     return typeParameters;
   }
 
-  public void setBody(List<BlockStatement> body) {
+  public void setBody(Block body) {
     this.body = body;
   }
 

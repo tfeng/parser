@@ -17,6 +17,6 @@ package com.bacoder.parser.java.api;
 
 import com.bacoder.parser.core.TextNode;
 
-public class Identifier extends TextNode {
+public class Identifier extends TextNode implements Expression, ExpressionInScope, SwitchLabel {
 
 }

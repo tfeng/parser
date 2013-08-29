@@ -15,6 +15,6 @@
  */
 package com.bacoder.parser.java.api;
 
-public abstract class TypeDeclaration extends NodeWithModifiers {
+public abstract class TypeDeclaration extends NodeWithModifiers implements BlockStatement {
 
 }

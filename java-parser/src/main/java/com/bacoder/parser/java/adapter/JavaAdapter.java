@@ -38,6 +38,16 @@ public abstract class JavaAdapter<C extends ParseTree, D> extends Adapter<C, D> 
     super(adapters);
   }
 
+  protected boolean isTerminalNode(ParseTree tree, int index, int symbolType) {
+    if (tree.getChildCount() > index) {
+      ParseTree node = tree.getChild(index);
+      return node instanceof TerminalNode
+          && ((TerminalNode) node).getSymbol().getType() == symbolType;
+    } else {
+      return false;
+    }
+  }
+
   protected void setAnnotations(ParserRuleContext context, final NodeWithModifiers node) {
     List<Annotation> annotations =
         transform(context, ClassOrInterfaceModifierContext.class,

@@ -21,6 +21,7 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 import com.bacoder.parser.core.Adapters;
 import com.bacoder.parser.java.api.ArrayType;
 import com.bacoder.parser.java.api.MethodDeclaration;
+import com.bacoder.parser.java.api.ReturnType;
 import com.bacoder.parser.java.api.Type;
 import com.bacoder.parser.java.api.VoidType;
 import com.srctran.backend.parser.java.JavaParser;
@@ -42,14 +43,14 @@ public class MethodDeclarationAdapter
   public MethodDeclaration adapt(MethodDeclarationContext context) {
     MethodDeclaration methodDeclaration = createData(context);
 
-    Type type = null;
+    ReturnType type = null;
     TypeContext typeContext = getChild(context, TypeContext.class);
     if (typeContext != null) {
       type = getAdapter(TypeAdapter.class).adapt(typeContext);
     } else {
       TerminalNode voidNode = getTerminalNode(context, JavaParser.VOID);
       if (voidNode != null) {
-        type = createData(VoidType.class, voidNode);
+        type = createData(voidNode, VoidType.class);
       }
     }
 
@@ -66,10 +67,13 @@ public class MethodDeclarationAdapter
     }
 
     for (ParseTree node : context.children) {
+      if (!(type instanceof Type)) {
+        break;
+      }
       if (node instanceof TerminalNode
           && ((TerminalNode) node).getSymbol().getType() == JavaParser.RBRACK) {
-        ArrayType arrayType = createData(ArrayType.class, typeContext, node);
-        arrayType.setElementType(type);
+        ArrayType arrayType = createData(typeContext, node, ArrayType.class);
+        arrayType.setElementType((Type) type);
         type = arrayType;
       }
     }

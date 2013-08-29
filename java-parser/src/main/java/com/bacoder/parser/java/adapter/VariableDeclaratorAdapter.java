@@ -57,7 +57,7 @@ public class VariableDeclaratorAdapter
     for (ParseTree node : variableDeclaratorIdContext.children) {
       if (node instanceof TerminalNode
           && ((TerminalNode) node).getSymbol().getType() == JavaParser.RBRACK) {
-        ArrayType arrayType = createData(ArrayType.class, baseTypeContext, node);
+        ArrayType arrayType = createData(baseTypeContext, node, ArrayType.class);
         arrayType.setElementType(type);
         type = arrayType;
       }

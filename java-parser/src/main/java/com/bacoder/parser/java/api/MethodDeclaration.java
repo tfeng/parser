@@ -15,18 +15,17 @@
  */
 package com.bacoder.parser.java.api;
 
-import java.util.Collections;
-import java.util.List;
 
-public class MethodDeclaration extends InterfaceMethodDeclaration implements ClassMemberDeclaration {
+public class MethodDeclaration extends InterfaceMethodDeclaration
+    implements ClassMemberDeclaration {
 
-  private List<BlockStatement> body = Collections.emptyList();
+  private Block body;
 
-  public List<BlockStatement> getBody() {
+  public Block getBody() {
     return body;
   }
 
-  public void setBody(List<BlockStatement> body) {
+  public void setBody(Block body) {
     this.body = body;
   }
 }

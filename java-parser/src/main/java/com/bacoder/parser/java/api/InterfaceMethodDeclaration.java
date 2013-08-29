@@ -25,7 +25,7 @@ public class InterfaceMethodDeclaration extends NodeWithModifiers
 
   private Identifier name;
 
-  private Type returnType;
+  private ReturnType returnType;
 
   private List<QualifiedName> throwsExceptions = Collections.emptyList();
 
@@ -39,7 +39,7 @@ public class InterfaceMethodDeclaration extends NodeWithModifiers
     return name;
   }
 
-  public Type getReturnType() {
+  public ReturnType getReturnType() {
     return returnType;
   }
 
@@ -51,6 +51,10 @@ public class InterfaceMethodDeclaration extends NodeWithModifiers
     return typeParameters;
   }
 
+  public boolean isVoid() {
+    return returnType instanceof VoidType;
+  }
+
   public void setFormalParameters(List<FormalParameter> formalParameters) {
     this.formalParameters = formalParameters;
   }
@@ -59,7 +63,7 @@ public class InterfaceMethodDeclaration extends NodeWithModifiers
     this.name = name;
   }
 
-  public void setReturnType(Type returnType) {
+  public void setReturnType(ReturnType returnType) {
     this.returnType = returnType;
   }
 

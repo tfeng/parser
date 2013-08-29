@@ -45,16 +45,16 @@ public class EnumDeclaration extends TypeDeclaration
     return name;
   }
 
-  public void setMemberDeclarations(List<ClassMemberDeclaration> memberDeclarations) {
-    this.memberDeclarations = memberDeclarations;
-  }
-
   public void setConstants(List<EnumConstant> constants) {
     this.constants = constants;
   }
 
   public void setImplementsTypes(List<Type> implementsTypes) {
     this.implementsTypes = implementsTypes;
+  }
+
+  public void setMemberDeclarations(List<ClassMemberDeclaration> memberDeclarations) {
+    this.memberDeclarations = memberDeclarations;
   }
 
   public void setName(Identifier name) {

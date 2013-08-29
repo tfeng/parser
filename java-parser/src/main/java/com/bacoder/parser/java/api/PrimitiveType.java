@@ -15,8 +15,9 @@
  */
 package com.bacoder.parser.java.api;
 
+import com.bacoder.parser.core.Node;
 
-public class PrimitiveType extends Type {
+public class PrimitiveType extends Node implements InstantiableType, Type {
 
   public static enum Type {
     BOOLEAN,

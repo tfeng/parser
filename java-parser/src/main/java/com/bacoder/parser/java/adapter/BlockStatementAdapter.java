@@ -17,7 +17,12 @@ package com.bacoder.parser.java.adapter;
 
 import com.bacoder.parser.core.Adapters;
 import com.bacoder.parser.java.api.BlockStatement;
+import com.bacoder.parser.java.api.LocalVariableDeclaration;
 import com.srctran.backend.parser.java.JavaParser.BlockStatementContext;
+import com.srctran.backend.parser.java.JavaParser.LocalVariableDeclarationContext;
+import com.srctran.backend.parser.java.JavaParser.LocalVariableDeclarationStatementContext;
+import com.srctran.backend.parser.java.JavaParser.StatementContext;
+import com.srctran.backend.parser.java.JavaParser.TypeDeclarationContext;
 
 public class BlockStatementAdapter extends JavaAdapter<BlockStatementContext, BlockStatement> {
 
@@ -27,6 +32,30 @@ public class BlockStatementAdapter extends JavaAdapter<BlockStatementContext, Bl
 
   @Override
   public BlockStatement adapt(BlockStatementContext context) {
+    LocalVariableDeclarationStatementContext localVariableDeclarationStatementContext =
+        getChild(context, LocalVariableDeclarationStatementContext.class);
+    if (localVariableDeclarationStatementContext != null) {
+      LocalVariableDeclarationContext localVariableDeclarationContext =
+          getChild(localVariableDeclarationStatementContext, LocalVariableDeclarationContext.class);
+      if (localVariableDeclarationContext != null) {
+        LocalVariableDeclaration localVariableDeclaration =
+            getAdapter(LocalVariableDeclarationAdapter.class).adapt(
+                localVariableDeclarationContext);
+        setNodeAttributes(localVariableDeclaration, localVariableDeclarationStatementContext);
+        return localVariableDeclaration;
+      }
+    }
+
+    StatementContext statementContext = getChild(context, StatementContext.class);
+    if (statementContext != null) {
+      return getAdapter(StatementAdapter.class).adapt(statementContext);
+    }
+
+    TypeDeclarationContext typeDeclarationContext = getChild(context, TypeDeclarationContext.class);
+    if (typeDeclarationContext != null) {
+      return getAdapter(TypeDeclarationAdapter.class).adapt(typeDeclarationContext);
+    }
+
     return null;
   }
 }

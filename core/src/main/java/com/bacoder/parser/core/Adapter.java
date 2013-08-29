@@ -59,14 +59,14 @@ public abstract class Adapter<C extends ParseTree, D> {
   public abstract D adapt(C context);
 
   public D createData(C context) {
-    return createData(dataType, context, context);
+    return createData(context, context, dataType);
   }
 
-  public <T> T createData(Class<T> clazz, ParseTree context) {
-    return createData(clazz, context, context);
+  public <T> T createData(ParseTree context, Class<T> clazz) {
+    return createData(context, context, clazz);
   }
 
-  public <T> T createData(Class<T> clazz, ParseTree startNode, ParseTree endNode) {
+  public <T> T createData(ParseTree startNode, ParseTree endNode, Class<T> clazz) {
     try {
       T data = clazz.newInstance();
       setNodeAttributes(data, startNode, endNode);

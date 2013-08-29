@@ -58,7 +58,7 @@ public abstract class AbstractFormalParameterAdapter<C extends ParserRuleContext
       for (ParseTree node : context.children) {
         if (node instanceof TerminalNode
             && ((TerminalNode) node).getSymbol().getType() == JavaParser.RBRACK) {
-          ArrayType arrayType = createData(ArrayType.class, typeContext, node);
+          ArrayType arrayType = createData(typeContext, node, ArrayType.class);
           arrayType.setElementType(type);
           type = arrayType;
         }

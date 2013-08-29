@@ -18,7 +18,9 @@ package com.bacoder.parser.java.api;
 import java.util.Collections;
 import java.util.List;
 
-public class ClassOrInterfaceType extends Type {
+import com.bacoder.parser.core.Node;
+
+public class ClassOrInterfaceType extends Node implements Type {
 
   private Identifier identifier;
 

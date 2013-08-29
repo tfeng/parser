@@ -15,8 +15,8 @@
  */
 package com.bacoder.parser.java.api;
 
-import com.bacoder.parser.core.Node;
+import com.bacoder.parser.core.Segment;
 
-public class Expression extends Node implements AnnotationValue, VariableInitializer {
+public interface Expression extends AnnotationValue, Segment, SwitchLabel, VariableInitializer {
 
 }

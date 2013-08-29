@@ -28,12 +28,12 @@ public class Annotation extends Node implements AnnotationValue {
 
   private List<NameValuePair> annotationValuePairs = Collections.emptyList();
 
-  public QualifiedName getName() {
-    return annotationName;
-  }
-
   public AnnotationValue getElementValue() {
     return annotationValue;
+  }
+
+  public QualifiedName getName() {
+    return annotationName;
   }
 
   public List<NameValuePair> getNameValuePairs() {

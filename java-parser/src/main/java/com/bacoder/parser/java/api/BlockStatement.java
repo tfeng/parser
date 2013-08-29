@@ -15,8 +15,8 @@
  */
 package com.bacoder.parser.java.api;
 
-import com.bacoder.parser.core.Node;
+import com.bacoder.parser.core.Segment;
 
-public abstract class BlockStatement extends Node {
+public interface BlockStatement extends Segment {
 
 }

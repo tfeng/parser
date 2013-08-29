@@ -21,20 +21,20 @@ import java.util.List;
 public class InterfaceDeclaration extends TypeDeclaration
     implements AnnotationMemberDeclaration, InterfaceMemberDeclaration, ClassMemberDeclaration {
 
-  private List<InterfaceMemberDeclaration> memberDeclarations = Collections.emptyList();
-
   private List<Type> extendsTypes = Collections.emptyList();
+
+  private List<InterfaceMemberDeclaration> memberDeclarations = Collections.emptyList();
 
   private Identifier name;
 
   private List<TypeParameter> typeParameters = Collections.emptyList();
 
-  public List<InterfaceMemberDeclaration> getMemberDeclarations() {
-    return memberDeclarations;
-  }
-
   public List<Type> getExtendsTypes() {
     return extendsTypes;
+  }
+
+  public List<InterfaceMemberDeclaration> getMemberDeclarations() {
+    return memberDeclarations;
   }
 
   public Identifier getName() {
@@ -45,12 +45,12 @@ public class InterfaceDeclaration extends TypeDeclaration
     return typeParameters;
   }
 
-  public void setMemberDeclarations(List<InterfaceMemberDeclaration> memberDeclarations) {
-    this.memberDeclarations = memberDeclarations;
-  }
-
   public void setExtendsTypes(List<Type> extendsTypes) {
     this.extendsTypes = extendsTypes;
+  }
+
+  public void setMemberDeclarations(List<InterfaceMemberDeclaration> memberDeclarations) {
+    this.memberDeclarations = memberDeclarations;
   }
 
   public void setName(Identifier name) {

@@ -15,6 +15,8 @@
  */
 package com.bacoder.parser.java.api;
 
-public class VoidType extends Type {
+import com.bacoder.parser.core.Node;
+
+public class VoidType extends Node implements ReturnType {
 
 }

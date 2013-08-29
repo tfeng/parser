@@ -33,14 +33,14 @@ public class TypeArgumentAdapter extends JavaAdapter<TypeArgumentContext, TypeAr
   public TypeArgument adapt(TypeArgumentContext context) {
     TypeContext typeContext = getChild(context, TypeContext.class);
     if (typeContext == null) {
-      WildcardTypeArgument wildcardTypeArgument = createData(WildcardTypeArgument.class, context);
+      WildcardTypeArgument wildcardTypeArgument = createData(context, WildcardTypeArgument.class);
       return wildcardTypeArgument;
     } else {
       Type type = getAdapter(TypeAdapter.class).adapt(typeContext);
       boolean hasExtends = hasTerminalNode(context, JavaParser.EXTENDS);
       boolean hasSuper = hasTerminalNode(context, JavaParser.SUPER);
       if (hasExtends || hasSuper) {
-        WildcardTypeArgument wildcardTypeArgument = createData(WildcardTypeArgument.class, context);
+        WildcardTypeArgument wildcardTypeArgument = createData(context, WildcardTypeArgument.class);
         if (hasExtends) {
           wildcardTypeArgument.setExtendsType(type);
         } else {

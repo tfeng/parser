@@ -38,12 +38,12 @@ public class EnumConstant extends Node {
     return arguments;
   }
 
-  public List<ClassMemberDeclaration> getMemberDeclarations() {
-    return memberDeclarations;
-  }
-
   public Identifier getIdentifier() {
     return identifier;
+  }
+
+  public List<ClassMemberDeclaration> getMemberDeclarations() {
+    return memberDeclarations;
   }
 
   public void setAnnotations(List<Annotation> annotations) {
@@ -54,11 +54,11 @@ public class EnumConstant extends Node {
     this.arguments = arguments;
   }
 
-  public void setMemberDeclarations(List<ClassMemberDeclaration> memberDeclarations) {
-    this.memberDeclarations = memberDeclarations;
-  }
-
   public void setIdentifier(Identifier identifier) {
     this.identifier = identifier;
+  }
+
+  public void setMemberDeclarations(List<ClassMemberDeclaration> memberDeclarations) {
+    this.memberDeclarations = memberDeclarations;
   }
 }

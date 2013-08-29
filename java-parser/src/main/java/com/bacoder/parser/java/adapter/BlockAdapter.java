@@ -15,28 +15,29 @@
  */
 package com.bacoder.parser.java.adapter;
 
-import java.util.List;
-
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.api.Block;
 import com.bacoder.parser.java.api.BlockStatement;
 import com.google.common.base.Function;
 import com.srctran.backend.parser.java.JavaParser.BlockContext;
 import com.srctran.backend.parser.java.JavaParser.BlockStatementContext;
 
-public class BlockAdapter extends JavaAdapter<BlockContext, List<BlockStatement>> {
+public class BlockAdapter extends JavaAdapter<BlockContext, Block> {
 
   public BlockAdapter(Adapters adapters) {
     super(adapters);
   }
 
   @Override
-  public List<BlockStatement> adapt(BlockContext context) {
-    return transform(context, BlockStatementContext.class,
+  public Block adapt(BlockContext context) {
+    Block block = createData(context);
+    block.setStatements(transform(context, BlockStatementContext.class,
         new Function<BlockStatementContext, BlockStatement>() {
           @Override
           public BlockStatement apply(BlockStatementContext context) {
             return getAdapter(BlockStatementAdapter.class).adapt(context);
           }
-        });
+        }));
+    return block;
   }
 }

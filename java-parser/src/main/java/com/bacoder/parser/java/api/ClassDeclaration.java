@@ -51,16 +51,16 @@ public class ClassDeclaration extends TypeDeclaration
     return typeParameters;
   }
 
-  public void setMemberDeclarations(List<ClassMemberDeclaration> memberDeclarations) {
-    this.memberDeclarations = memberDeclarations;
-  }
-
   public void setExtendsType(Type extendsType) {
     this.extendsType = extendsType;
   }
 
   public void setImplementsTypes(List<Type> implementsTypes) {
     this.implementsTypes = implementsTypes;
+  }
+
+  public void setMemberDeclarations(List<ClassMemberDeclaration> memberDeclarations) {
+    this.memberDeclarations = memberDeclarations;
   }
 
   public void setName(Identifier name) {

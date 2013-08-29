@@ -15,27 +15,24 @@
  */
 package com.bacoder.parser.java.api;
 
-import java.util.Collections;
-import java.util.List;
-
 import com.bacoder.parser.core.Node;
 
 public class BlockDeclaration extends Node implements ClassMemberDeclaration {
 
+  private Block block;
+
   private boolean isStatic;
 
-  private List<BlockStatement> statements = Collections.emptyList();
-
-  public List<BlockStatement> getStatements() {
-    return statements;
+  public Block getBlock() {
+    return block;
   }
 
   public boolean isStatic() {
     return isStatic;
   }
 
-  public void setStatements(List<BlockStatement> statements) {
-    this.statements = statements;
+  public void setBlock(Block block) {
+    this.block = block;
   }
 
   public void setStatic(boolean isStatic) {

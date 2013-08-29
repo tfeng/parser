@@ -15,7 +15,9 @@
  */
 package com.bacoder.parser.java.api;
 
-public class ArrayType extends Type {
+import com.bacoder.parser.core.Node;
+
+public class ArrayType extends Node implements Type {
 
   private Type elementType;
 
