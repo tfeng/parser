@@ -18,9 +18,9 @@ package com.bacoder.parser.java.api;
 import java.util.Collections;
 import java.util.List;
 
-import com.bacoder.parser.core.Node;
+import com.bacoder.parser.core.Visitors;
 
-public class PackageDeclaration extends Node {
+public class PackageDeclaration extends JavaNode {
 
   private List<Annotation> annotations = Collections.emptyList();
 
@@ -40,5 +40,15 @@ public class PackageDeclaration extends Node {
 
   public void setQualifiedName(QualifiedName qualifiedName) {
     this.qualifiedName = qualifiedName;
+  }
+
+  @Override
+  protected void visitChildren(Visitors visitors) {
+    for (Annotation annotation : annotations) {
+      annotation.visit(visitors);
+    }
+    if (qualifiedName != null) {
+      qualifiedName.visit(visitors);
+    }
   }
 }

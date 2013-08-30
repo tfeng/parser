@@ -16,24 +16,24 @@
 package com.bacoder.parser.java.adapter;
 
 import com.bacoder.parser.core.Adapters;
-import com.bacoder.parser.java.api.MethodDeclaration;
+import com.bacoder.parser.java.api.ClassMethodDeclaration;
 import com.srctran.backend.parser.java.JavaParser.GenericMethodDeclarationContext;
 import com.srctran.backend.parser.java.JavaParser.MethodDeclarationContext;
 import com.srctran.backend.parser.java.JavaParser.TypeParametersContext;
 
 public class GenericMethodDeclarationAdapter
-    extends JavaAdapter<GenericMethodDeclarationContext, MethodDeclaration> {
+    extends JavaAdapter<GenericMethodDeclarationContext, ClassMethodDeclaration> {
 
   public GenericMethodDeclarationAdapter(Adapters adapters) {
     super(adapters);
   }
 
   @Override
-  public MethodDeclaration adapt(GenericMethodDeclarationContext context) {
+  public ClassMethodDeclaration adapt(GenericMethodDeclarationContext context) {
     MethodDeclarationContext methodDeclarationContext =
         getChild(context, MethodDeclarationContext.class);
     if (methodDeclarationContext != null) {
-      MethodDeclaration methodDeclaration =
+      ClassMethodDeclaration methodDeclaration =
           getAdapter(MethodDeclarationAdapter.class).adapt(methodDeclarationContext);
       TypeParametersContext typeParametersContext = getChild(context, TypeParametersContext.class);
       if (typeParametersContext != null) {

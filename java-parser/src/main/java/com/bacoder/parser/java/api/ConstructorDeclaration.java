@@ -18,6 +18,8 @@ package com.bacoder.parser.java.api;
 import java.util.Collections;
 import java.util.List;
 
+import com.bacoder.parser.core.Visitors;
+
 public class ConstructorDeclaration extends NodeWithModifiers implements ClassMemberDeclaration {
 
   private Block body;
@@ -68,5 +70,25 @@ public class ConstructorDeclaration extends NodeWithModifiers implements ClassMe
 
   public void setTypeParameters(List<TypeParameter> typeParameters) {
     this.typeParameters = typeParameters;
+  }
+
+  @Override
+  protected void visitChildren(Visitors visitors) {
+    super.visitChildren(visitors);
+    for (TypeParameter typeParameter : typeParameters) {
+      typeParameter.visit(visitors);
+    }
+    if (name != null) {
+      name.visit(visitors);
+    }
+    for (FormalParameter formalParameter : formalParameters) {
+      formalParameter.visit(visitors);
+    }
+    for (QualifiedName throwsException : throwsExceptions) {
+      throwsException.visit(visitors);
+    }
+    if (body != null) {
+      body.visit(visitors);
+    }
   }
 }

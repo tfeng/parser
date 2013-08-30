@@ -35,7 +35,7 @@ public class ConstructorDeclarationAdapter
 
   @Override
   public ConstructorDeclaration adapt(ConstructorDeclarationContext context) {
-    ConstructorDeclaration constructorDeclaration = createData(context);
+    ConstructorDeclaration constructorDeclaration = createNode(context);
 
     TerminalNode identifierNode = getTerminalNode(context, JavaParser.Identifier);
     if (identifierNode != null) {

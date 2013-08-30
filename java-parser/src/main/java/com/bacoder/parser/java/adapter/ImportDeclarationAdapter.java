@@ -30,7 +30,7 @@ public class ImportDeclarationAdapter
 
   @Override
   public ImportDeclaration adapt(ImportDeclarationContext context) {
-    ImportDeclaration importDeclaration = createData(context);
+    ImportDeclaration importDeclaration = createNode(context);
     importDeclaration.setStatic(hasTerminalNode(context, JavaParser.STATIC));
     importDeclaration.setAsterisk(hasTerminalNode(context, JavaParser.MUL));
 

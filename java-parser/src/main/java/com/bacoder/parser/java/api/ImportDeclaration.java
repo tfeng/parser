@@ -15,9 +15,9 @@
  */
 package com.bacoder.parser.java.api;
 
-import com.bacoder.parser.core.Node;
+import com.bacoder.parser.core.Visitors;
 
-public class ImportDeclaration extends Node {
+public class ImportDeclaration extends JavaNode {
 
   private boolean isAsterisk;
 
@@ -47,5 +47,12 @@ public class ImportDeclaration extends Node {
 
   public void setStatic(boolean isStatic) {
     this.isStatic = isStatic;
+  }
+
+  @Override
+  protected void visitChildren(Visitors visitors) {
+    if (qualifiedName != null) {
+      qualifiedName.visit(visitors);
+    }
   }
 }

@@ -37,7 +37,7 @@ public class ClassDeclarationAdapter
 
   @Override
   public ClassDeclaration adapt(ClassDeclarationContext context) {
-    ClassDeclaration classDeclaration = createData(context);
+    ClassDeclaration classDeclaration = createNode(context);
 
     Identifier name =
         transformOne(context, TerminalNode.class, new Function<TerminalNode, Identifier>() {

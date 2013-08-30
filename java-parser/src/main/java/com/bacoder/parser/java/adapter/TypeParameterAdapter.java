@@ -36,24 +36,23 @@ public class TypeParameterAdapter extends JavaAdapter<TypeParameterContext, Type
 
   @Override
   public TypeParameter adapt(TypeParameterContext context) {
-    TypeParameter typeParameter = createData(context);
+    TypeParameter typeParameter = createNode(context);
 
     TerminalNode identifierNode = getTerminalNode(context, JavaParser.Identifier);
     if (identifierNode != null) {
-      typeParameter.setIdentifier(
-          getAdapter(IdentifierAdapter.class).adapt(identifierNode));
+      typeParameter.setName(getAdapter(IdentifierAdapter.class).adapt(identifierNode));
     }
 
     TypeBoundContext typeBoundContext = getChild(context, TypeBoundContext.class);
     if (typeBoundContext != null) {
-      List<Type> typeBounds =
+      List<Type> extendsTypes =
           transform(typeBoundContext, TypeContext.class, new Function<TypeContext, Type>() {
             @Override
             public Type apply(TypeContext context) {
               return getAdapter(TypeAdapter.class).adapt(context);
             }
           });
-      typeParameter.setTypeBounds(typeBounds);
+      typeParameter.setExtendsTypes(extendsTypes);
     }
 
     return typeParameter;

@@ -18,27 +18,37 @@ package com.bacoder.parser.java.api;
 import java.util.Collections;
 import java.util.List;
 
-import com.bacoder.parser.core.Node;
+import com.bacoder.parser.core.Visitors;
 
-public class TypeParameter extends Node {
+public class TypeParameter extends JavaNode {
 
-  private Identifier identifier;
+  private List<Type> extendsTypes = Collections.emptyList();
 
-  private List<Type> typeBounds = Collections.emptyList();
+  private Identifier name;
 
-  public Identifier getIdentifier() {
-    return identifier;
+  public List<Type> getExtendsTypes() {
+    return extendsTypes;
   }
 
-  public List<Type> getTypeBounds() {
-    return typeBounds;
+  public Identifier getName() {
+    return name;
   }
 
-  public void setIdentifier(Identifier identifier) {
-    this.identifier = identifier;
+  public void setExtendsTypes(List<Type> extendsTypes) {
+    this.extendsTypes = extendsTypes;
   }
 
-  public void setTypeBounds(List<Type> typeBounds) {
-    this.typeBounds = typeBounds;
+  public void setName(Identifier name) {
+    this.name = name;
+  }
+
+  @Override
+  protected void visitChildren(Visitors visitors) {
+    if (name != null) {
+     name.visit(visitors);
+    }
+    for (Type extendsType : extendsTypes) {
+      extendsType.visit(visitors);
+    }
   }
 }

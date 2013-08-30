@@ -39,7 +39,7 @@ public class InterfaceDeclarationAdapter
 
   @Override
   public InterfaceDeclaration adapt(InterfaceDeclarationContext context) {
-    InterfaceDeclaration interfaceDeclaration = createData(context);
+    InterfaceDeclaration interfaceDeclaration = createNode(context);
 
     TerminalNode identifierNode = getTerminalNode(context, JavaParser.Identifier);
     if (identifierNode != null) {

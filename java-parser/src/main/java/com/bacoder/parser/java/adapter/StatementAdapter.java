@@ -1,3 +1,18 @@
+/**
+ * Copyright 2013 Huining (Thomas) Feng (tfeng@berkeley.edu)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.bacoder.parser.java.adapter;
 
 import java.util.List;
@@ -124,7 +139,7 @@ public class StatementAdapter extends JavaAdapter<StatementContext, Statement> {
         getChild(context, StatementExpressionContext.class);
     if (statementExpressionContext != null) {
       ExpressionStatement expressionStatement =
-          createData(statementExpressionContext, ExpressionStatement.class);
+          createNode(statementExpressionContext, ExpressionStatement.class);
 
       ExpressionContext expressionContext =
           getChild(statementExpressionContext, ExpressionContext.class);
@@ -137,28 +152,6 @@ public class StatementAdapter extends JavaAdapter<StatementContext, Statement> {
     }
 
     return null;
-  }
-
-  protected BreakStatement processBreakStatement(StatementContext context) {
-    BreakStatement breakStatement = createData(context, BreakStatement.class);
-
-    TerminalNode identifierNode = getTerminalNode(context, JavaParser.Identifier);
-    if (identifierNode != null) {
-      breakStatement.setIdentifier(getAdapter(IdentifierAdapter.class).adapt(identifierNode));
-    }
-
-    return breakStatement;
-  }
-
-  protected ContinueStatement processContinueStatement(StatementContext context) {
-    ContinueStatement continueStatement = createData(context, ContinueStatement.class);
-
-    TerminalNode identifierNode = getTerminalNode(context, JavaParser.Identifier);
-    if (identifierNode != null) {
-      continueStatement.setIdentifier(getAdapter(IdentifierAdapter.class).adapt(identifierNode));
-    }
-
-    return continueStatement;
   }
 
   protected List<SwitchLabel> getSwitchLabels(ParserRuleContext context) {
@@ -188,7 +181,7 @@ public class StatementAdapter extends JavaAdapter<StatementContext, Statement> {
 
             TerminalNode defaultNode = getTerminalNode(context, JavaParser.DEFAULT);
             if (defaultNode != null) {
-              return createData(context, DefaultSwitchLabel.class);
+              return createNode(context, DefaultSwitchLabel.class);
             }
 
             return null;
@@ -197,7 +190,7 @@ public class StatementAdapter extends JavaAdapter<StatementContext, Statement> {
   }
 
   protected AssertStatement processAssertStatement(StatementContext context) {
-    AssertStatement assertStatement = createData(context, AssertStatement.class);
+    AssertStatement assertStatement = createNode(context, AssertStatement.class);
 
     List<ExpressionContext> expressionContexts = getChildren(context, ExpressionContext.class);
     if (expressionContexts.size() > 0) {
@@ -213,8 +206,30 @@ public class StatementAdapter extends JavaAdapter<StatementContext, Statement> {
     return assertStatement;
   }
 
+  protected BreakStatement processBreakStatement(StatementContext context) {
+    BreakStatement breakStatement = createNode(context, BreakStatement.class);
+
+    TerminalNode identifierNode = getTerminalNode(context, JavaParser.Identifier);
+    if (identifierNode != null) {
+      breakStatement.setLabel(getAdapter(IdentifierAdapter.class).adapt(identifierNode));
+    }
+
+    return breakStatement;
+  }
+
+  protected ContinueStatement processContinueStatement(StatementContext context) {
+    ContinueStatement continueStatement = createNode(context, ContinueStatement.class);
+
+    TerminalNode identifierNode = getTerminalNode(context, JavaParser.Identifier);
+    if (identifierNode != null) {
+      continueStatement.setLabel(getAdapter(IdentifierAdapter.class).adapt(identifierNode));
+    }
+
+    return continueStatement;
+  }
+
   protected DoWhileStatement processDoWhileStatement(StatementContext context) {
-    DoWhileStatement doWhileStatement = createData(context, DoWhileStatement.class);
+    DoWhileStatement doWhileStatement = createNode(context, DoWhileStatement.class);
 
     StatementContext statementContext = getChild(context, StatementContext.class);
     if (statementContext != null) {
@@ -233,14 +248,14 @@ public class StatementAdapter extends JavaAdapter<StatementContext, Statement> {
   }
 
   protected ForStatement processForStatement(StatementContext context) {
-    ForStatement forStatement = createData(context, ForStatement.class);
+    ForStatement forStatement = createNode(context, ForStatement.class);
 
     ForControlContext forControlContext = getChild(context, ForControlContext.class);
     if (forControlContext != null) {
       EnhancedForControlContext enhancedForControlContext =
           getChild(forControlContext, EnhancedForControlContext.class);
       if (enhancedForControlContext == null) {
-        LoopControl loopControl = createData(forControlContext, LoopControl.class);
+        LoopControl loopControl = createNode(forControlContext, LoopControl.class);
 
         ForInitContext forInitContext = getChild(forControlContext, ForInitContext.class);
         if (forInitContext != null) {
@@ -279,7 +294,7 @@ public class StatementAdapter extends JavaAdapter<StatementContext, Statement> {
 
       } else {
         ForEachControl forEachControl =
-            createData(enhancedForControlContext, ForEachControl.class);
+            createNode(enhancedForControlContext, ForEachControl.class);
         setModifiers(enhancedForControlContext, forEachControl);
 
         TypeContext typeContext = getChild(enhancedForControlContext, TypeContext.class);
@@ -313,7 +328,7 @@ public class StatementAdapter extends JavaAdapter<StatementContext, Statement> {
   }
 
   protected IfStatement processIfStatement(StatementContext context) {
-    IfStatement ifStatement = createData(context, IfStatement.class);
+    IfStatement ifStatement = createNode(context, IfStatement.class);
 
     ParExpressionContext parExpressionContext = getChild(context, ParExpressionContext.class);
     ifStatement.setCondition(processParExpression(parExpressionContext));
@@ -333,7 +348,7 @@ public class StatementAdapter extends JavaAdapter<StatementContext, Statement> {
   }
 
   protected ReturnStatement processReturnStatement(StatementContext context) {
-    ReturnStatement returnStatement = createData(context, ReturnStatement.class);
+    ReturnStatement returnStatement = createNode(context, ReturnStatement.class);
 
     ExpressionContext expressionContext = getChild(context, ExpressionContext.class);
     if (expressionContext != null) {
@@ -344,7 +359,7 @@ public class StatementAdapter extends JavaAdapter<StatementContext, Statement> {
   }
 
   protected SwitchStatement processSwitchStatement(StatementContext context) {
-    SwitchStatement switchStatement = createData(context, SwitchStatement.class);
+    SwitchStatement switchStatement = createNode(context, SwitchStatement.class);
 
     ParExpressionContext parExpressionContext = getChild(context, ParExpressionContext.class);
     switchStatement.setExpression(processParExpression(parExpressionContext));
@@ -353,7 +368,7 @@ public class StatementAdapter extends JavaAdapter<StatementContext, Statement> {
         new Function<SwitchBlockStatementGroupContext, SwitchBlock>() {
           @Override
           public SwitchBlock apply(SwitchBlockStatementGroupContext context) {
-            SwitchBlock switchBlock = createData(context, SwitchBlock.class);
+            SwitchBlock switchBlock = createNode(context, SwitchBlock.class);
             switchBlock.setLabels(getSwitchLabels(context));
             switchBlock.setStatements(transform(context, BlockStatementContext.class,
                 new Function<BlockStatementContext, BlockStatement>() {
@@ -370,7 +385,7 @@ public class StatementAdapter extends JavaAdapter<StatementContext, Statement> {
     if (!extraSwitchLabels.isEmpty()) {
       List<SwitchLabelContext> switchLabelContexts = getChildren(context, SwitchLabelContext.class);
       SwitchBlock extraSwitchBlock =
-          createData(switchLabelContexts.get(0),
+          createNode(switchLabelContexts.get(0),
               switchLabelContexts.get(switchLabelContexts.size() - 1), SwitchBlock.class);
       extraSwitchBlock.setLabels(extraSwitchLabels);
       switchBlocks.add(extraSwitchBlock);
@@ -382,7 +397,7 @@ public class StatementAdapter extends JavaAdapter<StatementContext, Statement> {
   }
 
   protected SynchronizedStatement processSynchronizedStatement(StatementContext context) {
-    SynchronizedStatement synchronizedStatement = createData(context, SynchronizedStatement.class);
+    SynchronizedStatement synchronizedStatement = createNode(context, SynchronizedStatement.class);
 
     ParExpressionContext parExpressionContext = getChild(context, ParExpressionContext.class);
     synchronizedStatement.setExpression(processParExpression(parExpressionContext));
@@ -396,7 +411,7 @@ public class StatementAdapter extends JavaAdapter<StatementContext, Statement> {
   }
 
   protected ThrowStatement processThrowStatement(StatementContext context) {
-    ThrowStatement throwStatement = createData(context, ThrowStatement.class);
+    ThrowStatement throwStatement = createNode(context, ThrowStatement.class);
 
     ExpressionContext expressionContext = getChild(context, ExpressionContext.class);
     if (expressionContext != null) {
@@ -407,7 +422,7 @@ public class StatementAdapter extends JavaAdapter<StatementContext, Statement> {
   }
 
   protected TryStatement processTryStatement(StatementContext context) {
-    TryStatement tryStatement = createData(context, TryStatement.class);
+    TryStatement tryStatement = createNode(context, TryStatement.class);
 
     ResourceSpecificationContext resourceSpecificationContext =
         getChild(context, ResourceSpecificationContext.class);
@@ -419,7 +434,7 @@ public class StatementAdapter extends JavaAdapter<StatementContext, Statement> {
             new Function<ResourceContext, Resource>() {
               @Override
               public Resource apply(ResourceContext context) {
-                Resource resource = createData(context, Resource.class);
+                Resource resource = createNode(context, Resource.class);
 
                 setModifiers(context, resource);
 
@@ -445,7 +460,7 @@ public class StatementAdapter extends JavaAdapter<StatementContext, Statement> {
                   if (node instanceof TerminalNode
                       && ((TerminalNode) node).getSymbol().getType() == JavaParser.RBRACK) {
                     ArrayType arrayType =
-                        createData(classOrInterfaceTypeContext, node, ArrayType.class);
+                        createNode(classOrInterfaceTypeContext, node, ArrayType.class);
                     arrayType.setElementType(type);
                     type = arrayType;
                   }
@@ -473,7 +488,7 @@ public class StatementAdapter extends JavaAdapter<StatementContext, Statement> {
         new Function<CatchClauseContext, CatchClause>() {
           @Override
           public CatchClause apply(CatchClauseContext context) {
-            CatchClause catchClause = createData(context, CatchClause.class);
+            CatchClause catchClause = createNode(context, CatchClause.class);
 
             setModifiers(context, catchClause);
 
@@ -514,7 +529,7 @@ public class StatementAdapter extends JavaAdapter<StatementContext, Statement> {
   }
 
   protected WhileStatement processWhileStatement(StatementContext context) {
-    WhileStatement whileStatement = createData(context, WhileStatement.class);
+    WhileStatement whileStatement = createNode(context, WhileStatement.class);
 
     ParExpressionContext parExpressionContext = getChild(context, ParExpressionContext.class);
     whileStatement.setCondition(processParExpression(parExpressionContext));

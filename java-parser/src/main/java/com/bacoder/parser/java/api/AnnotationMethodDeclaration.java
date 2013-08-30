@@ -15,6 +15,8 @@
  */
 package com.bacoder.parser.java.api;
 
+import com.bacoder.parser.core.Visitors;
+
 public class AnnotationMethodDeclaration extends NodeWithModifiers
     implements AnnotationMemberDeclaration {
 
@@ -46,5 +48,19 @@ public class AnnotationMethodDeclaration extends NodeWithModifiers
 
   public void setType(Type type) {
     this.type = type;
+  }
+
+  @Override
+  protected void visitChildren(Visitors visitors) {
+    super.visitChildren(visitors);
+    if (type != null) {
+      type.visit(visitors);
+    }
+    if (name != null) {
+      name.visit(visitors);
+    }
+    if (defaultValue != null) {
+      defaultValue.visit(visitors);
+    }
   }
 }

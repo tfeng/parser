@@ -28,7 +28,7 @@ public class IdentifierAdapter extends JavaAdapter<TerminalNode, Identifier> {
 
   @Override
   public Identifier adapt(TerminalNode context) {
-    Identifier textNode = createData(context);
+    Identifier textNode = createNode(context);
     textNode.setText(context.getText());
     return textNode;
   }

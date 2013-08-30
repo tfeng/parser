@@ -17,35 +17,24 @@ package com.bacoder.parser.java.api;
 
 import com.bacoder.parser.core.Visitors;
 
-public class WildcardTypeArgument extends JavaNode implements TypeArgument {
+public class ClassMethodDeclaration extends InterfaceMethodDeclaration
+    implements ClassMemberDeclaration {
 
-  private Type extendsType;
+  private Block body;
 
-  private Type superType;
-
-  public Type getExtendsType() {
-    return extendsType;
+  public Block getBody() {
+    return body;
   }
 
-  public Type getSuperType() {
-    return superType;
-  }
-
-  public void setExtendsType(Type extendsType) {
-    this.extendsType = extendsType;
-  }
-
-  public void setSuperType(Type superType) {
-    this.superType = superType;
+  public void setBody(Block body) {
+    this.body = body;
   }
 
   @Override
   protected void visitChildren(Visitors visitors) {
-    if (extendsType != null) {
-      extendsType.visit(visitors);
-    }
-    if (superType != null) {
-      superType.visit(visitors);
+    super.visitChildren(visitors);
+    if (body != null) {
+      body.visit(visitors);
     }
   }
 }

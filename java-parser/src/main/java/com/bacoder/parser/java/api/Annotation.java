@@ -18,37 +18,50 @@ package com.bacoder.parser.java.api;
 import java.util.Collections;
 import java.util.List;
 
-import com.bacoder.parser.core.Node;
+import com.bacoder.parser.core.Visitors;
 
-public class Annotation extends Node implements AnnotationValue {
+public class Annotation extends JavaNode implements AnnotationValue {
 
-  private QualifiedName annotationName;
+  private QualifiedName name;
 
-  private AnnotationValue annotationValue;
+  private AnnotationValue value;
 
-  private List<NameValuePair> annotationValuePairs = Collections.emptyList();
-
-  public AnnotationValue getElementValue() {
-    return annotationValue;
-  }
+  private List<NameValuePair> values = Collections.emptyList();
 
   public QualifiedName getName() {
-    return annotationName;
+    return name;
   }
 
-  public List<NameValuePair> getNameValuePairs() {
-    return annotationValuePairs;
+  public AnnotationValue getValue() {
+    return value;
   }
 
-  public void setAnnotationName(QualifiedName annotationName) {
-    this.annotationName = annotationName;
+  public List<NameValuePair> getValues() {
+    return values;
   }
 
-  public void setElementValue(AnnotationValue annotationValue) {
-    this.annotationValue = annotationValue;
+  public void setName(QualifiedName name) {
+    this.name = name;
   }
 
-  public void setElementValuePairs(List<NameValuePair> annotationValuePairs) {
-    this.annotationValuePairs = annotationValuePairs;
+  public void setValue(AnnotationValue value) {
+    this.value = value;
+  }
+
+  public void setValues(List<NameValuePair> values) {
+    this.values = values;
+  }
+
+  @Override
+  protected void visitChildren(Visitors visitors) {
+    if (getName() != null) {
+      getName().visit(visitors);
+    }
+    for (NameValuePair value : getValues()) {
+      value.visit(visitors);
+    }
+    if (getValue() != null) {
+      getValue().visit(visitors);
+    }
   }
 }

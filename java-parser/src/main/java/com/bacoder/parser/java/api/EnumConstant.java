@@ -18,17 +18,17 @@ package com.bacoder.parser.java.api;
 import java.util.Collections;
 import java.util.List;
 
-import com.bacoder.parser.core.Node;
+import com.bacoder.parser.core.Visitors;
 
-public class EnumConstant extends Node {
+public class EnumConstant extends JavaNode {
 
   private List<Annotation> annotations = Collections.emptyList();
 
   private List<Expression> arguments = Collections.emptyList();
 
-  private Identifier identifier;
-
   private List<ClassMemberDeclaration> memberDeclarations = Collections.emptyList();
+
+  private Identifier name;
 
   public List<Annotation> getAnnotations() {
     return annotations;
@@ -38,12 +38,12 @@ public class EnumConstant extends Node {
     return arguments;
   }
 
-  public Identifier getIdentifier() {
-    return identifier;
-  }
-
   public List<ClassMemberDeclaration> getMemberDeclarations() {
     return memberDeclarations;
+  }
+
+  public Identifier getName() {
+    return name;
   }
 
   public void setAnnotations(List<Annotation> annotations) {
@@ -54,11 +54,27 @@ public class EnumConstant extends Node {
     this.arguments = arguments;
   }
 
-  public void setIdentifier(Identifier identifier) {
-    this.identifier = identifier;
-  }
-
   public void setMemberDeclarations(List<ClassMemberDeclaration> memberDeclarations) {
     this.memberDeclarations = memberDeclarations;
+  }
+
+  public void setName(Identifier name) {
+    this.name = name;
+  }
+
+  @Override
+  protected void visitChildren(Visitors visitors) {
+    for (Annotation annotation : annotations) {
+      annotation.visit(visitors);
+    }
+    if (name != null) {
+      name.visit(visitors);
+    }
+    for (Expression argument : arguments) {
+      argument.visit(visitors);
+    }
+    for (ClassMemberDeclaration memberDeclaration : memberDeclarations) {
+      memberDeclaration.visit(visitors);
+    }
   }
 }

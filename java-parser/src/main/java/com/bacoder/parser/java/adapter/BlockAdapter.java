@@ -30,7 +30,7 @@ public class BlockAdapter extends JavaAdapter<BlockContext, Block> {
 
   @Override
   public Block adapt(BlockContext context) {
-    Block block = createData(context);
+    Block block = createNode(context);
     block.setStatements(transform(context, BlockStatementContext.class,
         new Function<BlockStatementContext, BlockStatement>() {
           @Override

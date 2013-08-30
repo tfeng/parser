@@ -36,7 +36,7 @@ public abstract class AbstractFormalParameterAdapter<C extends ParserRuleContext
 
   @Override
   public D adapt(C context) {
-    D formalParameter = createData(context);
+    D formalParameter = createNode(context);
 
     setVariableModifiers(context, formalParameter);
 
@@ -52,13 +52,13 @@ public abstract class AbstractFormalParameterAdapter<C extends ParserRuleContext
       TerminalNode identifierNode =
           getTerminalNode(variableDeclaratorIdContext, JavaParser.Identifier);
       if (identifierNode != null) {
-        formalParameter.setIdentifier(getAdapter(IdentifierAdapter.class).adapt(identifierNode));
+        formalParameter.setName(getAdapter(IdentifierAdapter.class).adapt(identifierNode));
       }
 
       for (ParseTree node : context.children) {
         if (node instanceof TerminalNode
             && ((TerminalNode) node).getSymbol().getType() == JavaParser.RBRACK) {
-          ArrayType arrayType = createData(typeContext, node, ArrayType.class);
+          ArrayType arrayType = createNode(typeContext, node, ArrayType.class);
           arrayType.setElementType(type);
           type = arrayType;
         }

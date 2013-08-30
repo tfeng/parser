@@ -1,3 +1,18 @@
+/**
+ * Copyright 2013 Huining (Thomas) Feng (tfeng@berkeley.edu)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.bacoder.parser.java.adapter;
 
 import java.util.List;
@@ -52,14 +67,14 @@ public class PrimaryExpressionAdapter extends JavaAdapter<PrimaryContext, Expres
     if (firstTerminal != null) {
       switch (firstTerminal.getSymbol().getType()) {
       case JavaParser.THIS:
-        return createData(context, ThisExpression.class);
+        return createNode(context, ThisExpression.class);
       case JavaParser.SUPER:
-        return createData(context, SuperExpression.class);
+        return createNode(context, SuperExpression.class);
       case JavaParser.Identifier:
         return getAdapter(IdentifierAdapter.class).adapt(firstTerminal);
       case JavaParser.VOID: {
-        ClassExpression classExpression = createData(context, ClassExpression.class);
-        classExpression.setType(createData(firstTerminal, VoidType.class));
+        ClassExpression classExpression = createNode(context, ClassExpression.class);
+        classExpression.setType(createNode(firstTerminal, VoidType.class));
         return classExpression;
       }
       default:
@@ -68,12 +83,12 @@ public class PrimaryExpressionAdapter extends JavaAdapter<PrimaryContext, Expres
 
     LiteralContext literalContext = getChild(context, LiteralContext.class);
     if (literalContext != null) {
-      Literal literal = createData(context, Literal.class);
+      Literal literal = createNode(context, Literal.class);
 
       TerminalNode terminal = getChild(literalContext, TerminalNode.class);
       if (terminal != null && LITERAL_TYPE_MAP.containsKey(terminal.getSymbol().getType())) {
         literal.setType(LITERAL_TYPE_MAP.get(terminal.getSymbol().getType()));
-        literal.setValue(terminal.getText());
+        literal.setText(terminal.getText());
       }
 
       return literal;
@@ -81,7 +96,7 @@ public class PrimaryExpressionAdapter extends JavaAdapter<PrimaryContext, Expres
 
     TypeContext typeContext = getChild(context, TypeContext.class);
     if (typeContext != null) {
-      ClassExpression classExpression = createData(context, ClassExpression.class);
+      ClassExpression classExpression = createNode(context, ClassExpression.class);
       classExpression.setType(getAdapter(TypeAdapter.class).adapt(typeContext));
       return classExpression;
     }
@@ -104,7 +119,7 @@ public class PrimaryExpressionAdapter extends JavaAdapter<PrimaryContext, Expres
       }
 
       if (hasTerminalNode(context, JavaParser.THIS)) {
-        ThisInvocation thisInvocation = createData(context, ThisInvocation.class);
+        ThisInvocation thisInvocation = createNode(context, ThisInvocation.class);
         thisInvocation.setTypeArguments(typeList);
 
         ArgumentsContext argumentsContext = getChild(context, ArgumentsContext.class);

@@ -28,7 +28,7 @@ public class ValueAdapter extends Adapter<ValueContext, Value> {
 
   @Override
   public Value adapt(ValueContext context) {
-    Value value = createData(context);
+    Value value = createNode(context);
     value.setText(context.getText());
     return value;
   }

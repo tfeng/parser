@@ -23,8 +23,7 @@ import com.srctran.backend.parser.java.JavaParser;
 import com.srctran.backend.parser.java.JavaParser.ElementValueContext;
 import com.srctran.backend.parser.java.JavaParser.ElementValuePairContext;
 
-public class ElementValuePairAdapter
-    extends JavaAdapter<ElementValuePairContext, NameValuePair>{
+public class ElementValuePairAdapter extends JavaAdapter<ElementValuePairContext, NameValuePair>{
 
   public ElementValuePairAdapter(Adapters adapters) {
     super(adapters);
@@ -32,19 +31,18 @@ public class ElementValuePairAdapter
 
   @Override
   public NameValuePair adapt(ElementValuePairContext context) {
-    NameValuePair annotationValuePair = createData(context);
+    NameValuePair values = createNode(context);
 
     TerminalNode identifierNode = getTerminalNode(context, JavaParser.Identifier);
     if (identifierNode != null) {
-      annotationValuePair.setIdentifier(getAdapter(IdentifierAdapter.class).adapt(identifierNode));
+      values.setName(getAdapter(IdentifierAdapter.class).adapt(identifierNode));
     }
 
     ElementValueContext elementValueContext = getChild(context, ElementValueContext.class);
     if (elementValueContext != null) {
-      annotationValuePair.setValue(
-          getAdapter(ElementValueAdapter.class).adapt(elementValueContext));
+      values.setValue(getAdapter(ElementValueAdapter.class).adapt(elementValueContext));
     }
 
-    return annotationValuePair;
+    return values;
   }
 }

@@ -33,7 +33,7 @@ public class AnnotationMethodRestAdapter
 
   @Override
   public AnnotationMethodDeclaration adapt(AnnotationMethodRestContext context) {
-    AnnotationMethodDeclaration annotationMethodDeclaration = createData(context);
+    AnnotationMethodDeclaration annotationMethodDeclaration = createNode(context);
 
     TerminalNode identifierNode = getTerminalNode(context, JavaParser.Identifier);
     if (identifierNode != null) {

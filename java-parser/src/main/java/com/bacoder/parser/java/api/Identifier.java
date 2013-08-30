@@ -15,8 +15,21 @@
  */
 package com.bacoder.parser.java.api;
 
-import com.bacoder.parser.core.TextNode;
+import com.bacoder.parser.core.Visitors;
 
-public class Identifier extends TextNode implements Expression, ExpressionInScope, SwitchLabel {
+public class Identifier extends JavaNode implements Expression, ExpressionInScope, SwitchLabel {
 
+  private String text;
+
+  public String getText() {
+    return text;
+  }
+
+  public void setText(String text) {
+    this.text = text;
+  }
+
+  @Override
+  protected void visitChildren(Visitors visitors) {
+  }
 }

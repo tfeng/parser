@@ -34,7 +34,7 @@ public class QualifiedNameAdapter extends JavaAdapter<QualifiedNameContext, Qual
 
   @Override
   public QualifiedName adapt(QualifiedNameContext context) {
-    QualifiedName qualifiedName = createData(context);
+    QualifiedName qualifiedName = createNode(context);
 
     List<Identifier> identifiers =
         transform(context, TerminalNode.class, new Function<TerminalNode, Identifier>() {

@@ -15,9 +15,9 @@
  */
 package com.bacoder.parser.java.api;
 
-import com.bacoder.parser.core.Node;
+import com.bacoder.parser.core.Visitors;
 
-public class ArrayType extends Node implements Type {
+public class ArrayType extends JavaNode implements Type {
 
   private Type elementType;
 
@@ -27,5 +27,12 @@ public class ArrayType extends Node implements Type {
 
   public void setElementType(Type elementType) {
     this.elementType = elementType;
+  }
+
+  @Override
+  protected void visitChildren(Visitors visitors) {
+    if (elementType != null) {
+      elementType.visit(visitors);
+    }
   }
 }

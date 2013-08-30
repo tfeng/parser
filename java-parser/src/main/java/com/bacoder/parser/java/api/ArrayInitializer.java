@@ -18,9 +18,9 @@ package com.bacoder.parser.java.api;
 import java.util.Collections;
 import java.util.List;
 
-import com.bacoder.parser.core.Node;
+import com.bacoder.parser.core.Visitors;
 
-public class ArrayInitializer extends Node implements VariableInitializer {
+public class ArrayInitializer extends JavaNode implements VariableInitializer {
 
   private List<VariableInitializer> initializers = Collections.emptyList();
 
@@ -30,5 +30,12 @@ public class ArrayInitializer extends Node implements VariableInitializer {
 
   public void setInitializers(List<VariableInitializer> initializers) {
     this.initializers = initializers;
+  }
+
+  @Override
+  protected void visitChildren(Visitors visitors) {
+    for (VariableInitializer initializer : initializers) {
+      initializer.visit(visitors);
+    }
   }
 }

@@ -40,7 +40,7 @@ public class ConstDeclaratorAdapter
 
   public VariableDeclaration adapt(ConstantDeclaratorContext context, Type baseType,
       ParseTree baseTypeContext) {
-    VariableDeclaration variableDeclarator = createData(context);
+    VariableDeclaration variableDeclarator = createNode(context);
 
     TerminalNode identifierNode = getTerminalNode(context, JavaParser.Identifier);
     if (identifierNode != null) {
@@ -51,7 +51,7 @@ public class ConstDeclaratorAdapter
     for (ParseTree node : context.children) {
       if (node instanceof TerminalNode
           && ((TerminalNode) node).getSymbol().getType() == JavaParser.RBRACK) {
-        ArrayType arrayType = createData(baseTypeContext, node, ArrayType.class);
+        ArrayType arrayType = createNode(baseTypeContext, node, ArrayType.class);
         arrayType.setElementType(type);
         type = arrayType;
       }

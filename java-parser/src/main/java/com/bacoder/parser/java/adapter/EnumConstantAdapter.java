@@ -37,7 +37,7 @@ public class EnumConstantAdapter extends JavaAdapter<EnumConstantContext, EnumCo
 
   @Override
   public EnumConstant adapt(EnumConstantContext context) {
-    EnumConstant enumConstant = createData(context);
+    EnumConstant enumConstant = createNode(context);
 
     List<Annotation> annotations =
         transform(context, AnnotationContext.class, new Function<AnnotationContext, Annotation>() {
@@ -50,7 +50,7 @@ public class EnumConstantAdapter extends JavaAdapter<EnumConstantContext, EnumCo
 
     TerminalNode identifierNode = getTerminalNode(context, JavaParser.Identifier);
     if (identifierNode != null) {
-      enumConstant.setIdentifier(getAdapter(IdentifierAdapter.class).adapt(identifierNode));
+      enumConstant.setName(getAdapter(IdentifierAdapter.class).adapt(identifierNode));
     }
 
     ArgumentsContext argumentsContext = getChild(context, ArgumentsContext.class);

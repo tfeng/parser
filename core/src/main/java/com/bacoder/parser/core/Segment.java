@@ -24,4 +24,6 @@ public interface Segment {
   public int getStartColumn();
 
   public int getStartLine();
+
+  public void visit(Visitors visitors);
 }

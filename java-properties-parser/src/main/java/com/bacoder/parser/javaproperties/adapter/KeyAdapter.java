@@ -28,7 +28,7 @@ public class KeyAdapter extends Adapter<KeyContext, Key> {
 
   @Override
   public Key adapt(KeyContext context) {
-    Key key = createData(context);
+    Key key = createNode(context);
     key.setText(context.getText());
     return key;
   }

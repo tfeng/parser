@@ -15,6 +15,11 @@
  */
 package com.bacoder.parser.javaproperties.api;
 
+import com.bacoder.parser.core.Visitors;
+
 public class Value extends KeyOrValueNode {
 
+  @Override
+  protected void visitChildren(Visitors visitors) {
+  }
 }

@@ -33,7 +33,7 @@ public class KeyValueAdapter extends Adapter<KeyValueContext, KeyValue> {
     KeyContext keyContext = getChild(context, KeyContext.class);
     ValueContext valueContext = getChild(context, ValueContext.class);
     if (keyContext != null && valueContext != null) {
-      KeyValue keyValue = createData(context);
+      KeyValue keyValue = createNode(context);
       keyValue.setKey(getAdapter(KeyAdapter.class).adapt(keyContext));
       keyValue.setValue(getAdapter(ValueAdapter.class).adapt(valueContext));
       return keyValue;

@@ -50,7 +50,7 @@ public class TypeAdapter extends JavaAdapter<TypeContext, Type> {
     for (ParseTree node : context.children) {
       if (node instanceof TerminalNode
           && ((TerminalNode) node).getSymbol().getType() == JavaParser.RBRACK) {
-        ArrayType arrayType = createData(context, node, ArrayType.class);
+        ArrayType arrayType = createNode(context, node, ArrayType.class);
         arrayType.setElementType(type);
         type = arrayType;
       }

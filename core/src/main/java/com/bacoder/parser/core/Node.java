@@ -60,4 +60,13 @@ public abstract class Node implements Segment {
   public void setStartLine(int startLine) {
     this.startLine = startLine;
   }
+
+  @Override
+  public void visit(Visitors visitors) {
+    visitors.visitBefore(this);
+    visitChildren(visitors);
+    visitors.visitAfter(this);
+  }
+
+  protected abstract void visitChildren(Visitors visitors);
 }

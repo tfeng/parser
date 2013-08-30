@@ -21,7 +21,7 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 import com.bacoder.parser.core.Adapters;
 import com.bacoder.parser.java.api.ArrayType;
 import com.bacoder.parser.java.api.InterfaceMethodDeclaration;
-import com.bacoder.parser.java.api.ReturnType;
+import com.bacoder.parser.java.api.TypeOrVoid;
 import com.bacoder.parser.java.api.Type;
 import com.bacoder.parser.java.api.VoidType;
 import com.srctran.backend.parser.java.JavaParser;
@@ -39,16 +39,16 @@ public class InterfaceMethodDeclarationAdapter
 
   @Override
   public InterfaceMethodDeclaration adapt(InterfaceMethodDeclarationContext context) {
-    InterfaceMethodDeclaration interfaceDeclaration = createData(context);
+    InterfaceMethodDeclaration interfaceDeclaration = createNode(context);
 
-    ReturnType type = null;
+    TypeOrVoid type = null;
     TypeContext typeContext = getChild(context, TypeContext.class);
     if (typeContext != null) {
       type = getAdapter(TypeAdapter.class).adapt(typeContext);
     } else {
       TerminalNode voidNode = getTerminalNode(context, JavaParser.VOID);
       if (voidNode != null) {
-        type = createData(voidNode, VoidType.class);
+        type = createNode(voidNode, VoidType.class);
       }
     }
 
@@ -70,7 +70,7 @@ public class InterfaceMethodDeclarationAdapter
       }
       if (node instanceof TerminalNode
           && ((TerminalNode) node).getSymbol().getType() == JavaParser.RBRACK) {
-        ArrayType arrayType = createData(typeContext, node, ArrayType.class);
+        ArrayType arrayType = createNode(typeContext, node, ArrayType.class);
         arrayType.setElementType((Type) type);
         type = arrayType;
       }

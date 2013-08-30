@@ -17,8 +17,10 @@ package com.bacoder.parser.javaproperties.api;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.ListIterator;
 
 import com.bacoder.parser.core.Node;
+import com.bacoder.parser.core.Visitors;
 
 public class Properties extends Node {
 
@@ -40,5 +42,30 @@ public class Properties extends Node {
 
   public void setKeyValues(List<KeyValue> keyValues) {
     this.keyValues = keyValues;
+  }
+
+  @Override
+  protected void visitChildren(Visitors visitors) {
+    ListIterator<Comment> commentsIterator = comments.listIterator();
+    ListIterator<KeyValue> keyValueIterator = keyValues.listIterator();
+    while (commentsIterator.hasNext() || keyValueIterator.hasNext()) {
+      if (!commentsIterator.hasNext()) {
+        keyValueIterator.next().visit(visitors);
+      } else if (!keyValueIterator.hasNext()) {
+        commentsIterator.next().visit(visitors);
+      } else {
+        Comment comment = commentsIterator.next();
+        KeyValue keyValue = keyValueIterator.next();
+        if (comment.getStartLine() < keyValue.getStartLine()
+            || comment.getStartLine() == keyValue.getStartLine()
+                && comment.getStartColumn() < keyValue.getStartColumn()) {
+          comment.visit(visitors);
+          keyValueIterator.previous();
+        } else {
+          keyValue.visit(visitors);
+          commentsIterator.previous();
+        }
+      }
+    }
   }
 }

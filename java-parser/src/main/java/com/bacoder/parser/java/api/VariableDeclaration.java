@@ -15,9 +15,9 @@
  */
 package com.bacoder.parser.java.api;
 
-import com.bacoder.parser.core.Node;
+import com.bacoder.parser.core.Visitors;
 
-public class VariableDeclaration extends Node {
+public class VariableDeclaration extends JavaNode {
 
   private VariableInitializer initializer;
 
@@ -47,5 +47,18 @@ public class VariableDeclaration extends Node {
 
   public void setType(Type type) {
     this.type = type;
+  }
+
+  @Override
+  protected void visitChildren(Visitors visitors) {
+    if (type != null) {
+      type.visit(visitors);
+    }
+    if (name != null) {
+      name.visit(visitors);
+    }
+    if (initializer != null) {
+      initializer.visit(visitors);
+    }
   }
 }

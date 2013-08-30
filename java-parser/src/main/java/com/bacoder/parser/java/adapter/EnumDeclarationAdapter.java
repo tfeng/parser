@@ -42,7 +42,7 @@ public class EnumDeclarationAdapter extends JavaAdapter<EnumDeclarationContext, 
 
   @Override
   public EnumDeclaration adapt(EnumDeclarationContext context) {
-    EnumDeclaration enumDeclaration = createData(context);
+    EnumDeclaration enumDeclaration = createNode(context);
 
     TerminalNode identifierNode = getTerminalNode(context, JavaParser.Identifier);
     if (identifierNode != null) {

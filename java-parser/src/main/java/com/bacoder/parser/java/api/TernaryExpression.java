@@ -1,36 +1,64 @@
+/**
+ * Copyright 2013 Huining (Thomas) Feng (tfeng@berkeley.edu)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.bacoder.parser.java.api;
 
-import com.bacoder.parser.core.Node;
+import com.bacoder.parser.core.Visitors;
 
-public class TernaryExpression extends Node implements Expression {
+public class TernaryExpression extends JavaNode implements Expression {
 
   private Expression condition;
 
-  private Expression falseExpression;
+  private Expression elseExpression;
 
-  private Expression trueExpression;
+  private Expression thenExpression;
 
   public Expression getCondition() {
     return condition;
   }
 
-  public Expression getFalseExpression() {
-    return falseExpression;
+  public Expression getElseExpression() {
+    return elseExpression;
   }
 
-  public Expression getTrueExpression() {
-    return trueExpression;
+  public Expression getThenExpression() {
+    return thenExpression;
   }
 
   public void setCondition(Expression condition) {
     this.condition = condition;
   }
 
-  public void setFalseExpression(Expression falseExpression) {
-    this.falseExpression = falseExpression;
+  public void setElseExpression(Expression elseExpression) {
+    this.elseExpression = elseExpression;
   }
 
-  public void setTrueExpression(Expression trueExpression) {
-    this.trueExpression = trueExpression;
+  public void setThenExpression(Expression thenExpression) {
+    this.thenExpression = thenExpression;
+  }
+
+  @Override
+  protected void visitChildren(Visitors visitors) {
+    if (condition != null) {
+      condition.visit(visitors);
+    }
+    if (thenExpression != null) {
+      thenExpression.visit(visitors);
+    }
+    if (elseExpression != null) {
+      elseExpression.visit(visitors);
+    }
   }
 }

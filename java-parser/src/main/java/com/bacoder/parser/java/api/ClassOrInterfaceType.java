@@ -18,18 +18,18 @@ package com.bacoder.parser.java.api;
 import java.util.Collections;
 import java.util.List;
 
-import com.bacoder.parser.core.Node;
+import com.bacoder.parser.core.Visitors;
 
-public class ClassOrInterfaceType extends Node implements Type {
+public class ClassOrInterfaceType extends JavaNode implements Type {
 
-  private Identifier identifier;
+  private Identifier name;
 
   private ClassOrInterfaceType scope;
 
   private List<TypeArgument> typeArguments = Collections.emptyList();
 
-  public Identifier getIdentifier() {
-    return identifier;
+  public Identifier getName() {
+    return name;
   }
 
   public ClassOrInterfaceType getScope() {
@@ -40,8 +40,8 @@ public class ClassOrInterfaceType extends Node implements Type {
     return typeArguments;
   }
 
-  public void setIdentifier(Identifier identifier) {
-    this.identifier = identifier;
+  public void setName(Identifier name) {
+    this.name = name;
   }
 
   public void setScope(ClassOrInterfaceType scope) {
@@ -50,5 +50,18 @@ public class ClassOrInterfaceType extends Node implements Type {
 
   public void setTypeArguments(List<TypeArgument> typeArguments) {
     this.typeArguments = typeArguments;
+  }
+
+  @Override
+  protected void visitChildren(Visitors visitors) {
+    if (scope != null) {
+      scope.visit(visitors);
+    }
+    if (name != null) {
+      name.visit(visitors);
+    }
+    for (TypeArgument typeArgument : typeArguments) {
+      typeArgument.visit(visitors);
+    }
   }
 }

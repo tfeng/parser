@@ -32,7 +32,7 @@ public class ConstDeclarationAdapter
 
   @Override
   public ConstDeclaration adapt(ConstDeclarationContext context) {
-    final ConstDeclaration constDeclaration = createData(context);
+    final ConstDeclaration constDeclaration = createNode(context);
 
     final TypeContext typeContext = getChild(context, TypeContext.class);
     if (typeContext != null) {

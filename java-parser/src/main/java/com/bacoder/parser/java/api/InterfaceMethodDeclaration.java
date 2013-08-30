@@ -18,6 +18,8 @@ package com.bacoder.parser.java.api;
 import java.util.Collections;
 import java.util.List;
 
+import com.bacoder.parser.core.Visitors;
+
 public class InterfaceMethodDeclaration extends NodeWithModifiers
     implements InterfaceMemberDeclaration {
 
@@ -25,7 +27,7 @@ public class InterfaceMethodDeclaration extends NodeWithModifiers
 
   private Identifier name;
 
-  private ReturnType returnType;
+  private TypeOrVoid returnType;
 
   private List<QualifiedName> throwsExceptions = Collections.emptyList();
 
@@ -39,7 +41,7 @@ public class InterfaceMethodDeclaration extends NodeWithModifiers
     return name;
   }
 
-  public ReturnType getReturnType() {
+  public TypeOrVoid getReturnType() {
     return returnType;
   }
 
@@ -63,7 +65,7 @@ public class InterfaceMethodDeclaration extends NodeWithModifiers
     this.name = name;
   }
 
-  public void setReturnType(ReturnType returnType) {
+  public void setReturnType(TypeOrVoid returnType) {
     this.returnType = returnType;
   }
 
@@ -73,5 +75,25 @@ public class InterfaceMethodDeclaration extends NodeWithModifiers
 
   public void setTypeParameters(List<TypeParameter> typeParameters) {
     this.typeParameters = typeParameters;
+  }
+
+  @Override
+  protected void visitChildren(Visitors visitors) {
+    super.visitChildren(visitors);
+    for (TypeParameter typeParameter : typeParameters) {
+      typeParameter.visit(visitors);
+    }
+    if (returnType != null) {
+      returnType.visit(visitors);
+    }
+    if (name != null) {
+      name.visit(visitors);
+    }
+    for (FormalParameter formalParameter : formalParameters) {
+      formalParameter.visit(visitors);
+    }
+    for (QualifiedName throwsException : throwsExceptions) {
+      throwsException.visit(visitors);
+    }
   }
 }

@@ -18,6 +18,8 @@ package com.bacoder.parser.java.api;
 import java.util.Collections;
 import java.util.List;
 
+import com.bacoder.parser.core.Visitors;
+
 public class ConstDeclaration extends NodeWithModifiers
     implements AnnotationMemberDeclaration, InterfaceMemberDeclaration {
 
@@ -39,5 +41,16 @@ public class ConstDeclaration extends NodeWithModifiers
 
   public void setVariableDeclarations(List<VariableDeclaration> variableDeclarations) {
     this.variableDeclarations = variableDeclarations;
+  }
+
+  @Override
+  protected void visitChildren(Visitors visitors) {
+    super.visitChildren(visitors);
+    if (type != null) {
+      type.visit(visitors);
+    }
+    for (VariableDeclaration variableDeclaration : variableDeclarations) {
+      variableDeclaration.visit(visitors);
+    }
   }
 }

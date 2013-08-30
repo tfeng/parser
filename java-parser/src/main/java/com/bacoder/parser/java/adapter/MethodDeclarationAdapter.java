@@ -20,8 +20,8 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 
 import com.bacoder.parser.core.Adapters;
 import com.bacoder.parser.java.api.ArrayType;
-import com.bacoder.parser.java.api.MethodDeclaration;
-import com.bacoder.parser.java.api.ReturnType;
+import com.bacoder.parser.java.api.ClassMethodDeclaration;
+import com.bacoder.parser.java.api.TypeOrVoid;
 import com.bacoder.parser.java.api.Type;
 import com.bacoder.parser.java.api.VoidType;
 import com.srctran.backend.parser.java.JavaParser;
@@ -33,24 +33,24 @@ import com.srctran.backend.parser.java.JavaParser.QualifiedNameListContext;
 import com.srctran.backend.parser.java.JavaParser.TypeContext;
 
 public class MethodDeclarationAdapter
-    extends JavaAdapter<MethodDeclarationContext, MethodDeclaration> {
+    extends JavaAdapter<MethodDeclarationContext, ClassMethodDeclaration> {
 
   public MethodDeclarationAdapter(Adapters adapters) {
     super(adapters);
   }
 
   @Override
-  public MethodDeclaration adapt(MethodDeclarationContext context) {
-    MethodDeclaration methodDeclaration = createData(context);
+  public ClassMethodDeclaration adapt(MethodDeclarationContext context) {
+    ClassMethodDeclaration methodDeclaration = createNode(context);
 
-    ReturnType type = null;
+    TypeOrVoid type = null;
     TypeContext typeContext = getChild(context, TypeContext.class);
     if (typeContext != null) {
       type = getAdapter(TypeAdapter.class).adapt(typeContext);
     } else {
       TerminalNode voidNode = getTerminalNode(context, JavaParser.VOID);
       if (voidNode != null) {
-        type = createData(voidNode, VoidType.class);
+        type = createNode(voidNode, VoidType.class);
       }
     }
 
@@ -72,7 +72,7 @@ public class MethodDeclarationAdapter
       }
       if (node instanceof TerminalNode
           && ((TerminalNode) node).getSymbol().getType() == JavaParser.RBRACK) {
-        ArrayType arrayType = createData(typeContext, node, ArrayType.class);
+        ArrayType arrayType = createNode(typeContext, node, ArrayType.class);
         arrayType.setElementType((Type) type);
         type = arrayType;
       }

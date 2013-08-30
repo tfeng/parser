@@ -15,17 +15,18 @@
  */
 package com.bacoder.parser.java.api;
 
+import com.bacoder.parser.core.Visitors;
 
 public class FormalParameter extends NodeWithModifiers {
 
-  private Identifier identifier;
-
   private boolean isVariable;
+
+  private Identifier name;
 
   private Type type;
 
-  public Identifier getIdentifier() {
-    return identifier;
+  public Identifier getName() {
+    return name;
   }
 
   public Type getType() {
@@ -36,8 +37,8 @@ public class FormalParameter extends NodeWithModifiers {
     return isVariable;
   }
 
-  public void setIdentifier(Identifier identifier) {
-    this.identifier = identifier;
+  public void setName(Identifier name) {
+    this.name = name;
   }
 
   public void setType(Type type) {
@@ -46,5 +47,16 @@ public class FormalParameter extends NodeWithModifiers {
 
   public void setVariable(boolean isVariable) {
     this.isVariable = isVariable;
+  }
+
+  @Override
+  protected void visitChildren(Visitors visitors) {
+    super.visitChildren(visitors);
+    if (type != null) {
+      type.visit(visitors);
+    }
+    if (name != null) {
+      name.visit(visitors);
+    }
   }
 }

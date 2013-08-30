@@ -18,9 +18,9 @@ package com.bacoder.parser.java.api;
 import java.util.Collections;
 import java.util.List;
 
-import com.bacoder.parser.core.Node;
+import com.bacoder.parser.core.Visitors;
 
-public class NodeWithModifiers extends Node {
+public abstract class NodeWithModifiers extends JavaNode {
 
   private List<Annotation> annotations = Collections.emptyList();
 
@@ -140,5 +140,12 @@ public class NodeWithModifiers extends Node {
 
   public void setVolatile(boolean isVolatile) {
     this.isVolatile = isVolatile;
+  }
+
+  @Override
+  protected void visitChildren(Visitors visitors) {
+    for (Annotation annotation : annotations) {
+      annotation.visit(visitors);
+    }
   }
 }

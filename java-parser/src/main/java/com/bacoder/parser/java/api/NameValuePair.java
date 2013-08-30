@@ -15,27 +15,37 @@
  */
 package com.bacoder.parser.java.api;
 
-import com.bacoder.parser.core.Node;
+import com.bacoder.parser.core.Visitors;
 
-public class NameValuePair extends Node {
+public class NameValuePair extends JavaNode {
 
-  private Identifier identifier;
+  private Identifier name;
 
   private AnnotationValue value;
 
-  public Identifier getIdentifier() {
-    return identifier;
+  public Identifier getName() {
+    return name;
   }
 
   public AnnotationValue getValue() {
     return value;
   }
 
-  public void setIdentifier(Identifier identifier) {
-    this.identifier = identifier;
+  public void setName(Identifier name) {
+    this.name = name;
   }
 
   public void setValue(AnnotationValue value) {
     this.value = value;
+  }
+
+  @Override
+  protected void visitChildren(Visitors visitors) {
+    if (name != null) {
+      name.visit(visitors);
+    }
+    if (value != null) {
+      value.visit(visitors);
+    }
   }
 }

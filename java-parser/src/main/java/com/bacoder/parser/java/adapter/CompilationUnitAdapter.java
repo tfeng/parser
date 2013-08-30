@@ -35,7 +35,7 @@ public class CompilationUnitAdapter extends JavaAdapter<CompilationUnitContext, 
 
   @Override
   public CompilationUnit adapt(CompilationUnitContext context) {
-    CompilationUnit compilationUnit = createData(context);
+    CompilationUnit compilationUnit = createNode(context);
 
     PackageDeclarationContext packageDeclarationContext =
         getChild(context, PackageDeclarationContext.class);

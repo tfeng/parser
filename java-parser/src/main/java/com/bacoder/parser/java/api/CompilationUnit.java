@@ -18,9 +18,9 @@ package com.bacoder.parser.java.api;
 import java.util.Collections;
 import java.util.List;
 
-import com.bacoder.parser.core.Node;
+import com.bacoder.parser.core.Visitors;
 
-public class CompilationUnit extends Node {
+public class CompilationUnit extends JavaNode {
 
   private List<ImportDeclaration> importDeclarations = Collections.emptyList();
 
@@ -50,5 +50,18 @@ public class CompilationUnit extends Node {
 
   public void setTypeDeclarations(List<TypeDeclaration> typeDeclarations) {
     this.typeDeclarations = typeDeclarations;
+  }
+
+  @Override
+  protected void visitChildren(Visitors visitors) {
+    if (packageDeclaration != null) {
+      packageDeclaration.visit(visitors);
+    }
+    for (ImportDeclaration importDeclaration : importDeclarations) {
+      importDeclaration.visit(visitors);
+    }
+    for (TypeDeclaration typeDeclaration : typeDeclarations) {
+      typeDeclaration.visit(visitors);
+    }
   }
 }

@@ -18,17 +18,24 @@ package com.bacoder.parser.java.api;
 import java.util.Collections;
 import java.util.List;
 
-import com.bacoder.parser.core.Node;
+import com.bacoder.parser.core.Visitors;
 
-public class AnnotationArrayInitializer extends Node implements AnnotationValue {
+public class AnnotationArrayInitializer extends JavaNode implements AnnotationValue {
 
-  private List<AnnotationValue> arrayElementValues = Collections.emptyList();
+  private List<AnnotationValue> elementValues = Collections.emptyList();
 
-  public List<AnnotationValue> getArrayElementValues() {
-    return arrayElementValues;
+  public List<AnnotationValue> getElementValues() {
+    return elementValues;
   }
 
-  public void setArrayElementValues(List<AnnotationValue> arrayElementValues) {
-    this.arrayElementValues = arrayElementValues;
+  public void setElementValues(List<AnnotationValue> elementValues) {
+    this.elementValues = elementValues;
+  }
+
+  @Override
+  protected void visitChildren(Visitors visitors) {
+    for (AnnotationValue elementValue : elementValues) {
+      elementValue.visit(visitors);
+    }
   }
 }

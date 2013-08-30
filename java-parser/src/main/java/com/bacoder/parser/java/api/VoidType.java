@@ -15,8 +15,11 @@
  */
 package com.bacoder.parser.java.api;
 
-import com.bacoder.parser.core.Node;
+import com.bacoder.parser.core.Visitors;
 
-public class VoidType extends Node implements ReturnType {
+public class VoidType extends JavaNode implements TypeOrVoid {
 
+  @Override
+  protected void visitChildren(Visitors visitors) {
+  }
 }

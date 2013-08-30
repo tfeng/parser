@@ -17,10 +17,10 @@ package com.bacoder.parser.java.adapter;
 
 import java.util.List;
 
-import com.google.common.base.Function;
 import com.bacoder.parser.core.Adapters;
 import com.bacoder.parser.java.api.AnnotationArrayInitializer;
 import com.bacoder.parser.java.api.AnnotationValue;
+import com.google.common.base.Function;
 import com.srctran.backend.parser.java.JavaParser.ElementValueArrayInitializerContext;
 import com.srctran.backend.parser.java.JavaParser.ElementValueContext;
 
@@ -33,7 +33,7 @@ public class ElementValueArrayInitializerAdapter
 
   @Override
   public AnnotationArrayInitializer adapt(ElementValueArrayInitializerContext context) {
-    AnnotationArrayInitializer annotationArrayInitializer = createData(context);
+    AnnotationArrayInitializer annotationArrayInitializer = createNode(context);
     List<AnnotationValue> arrayElementValues =
         transform(context, ElementValueContext.class,
             new Function<ElementValueContext, AnnotationValue>() {
@@ -42,7 +42,7 @@ public class ElementValueArrayInitializerAdapter
                 return getAdapter(ElementValueAdapter.class).adapt(context);
               }
             });
-    annotationArrayInitializer.setArrayElementValues(arrayElementValues);
+    annotationArrayInitializer.setElementValues(arrayElementValues);
     return annotationArrayInitializer;
   }
 }

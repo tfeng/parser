@@ -31,7 +31,7 @@ public class ArrayInitializerAdapter
 
   @Override
   public ArrayInitializer adapt(ArrayInitializerContext context) {
-    ArrayInitializer arrayInitializer = createData(context);
+    ArrayInitializer arrayInitializer = createNode(context);
     arrayInitializer.setInitializers(transform(context, VariableInitializerContext.class,
         new Function<VariableInitializerContext, VariableInitializer>() {
           @Override

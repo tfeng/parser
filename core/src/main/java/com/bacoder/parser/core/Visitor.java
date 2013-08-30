@@ -13,19 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bacoder.parser.java.api;
+package com.bacoder.parser.core;
 
+public interface Visitor<T extends Node> {
 
-public class MethodDeclaration extends InterfaceMethodDeclaration
-    implements ClassMemberDeclaration {
+  public void visitAfter(T node);
 
-  private Block body;
-
-  public Block getBody() {
-    return body;
-  }
-
-  public void setBody(Block body) {
-    this.body = body;
-  }
+  public void visitBefore(T node);
 }

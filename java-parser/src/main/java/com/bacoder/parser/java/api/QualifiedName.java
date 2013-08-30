@@ -18,10 +18,9 @@ package com.bacoder.parser.java.api;
 import java.util.Collections;
 import java.util.List;
 
-import com.bacoder.parser.core.Node;
-import com.bacoder.parser.core.TextNode;
+import com.bacoder.parser.core.Visitors;
 
-public class QualifiedName extends Node {
+public class QualifiedName extends JavaNode {
 
   private static final String IDENTIFIER_SEPARATOR = ".";
 
@@ -29,7 +28,7 @@ public class QualifiedName extends Node {
 
   public String getFullName() {
     StringBuffer buffer = new StringBuffer();
-    for (TextNode identifier : identifiers) {
+    for (Identifier identifier : identifiers) {
       if (buffer.length() > 0) {
         buffer.append(IDENTIFIER_SEPARATOR);
       }
@@ -44,5 +43,12 @@ public class QualifiedName extends Node {
 
   public void setIdentifiers(List<Identifier> identifiers) {
     this.identifiers = identifiers;
+  }
+
+  @Override
+  protected void visitChildren(Visitors visitors) {
+    for (Identifier identifier : identifiers) {
+      identifier.visit(visitors);
+    }
   }
 }

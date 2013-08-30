@@ -144,7 +144,7 @@ public class ExpressionAdapter extends JavaAdapter<ExpressionContext, Expression
     }
 
     if (hasTerminalNode(context, JavaParser.LBRACK)) {
-      ArrayAccess arrayAccess = createData(context, ArrayAccess.class);
+      ArrayAccess arrayAccess = createNode(context, ArrayAccess.class);
 
       if (context.getChildCount() > 0 && context.getChild(0) instanceof ExpressionContext) {
         ExpressionContext expressionContext = (ExpressionContext) context.getChild(0);
@@ -172,7 +172,7 @@ public class ExpressionAdapter extends JavaAdapter<ExpressionContext, Expression
     if (context.getChildCount() > 0
         && context.getChild(0) instanceof TerminalNode
         && ((TerminalNode) context.getChild(0)).getSymbol().getType() == JavaParser.LPAREN) {
-      TypeCast typeCast = createData(context, TypeCast.class);
+      TypeCast typeCast = createNode(context, TypeCast.class);
 
       TypeContext typeContext = getChild(context, TypeContext.class);
       if (typeContext != null) {
@@ -191,7 +191,7 @@ public class ExpressionAdapter extends JavaAdapter<ExpressionContext, Expression
         && context.getChild(1) instanceof TerminalNode
         && POSTFIX_OPERATOR_MAP.containsKey(
             ((TerminalNode) context.getChild(0)).getSymbol().getType())) {
-      PostfixExpression postfixExpression = createData(context, PostfixExpression.class);
+      PostfixExpression postfixExpression = createNode(context, PostfixExpression.class);
 
       postfixExpression.setOperator(
           POSTFIX_OPERATOR_MAP.get(((TerminalNode) context.getChild(0)).getSymbol().getType()));
@@ -209,7 +209,7 @@ public class ExpressionAdapter extends JavaAdapter<ExpressionContext, Expression
         && context.getChild(0) instanceof TerminalNode
         && PREFIX_OPERATOR_MAP.containsKey(
             ((TerminalNode) context.getChild(0)).getSymbol().getType())) {
-      PrefixExpression prefixExpression = createData(context, PrefixExpression.class);
+      PrefixExpression prefixExpression = createNode(context, PrefixExpression.class);
 
       prefixExpression.setOperator(
           PREFIX_OPERATOR_MAP.get(((TerminalNode) context.getChild(0)).getSymbol().getType()));
@@ -249,7 +249,7 @@ public class ExpressionAdapter extends JavaAdapter<ExpressionContext, Expression
       }
 
       if (operator != null) {
-        InfixExpression infixExpression = createData(context, InfixExpression.class);
+        InfixExpression infixExpression = createNode(context, InfixExpression.class);
         infixExpression.setLeftHandSide(
             getAdapter(ExpressionAdapter.class).adapt((ExpressionContext) context.getChild(0)));
         infixExpression.setOperator(operator);
@@ -261,7 +261,7 @@ public class ExpressionAdapter extends JavaAdapter<ExpressionContext, Expression
     }
 
     if (hasTerminalNode(context, JavaParser.INSTANCEOF)) {
-      InstanceOf instanceOf = createData(context, InstanceOf.class);
+      InstanceOf instanceOf = createNode(context, InstanceOf.class);
 
       ExpressionContext expressionContext = getChild(context, ExpressionContext.class);
       if (expressionContext != null) {
@@ -277,7 +277,7 @@ public class ExpressionAdapter extends JavaAdapter<ExpressionContext, Expression
     }
 
     if (hasTerminalNode(context, JavaParser.QUESTION)) {
-      TernaryExpression ternaryExpression = createData(context, TernaryExpression.class);
+      TernaryExpression ternaryExpression = createNode(context, TernaryExpression.class);
 
       Iterator<ExpressionContext> expressionContexts =
           getChildren(context, ExpressionContext.class).iterator();
@@ -286,11 +286,11 @@ public class ExpressionAdapter extends JavaAdapter<ExpressionContext, Expression
             getAdapter(ExpressionAdapter.class).adapt(expressionContexts.next()));
       }
       if (expressionContexts.hasNext()) {
-        ternaryExpression.setTrueExpression(
+        ternaryExpression.setThenExpression(
             getAdapter(ExpressionAdapter.class).adapt(expressionContexts.next()));
       }
       if (expressionContexts.hasNext()) {
-        ternaryExpression.setFalseExpression(
+        ternaryExpression.setElseExpression(
             getAdapter(ExpressionAdapter.class).adapt(expressionContexts.next()));
       }
 
@@ -312,7 +312,7 @@ public class ExpressionAdapter extends JavaAdapter<ExpressionContext, Expression
           TerminalNode terminalNode = (TerminalNode) input;
           if (terminalNode.getSymbol().getType() == JavaParser.Identifier) {
             IdentifierWithTypeArguments element =
-                createData(input, IdentifierWithTypeArguments.class);
+                createNode(input, IdentifierWithTypeArguments.class);
             element.setIdentifier(getAdapter(IdentifierAdapter.class).adapt(terminalNode));
             identifierWithTypeArguments.add(element);
           }
@@ -377,7 +377,7 @@ public class ExpressionAdapter extends JavaAdapter<ExpressionContext, Expression
           instantiableType = getAdapter(PrimitiveTypeAdapter.class).adapt(primitiveTypeContext);
         } else {
           TypeWithArguments typeWithArguments =
-              createData(createdNameContext, TypeWithArguments.class);
+              createNode(createdNameContext, TypeWithArguments.class);
           typeWithArguments.setIdentifiersWithTypeArguments(
               convertIdentifiersWithTypeArguments(createdNameContext));
           instantiableType = typeWithArguments;
@@ -408,7 +408,7 @@ public class ExpressionAdapter extends JavaAdapter<ExpressionContext, Expression
             if (input instanceof TerminalNode) {
               if (((TerminalNode) input).getSymbol().getType() == JavaParser.LBRACK) {
                 ArrayCreationDimension arrayCreationDimension =
-                    createData(input, ArrayCreationDimension.class);
+                    createNode(input, ArrayCreationDimension.class);
                 dimensions.add(arrayCreationDimension);
               } else if (((TerminalNode) input).getSymbol().getType() == JavaParser.RBRACK) {
                 setNodeAttributes(dimensions.get(dimensions.size() - 1), null, input);
@@ -431,17 +431,17 @@ public class ExpressionAdapter extends JavaAdapter<ExpressionContext, Expression
       }
 
       if (arrayDimensions != null) {
-        ArrayCreation arrayCreation = createData(context, ArrayCreation.class);
+        ArrayCreation arrayCreation = createNode(context, ArrayCreation.class);
         arrayCreation.setElementType(instantiableType);
         arrayCreation.setDimensions(arrayDimensions);
         arrayCreation.setInitializer(arrayInitializer);
         return arrayCreation;
       } else {
-        ClassInstantiation newInvocation = createData(context, ClassInstantiation.class);
+        ClassInstantiation newInvocation = createNode(context, ClassInstantiation.class);
         newInvocation.setTypeArguments(nonWildcardTypeArguments);
         newInvocation.setType(instantiableType);
         newInvocation.setArguments(arguments);
-        newInvocation.setClassMemberDeclarations(classMemberDeclarations);
+        newInvocation.setMemberDeclarations(classMemberDeclarations);
         return newInvocation;
       }
     }
@@ -459,22 +459,22 @@ public class ExpressionAdapter extends JavaAdapter<ExpressionContext, Expression
 
     Invocation invocation = null;
     if (expression instanceof ThisExpression) {
-      invocation = createData(context, ThisInvocation.class);
+      invocation = createNode(context, ThisInvocation.class);
     } else if (expression instanceof SuperExpression) {
-      invocation = createData(context, SuperInvocation.class);
+      invocation = createNode(context, SuperInvocation.class);
     } else if (expression instanceof Identifier) {
-      MethodInvocation methodInvocation = createData(context, MethodInvocation.class);
+      MethodInvocation methodInvocation = createNode(context, MethodInvocation.class);
       methodInvocation.setName((Identifier) expression);
     } else if (expression instanceof ScopedExpression) {
       ScopedExpression scopedExpression = (ScopedExpression) expression;
       if (scopedExpression.getExpression() instanceof ThisExpression) {
-        invocation = createData(context, ThisInvocation.class);
+        invocation = createNode(context, ThisInvocation.class);
         invocation.setScope(scopedExpression.getScope());
       } else if (scopedExpression.getExpression() instanceof SuperExpression) {
-        invocation = createData(context, SuperInvocation.class);
+        invocation = createNode(context, SuperInvocation.class);
         invocation.setScope(scopedExpression.getScope());
       } else if (scopedExpression.getExpression() instanceof Identifier) {
-        MethodInvocation methodInvocation = createData(context, MethodInvocation.class);
+        MethodInvocation methodInvocation = createNode(context, MethodInvocation.class);
         methodInvocation.setScope(scopedExpression.getScope());
         methodInvocation.setName((Identifier) scopedExpression.getExpression());
         invocation = methodInvocation;
@@ -482,7 +482,7 @@ public class ExpressionAdapter extends JavaAdapter<ExpressionContext, Expression
     }
 
     if (invocation == null) {
-      GeneralInvocation generalInvocation = createData(context, GeneralInvocation.class);
+      GeneralInvocation generalInvocation = createNode(context, GeneralInvocation.class);
       if (expression instanceof ScopedExpression) {
         ScopedExpression scopedExpression = (ScopedExpression) expression;
         generalInvocation.setScope(scopedExpression.getScope());
@@ -503,7 +503,7 @@ public class ExpressionAdapter extends JavaAdapter<ExpressionContext, Expression
   }
 
   protected ScopedExpression processScopedExpression(ExpressionContext context) {
-    ScopedExpression scopedExpression = createData(context, ScopedExpression.class);
+    ScopedExpression scopedExpression = createNode(context, ScopedExpression.class);
 
     ExpressionContext expressionContext = getChild(context, ExpressionContext.class);
     if (expressionContext != null) {
@@ -518,13 +518,13 @@ public class ExpressionAdapter extends JavaAdapter<ExpressionContext, Expression
 
     TerminalNode thisNode = getTerminalNode(context, JavaParser.THIS);
     if (thisNode != null) {
-      scopedExpression.setExpression(createData(thisNode, ThisExpression.class));
+      scopedExpression.setExpression(createNode(thisNode, ThisExpression.class));
       return scopedExpression;
     }
 
     TerminalNode newNode = getTerminalNode(context, JavaParser.NEW);
     if (newNode != null) {
-      ClassInstantiation newInvocation = createData(newNode, context, ClassInstantiation.class);
+      ClassInstantiation newInvocation = createNode(newNode, context, ClassInstantiation.class);
 
       NonWildcardTypeArgumentsContext nonWildcardTypeArgumentsContext =
           getChild(context, NonWildcardTypeArgumentsContext.class);
@@ -540,7 +540,7 @@ public class ExpressionAdapter extends JavaAdapter<ExpressionContext, Expression
         NonWildcardTypeArgumentsOrDiamondContext nonWildcardTypeArgumentsOrDiamondContext =
             getChild(innerCreatorContext, NonWildcardTypeArgumentsOrDiamondContext.class);
         TypeWithArguments typeWithArguments =
-            createData(typeIdentifierNode,
+            createNode(typeIdentifierNode,
                 nonWildcardTypeArgumentsOrDiamondContext == null
                     ? typeIdentifierNode
                     : nonWildcardTypeArgumentsOrDiamondContext,
@@ -560,7 +560,7 @@ public class ExpressionAdapter extends JavaAdapter<ExpressionContext, Expression
           ClassBodyContext classBodyContext =
               getChild(classCreatorRestContext, ClassBodyContext.class);
           if (classBodyContext != null) {
-            newInvocation.setClassMemberDeclarations(
+            newInvocation.setMemberDeclarations(
                 getAdapter(ClassBodyAdapter.class).adapt(classBodyContext));
           }
         }
@@ -572,7 +572,7 @@ public class ExpressionAdapter extends JavaAdapter<ExpressionContext, Expression
 
     TerminalNode superNode = getTerminalNode(context, JavaParser.SUPER);
     if (superNode != null) {
-      SuperInvocation superInvocation = createData(superNode, context, SuperInvocation.class);
+      SuperInvocation superInvocation = createNode(superNode, context, SuperInvocation.class);
 
       SuperSuffixContext superSuffixContext = getChild(context, SuperSuffixContext.class);
       if (superSuffixContext != null) {

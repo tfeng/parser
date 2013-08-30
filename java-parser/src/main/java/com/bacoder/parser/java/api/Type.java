@@ -15,6 +15,6 @@
  */
 package com.bacoder.parser.java.api;
 
-public interface Type extends ReturnType, TypeArgument {
+public interface Type extends TypeArgument, TypeOrVoid {
 
 }

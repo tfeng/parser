@@ -31,7 +31,7 @@ public class PrimitiveTypeAdapter extends JavaAdapter<PrimitiveTypeContext, Prim
 
   @Override
   public PrimitiveType adapt(PrimitiveTypeContext context) {
-    PrimitiveType primitiveType = createData(context);
+    PrimitiveType primitiveType = createNode(context);
 
     TerminalNode node = getChild(context, TerminalNode.class);
     if (node != null) {

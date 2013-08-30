@@ -35,7 +35,7 @@ public class AnnotationTypeDeclarationAdapter
 
   @Override
   public AnnotationDeclaration adapt(AnnotationTypeDeclarationContext context) {
-    AnnotationDeclaration annotationDeclaration = createData(context);
+    AnnotationDeclaration annotationDeclaration = createNode(context);
 
     TerminalNode identifierNode = getTerminalNode(context, JavaParser.Identifier);
     if (identifierNode != null) {

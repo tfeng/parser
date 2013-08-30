@@ -17,11 +17,11 @@ package com.bacoder.parser.java.adapter;
 
 import java.util.List;
 
-import com.google.common.base.Function;
 import com.bacoder.parser.core.Adapters;
 import com.bacoder.parser.java.api.Annotation;
 import com.bacoder.parser.java.api.AnnotationValue;
 import com.bacoder.parser.java.api.NameValuePair;
+import com.google.common.base.Function;
 import com.srctran.backend.parser.java.JavaParser.AnnotationContext;
 import com.srctran.backend.parser.java.JavaParser.AnnotationNameContext;
 import com.srctran.backend.parser.java.JavaParser.ElementValueContext;
@@ -37,15 +37,14 @@ public class AnnotationAdapter extends JavaAdapter<AnnotationContext, Annotation
 
   @Override
   public Annotation adapt(AnnotationContext context) {
-    Annotation annotation = createData(context);
+    Annotation annotation = createNode(context);
 
     AnnotationNameContext annotationNameContext = getChild(context, AnnotationNameContext.class);
     if (annotationNameContext != null) {
       QualifiedNameContext qualifiedNameContext =
           getChild(annotationNameContext, QualifiedNameContext.class);
       if (qualifiedNameContext != null) {
-        annotation.setAnnotationName(
-            getAdapter(QualifiedNameAdapter.class).adapt(qualifiedNameContext));
+        annotation.setName(getAdapter(QualifiedNameAdapter.class).adapt(qualifiedNameContext));
       }
     }
 
@@ -60,14 +59,14 @@ public class AnnotationAdapter extends JavaAdapter<AnnotationContext, Annotation
                   return getAdapter(ElementValuePairAdapter.class).adapt(context);
                 }
               });
-      annotation.setElementValuePairs(elementValuePairs);
+      annotation.setValues(elementValuePairs);
     }
 
     ElementValueContext elementValueContext = getChild(context, ElementValueContext.class);
     if (elementValueContext != null) {
       AnnotationValue elementValue =
           getAdapter(ElementValueAdapter.class).adapt(elementValueContext);
-      annotation.setElementValue(elementValue);
+      annotation.setValue(elementValue);
     }
 
     return annotation;

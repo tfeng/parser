@@ -16,7 +16,11 @@
 package com.bacoder.parser.javaproperties.api;
 
 import com.bacoder.parser.core.TextNode;
+import com.bacoder.parser.core.Visitors;
 
 public class Comment extends TextNode {
 
+  @Override
+  protected void visitChildren(Visitors visitors) {
+  }
 }

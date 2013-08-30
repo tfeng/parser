@@ -41,6 +41,6 @@ public class TestAnnotation extends JavaBaseTest {
     Assert.assertEquals(annotation.getName().getFullName(), annotationName);
     assertAttributes(annotation.getName(), input, annotationName);
     // FIXME: assertAttributes(annotation.getElementValue(), input, "1");
-    Assert.assertEquals(annotation.getNameValuePairs(), Collections.emptyList());
+    Assert.assertEquals(annotation.getValues(), Collections.emptyList());
   }
 }

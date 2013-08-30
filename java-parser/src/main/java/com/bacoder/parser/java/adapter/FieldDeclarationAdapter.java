@@ -30,7 +30,7 @@ public class FieldDeclarationAdapter
 
   @Override
   public FieldDeclaration adapt(FieldDeclarationContext context) {
-    FieldDeclaration fieldDeclaration = createData(context);
+    FieldDeclaration fieldDeclaration = createNode(context);
 
     TypeContext typeContext = getChild(context, TypeContext.class);
     if (typeContext != null) {

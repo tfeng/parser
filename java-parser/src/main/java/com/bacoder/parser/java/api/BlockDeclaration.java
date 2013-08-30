@@ -15,9 +15,9 @@
  */
 package com.bacoder.parser.java.api;
 
-import com.bacoder.parser.core.Node;
+import com.bacoder.parser.core.Visitors;
 
-public class BlockDeclaration extends Node implements ClassMemberDeclaration {
+public class BlockDeclaration extends JavaNode implements ClassMemberDeclaration {
 
   private Block block;
 
@@ -37,5 +37,12 @@ public class BlockDeclaration extends Node implements ClassMemberDeclaration {
 
   public void setStatic(boolean isStatic) {
     this.isStatic = isStatic;
+  }
+
+  @Override
+  protected void visitChildren(Visitors visitors) {
+    if (block != null) {
+      block.visit(visitors);
+    }
   }
 }

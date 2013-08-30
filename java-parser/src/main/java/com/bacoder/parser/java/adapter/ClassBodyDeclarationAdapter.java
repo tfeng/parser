@@ -35,7 +35,7 @@ public class ClassBodyDeclarationAdapter
   public ClassMemberDeclaration adapt(ClassBodyDeclarationContext context) {
     BlockContext blockContext = getChild(context, BlockContext.class);
     if (blockContext != null) {
-      BlockDeclaration blockDeclaration = createData(blockContext, BlockDeclaration.class);
+      BlockDeclaration blockDeclaration = createNode(blockContext, BlockDeclaration.class);
       blockDeclaration.setStatic(hasTerminalNode(context, JavaParser.STATIC));
       blockDeclaration.setBlock(getAdapter(BlockAdapter.class).adapt(blockContext));
       return blockDeclaration;

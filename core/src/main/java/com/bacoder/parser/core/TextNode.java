@@ -15,7 +15,7 @@
  */
 package com.bacoder.parser.core;
 
-public class TextNode extends Node {
+public abstract class TextNode extends Node {
 
   private String text;
 

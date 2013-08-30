@@ -15,9 +15,9 @@
  */
 package com.bacoder.parser.java.api;
 
-import com.bacoder.parser.core.Node;
+import com.bacoder.parser.core.Visitors;
 
-public class PrimitiveType extends Node implements InstantiableType, Type {
+public class PrimitiveType extends JavaNode implements InstantiableType, Type {
 
   public static enum Type {
     BOOLEAN,
@@ -38,5 +38,9 @@ public class PrimitiveType extends Node implements InstantiableType, Type {
 
   public void setType(Type type) {
     this.type = type;
+  }
+
+  @Override
+  protected void visitChildren(Visitors visitors) {
   }
 }

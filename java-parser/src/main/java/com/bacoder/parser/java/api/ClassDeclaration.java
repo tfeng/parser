@@ -18,6 +18,8 @@ package com.bacoder.parser.java.api;
 import java.util.Collections;
 import java.util.List;
 
+import com.bacoder.parser.core.Visitors;
+
 public class ClassDeclaration extends TypeDeclaration
     implements AnnotationMemberDeclaration, InterfaceMemberDeclaration, ClassMemberDeclaration {
 
@@ -69,5 +71,25 @@ public class ClassDeclaration extends TypeDeclaration
 
   public void setTypeParameters(List<TypeParameter> typeParameters) {
     this.typeParameters = typeParameters;
+  }
+
+  @Override
+  protected void visitChildren(Visitors visitors) {
+    super.visitChildren(visitors);
+    if (name != null) {
+      name.visit(visitors);
+    }
+    for (TypeParameter typeParameter : typeParameters) {
+      typeParameter.visit(visitors);
+    }
+    if (extendsType != null) {
+      extendsType.visit(visitors);
+    }
+    for (Type implementsType : implementsTypes) {
+      implementsType.visit(visitors);
+    }
+    for (ClassMemberDeclaration memberDeclaration : memberDeclarations) {
+      memberDeclaration.visit(visitors);
+    }
   }
 }

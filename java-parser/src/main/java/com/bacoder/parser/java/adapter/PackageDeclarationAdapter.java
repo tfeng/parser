@@ -34,7 +34,7 @@ public class PackageDeclarationAdapter
 
   @Override
   public PackageDeclaration adapt(PackageDeclarationContext context) {
-    PackageDeclaration packageDeclaration = createData(context);
+    PackageDeclaration packageDeclaration = createNode(context);
 
     List<Annotation> annotations =
         transform(context, AnnotationContext.class, new Function<AnnotationContext, Annotation>() {

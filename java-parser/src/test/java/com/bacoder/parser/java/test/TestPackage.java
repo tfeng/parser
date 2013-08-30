@@ -47,13 +47,13 @@ public class TestPackage extends JavaBaseTest {
     assertAttributes(annotation, input, "@MyAnnotation(param = 1)");
     Assert.assertEquals(annotation.getName().getFullName(), "MyAnnotation");
     assertAttributes(annotation.getName(), input, "MyAnnotation");
-    Assert.assertEquals(annotation.getElementValue(), null);
+    Assert.assertEquals(annotation.getValue(), null);
 
-    Assert.assertEquals(annotation.getNameValuePairs().size(), 1);
-    NameValuePair nameValuePair = annotation.getNameValuePairs().get(0);
+    Assert.assertEquals(annotation.getValues().size(), 1);
+    NameValuePair nameValuePair = annotation.getValues().get(0);
     assertAttributes(nameValuePair, input, "param = 1");
-    Assert.assertEquals(nameValuePair.getIdentifier().getText(), "param");
-    assertAttributes(nameValuePair.getIdentifier(), input, "param");
+    Assert.assertEquals(nameValuePair.getName().getText(), "param");
+    assertAttributes(nameValuePair.getName(), input, "param");
     // FIXME: assertAttributes(nameValuePair.getValue(), input, "1");
   }
 

@@ -73,7 +73,7 @@ public class PropertiesAdapter extends Adapter<PropertiesContext, Properties> {
           }
         });
 
-    Properties properties = createData(context);
+    Properties properties = createNode(context);
     properties.setComments(comments);
     properties.setKeyValues(keyValues);
     return properties;

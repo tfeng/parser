@@ -28,7 +28,7 @@ public class CommentAdapter extends Adapter<CommentContext, Comment> {
 
   @Override
   public Comment adapt(CommentContext context) {
-    Comment comment = createData(context);
+    Comment comment = createNode(context);
     comment.setText(context.getText());
     return comment;
   }

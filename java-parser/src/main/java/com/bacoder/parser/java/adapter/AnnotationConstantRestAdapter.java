@@ -37,7 +37,7 @@ public class AnnotationConstantRestAdapter
 
   public ConstDeclaration adapt(AnnotationConstantRestContext context, Type baseType,
       ParseTree baseTypeContext) {
-    ConstDeclaration constDeclaration = createData(context);
+    ConstDeclaration constDeclaration = createNode(context);
     constDeclaration.setType(baseType);
 
     VariableDeclaratorsContext variableDeclaratorsContext =

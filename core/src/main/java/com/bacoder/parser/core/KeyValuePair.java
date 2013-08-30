@@ -36,4 +36,14 @@ public class KeyValuePair<K extends Node, V extends Node> extends Node {
   public void setValue(V value) {
     this.value = value;
   }
+
+  @Override
+  protected void visitChildren(Visitors visitors) {
+    if (key != null) {
+      key.visit(visitors);
+    }
+    if (value != null) {
+      value.visit(visitors);
+    }
+  }
 }
