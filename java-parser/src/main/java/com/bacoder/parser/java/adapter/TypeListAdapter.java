@@ -17,11 +17,11 @@ package com.bacoder.parser.java.adapter;
 
 import java.util.List;
 
-import com.google.common.base.Function;
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser.TypeContext;
+import com.bacoder.parser.java.JavaParser.TypeListContext;
 import com.bacoder.parser.java.api.Type;
-import com.srctran.backend.parser.java.JavaParser.TypeContext;
-import com.srctran.backend.parser.java.JavaParser.TypeListContext;
+import com.google.common.base.Function;
 
 public class TypeListAdapter extends JavaAdapter<TypeListContext, List<Type>> {
 

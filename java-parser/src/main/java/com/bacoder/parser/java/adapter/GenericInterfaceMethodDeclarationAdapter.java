@@ -16,10 +16,10 @@
 package com.bacoder.parser.java.adapter;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser.GenericInterfaceMethodDeclarationContext;
+import com.bacoder.parser.java.JavaParser.InterfaceMethodDeclarationContext;
+import com.bacoder.parser.java.JavaParser.TypeParametersContext;
 import com.bacoder.parser.java.api.InterfaceMethodDeclaration;
-import com.srctran.backend.parser.java.JavaParser.GenericInterfaceMethodDeclarationContext;
-import com.srctran.backend.parser.java.JavaParser.InterfaceMethodDeclarationContext;
-import com.srctran.backend.parser.java.JavaParser.TypeParametersContext;
 
 public class GenericInterfaceMethodDeclarationAdapter
     extends JavaAdapter<GenericInterfaceMethodDeclarationContext, InterfaceMethodDeclaration> {

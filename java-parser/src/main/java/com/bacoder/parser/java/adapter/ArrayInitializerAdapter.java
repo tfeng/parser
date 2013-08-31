@@ -16,11 +16,11 @@
 package com.bacoder.parser.java.adapter;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser.ArrayInitializerContext;
+import com.bacoder.parser.java.JavaParser.VariableInitializerContext;
 import com.bacoder.parser.java.api.ArrayInitializer;
 import com.bacoder.parser.java.api.VariableInitializer;
 import com.google.common.base.Function;
-import com.srctran.backend.parser.java.JavaParser.ArrayInitializerContext;
-import com.srctran.backend.parser.java.JavaParser.VariableInitializerContext;
 
 public class ArrayInitializerAdapter
     extends JavaAdapter<ArrayInitializerContext, ArrayInitializer> {

@@ -18,11 +18,11 @@ package com.bacoder.parser.java.adapter;
 import java.util.List;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser.ElementValueArrayInitializerContext;
+import com.bacoder.parser.java.JavaParser.ElementValueContext;
 import com.bacoder.parser.java.api.AnnotationArrayInitializer;
 import com.bacoder.parser.java.api.AnnotationValue;
 import com.google.common.base.Function;
-import com.srctran.backend.parser.java.JavaParser.ElementValueArrayInitializerContext;
-import com.srctran.backend.parser.java.JavaParser.ElementValueContext;
 
 public class ElementValueArrayInitializerAdapter
     extends JavaAdapter<ElementValueArrayInitializerContext, AnnotationArrayInitializer> {

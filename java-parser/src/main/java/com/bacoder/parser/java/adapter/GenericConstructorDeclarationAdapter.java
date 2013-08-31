@@ -16,10 +16,10 @@
 package com.bacoder.parser.java.adapter;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser.ConstructorDeclarationContext;
+import com.bacoder.parser.java.JavaParser.GenericConstructorDeclarationContext;
+import com.bacoder.parser.java.JavaParser.TypeParametersContext;
 import com.bacoder.parser.java.api.ConstructorDeclaration;
-import com.srctran.backend.parser.java.JavaParser.ConstructorDeclarationContext;
-import com.srctran.backend.parser.java.JavaParser.GenericConstructorDeclarationContext;
-import com.srctran.backend.parser.java.JavaParser.TypeParametersContext;
 
 public class GenericConstructorDeclarationAdapter
     extends JavaAdapter<GenericConstructorDeclarationContext, ConstructorDeclaration> {

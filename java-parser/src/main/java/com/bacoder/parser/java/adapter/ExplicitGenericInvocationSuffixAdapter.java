@@ -21,14 +21,14 @@ import java.util.List;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser;
+import com.bacoder.parser.java.JavaParser.ArgumentsContext;
+import com.bacoder.parser.java.JavaParser.ExplicitGenericInvocationSuffixContext;
+import com.bacoder.parser.java.JavaParser.SuperSuffixContext;
 import com.bacoder.parser.java.api.Invocation;
 import com.bacoder.parser.java.api.MethodInvocation;
 import com.bacoder.parser.java.api.SuperInvocation;
 import com.bacoder.parser.java.api.Type;
-import com.srctran.backend.parser.java.JavaParser;
-import com.srctran.backend.parser.java.JavaParser.ArgumentsContext;
-import com.srctran.backend.parser.java.JavaParser.ExplicitGenericInvocationSuffixContext;
-import com.srctran.backend.parser.java.JavaParser.SuperSuffixContext;
 
 public class ExplicitGenericInvocationSuffixAdapter
     extends JavaAdapter<ExplicitGenericInvocationSuffixContext, Invocation> {

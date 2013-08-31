@@ -18,10 +18,10 @@ package com.bacoder.parser.java.adapter;
 import java.util.List;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser.ClassBodyContext;
+import com.bacoder.parser.java.JavaParser.ClassBodyDeclarationContext;
 import com.bacoder.parser.java.api.ClassMemberDeclaration;
 import com.google.common.base.Function;
-import com.srctran.backend.parser.java.JavaParser.ClassBodyContext;
-import com.srctran.backend.parser.java.JavaParser.ClassBodyDeclarationContext;
 
 public class ClassBodyAdapter extends JavaAdapter<ClassBodyContext, List<ClassMemberDeclaration>> {
 

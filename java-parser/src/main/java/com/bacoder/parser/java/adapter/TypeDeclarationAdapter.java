@@ -16,16 +16,16 @@
 package com.bacoder.parser.java.adapter;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser.AnnotationTypeDeclarationContext;
+import com.bacoder.parser.java.JavaParser.ClassDeclarationContext;
+import com.bacoder.parser.java.JavaParser.EnumDeclarationContext;
+import com.bacoder.parser.java.JavaParser.InterfaceDeclarationContext;
+import com.bacoder.parser.java.JavaParser.TypeDeclarationContext;
 import com.bacoder.parser.java.api.AnnotationDeclaration;
 import com.bacoder.parser.java.api.ClassDeclaration;
 import com.bacoder.parser.java.api.EnumDeclaration;
 import com.bacoder.parser.java.api.InterfaceDeclaration;
 import com.bacoder.parser.java.api.TypeDeclaration;
-import com.srctran.backend.parser.java.JavaParser.AnnotationTypeDeclarationContext;
-import com.srctran.backend.parser.java.JavaParser.ClassDeclarationContext;
-import com.srctran.backend.parser.java.JavaParser.EnumDeclarationContext;
-import com.srctran.backend.parser.java.JavaParser.InterfaceDeclarationContext;
-import com.srctran.backend.parser.java.JavaParser.TypeDeclarationContext;
 
 public class TypeDeclarationAdapter extends JavaAdapter<TypeDeclarationContext, TypeDeclaration> {
 

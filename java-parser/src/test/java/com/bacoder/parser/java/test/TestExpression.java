@@ -23,7 +23,7 @@ import com.bacoder.parser.java.api.Identifier;
 import com.bacoder.parser.java.api.InfixExpression;
 import com.bacoder.parser.java.api.Literal;
 import com.bacoder.parser.java.api.TernaryExpression;
-import com.srctran.backend.parser.java.JavaParser;
+import com.bacoder.parser.java.JavaParser;
 
 @Test
 public class TestExpression extends JavaBaseTest {

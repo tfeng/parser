@@ -17,13 +17,13 @@ package com.bacoder.parser.java.adapter;
 
 import java.util.List;
 
-import com.google.common.base.Function;
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser.AnnotationContext;
+import com.bacoder.parser.java.JavaParser.PackageDeclarationContext;
+import com.bacoder.parser.java.JavaParser.QualifiedNameContext;
 import com.bacoder.parser.java.api.Annotation;
 import com.bacoder.parser.java.api.PackageDeclaration;
-import com.srctran.backend.parser.java.JavaParser.AnnotationContext;
-import com.srctran.backend.parser.java.JavaParser.PackageDeclarationContext;
-import com.srctran.backend.parser.java.JavaParser.QualifiedNameContext;
+import com.google.common.base.Function;
 
 public class PackageDeclarationAdapter
     extends JavaAdapter<PackageDeclarationContext, PackageDeclaration> {

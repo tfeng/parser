@@ -16,13 +16,13 @@
 package com.bacoder.parser.java.adapter;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser;
+import com.bacoder.parser.java.JavaParser.BlockContext;
+import com.bacoder.parser.java.JavaParser.ClassBodyDeclarationContext;
+import com.bacoder.parser.java.JavaParser.MemberDeclarationContext;
 import com.bacoder.parser.java.api.BlockDeclaration;
 import com.bacoder.parser.java.api.ClassMemberDeclaration;
 import com.bacoder.parser.java.api.NodeWithModifiers;
-import com.srctran.backend.parser.java.JavaParser;
-import com.srctran.backend.parser.java.JavaParser.BlockContext;
-import com.srctran.backend.parser.java.JavaParser.ClassBodyDeclarationContext;
-import com.srctran.backend.parser.java.JavaParser.MemberDeclarationContext;
 
 public class ClassBodyDeclarationAdapter
     extends JavaAdapter<ClassBodyDeclarationContext, ClassMemberDeclaration> {

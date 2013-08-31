@@ -20,14 +20,14 @@ import java.util.List;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser;
+import com.bacoder.parser.java.JavaParser.AnnotationContext;
+import com.bacoder.parser.java.JavaParser.ArgumentsContext;
+import com.bacoder.parser.java.JavaParser.ClassBodyContext;
+import com.bacoder.parser.java.JavaParser.EnumConstantContext;
 import com.bacoder.parser.java.api.Annotation;
 import com.bacoder.parser.java.api.EnumConstant;
 import com.google.common.base.Function;
-import com.srctran.backend.parser.java.JavaParser;
-import com.srctran.backend.parser.java.JavaParser.AnnotationContext;
-import com.srctran.backend.parser.java.JavaParser.ArgumentsContext;
-import com.srctran.backend.parser.java.JavaParser.ClassBodyContext;
-import com.srctran.backend.parser.java.JavaParser.EnumConstantContext;
 
 public class EnumConstantAdapter extends JavaAdapter<EnumConstantContext, EnumConstant> {
 

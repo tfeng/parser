@@ -18,10 +18,10 @@ package com.bacoder.parser.java.adapter;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser;
+import com.bacoder.parser.java.JavaParser.ArgumentsContext;
+import com.bacoder.parser.java.JavaParser.SuperSuffixContext;
 import com.bacoder.parser.java.api.SuperInvocation;
-import com.srctran.backend.parser.java.JavaParser;
-import com.srctran.backend.parser.java.JavaParser.ArgumentsContext;
-import com.srctran.backend.parser.java.JavaParser.SuperSuffixContext;
 
 public class SuperSuffixAdapter extends JavaAdapter<SuperSuffixContext, SuperInvocation> {
 

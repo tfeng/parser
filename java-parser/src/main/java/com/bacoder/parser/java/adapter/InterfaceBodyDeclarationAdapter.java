@@ -16,17 +16,17 @@
 package com.bacoder.parser.java.adapter;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser.AnnotationTypeDeclarationContext;
+import com.bacoder.parser.java.JavaParser.ClassDeclarationContext;
+import com.bacoder.parser.java.JavaParser.ConstDeclarationContext;
+import com.bacoder.parser.java.JavaParser.EnumDeclarationContext;
+import com.bacoder.parser.java.JavaParser.GenericInterfaceMethodDeclarationContext;
+import com.bacoder.parser.java.JavaParser.InterfaceBodyDeclarationContext;
+import com.bacoder.parser.java.JavaParser.InterfaceDeclarationContext;
+import com.bacoder.parser.java.JavaParser.InterfaceMemberDeclarationContext;
+import com.bacoder.parser.java.JavaParser.InterfaceMethodDeclarationContext;
 import com.bacoder.parser.java.api.InterfaceMemberDeclaration;
 import com.bacoder.parser.java.api.NodeWithModifiers;
-import com.srctran.backend.parser.java.JavaParser.AnnotationTypeDeclarationContext;
-import com.srctran.backend.parser.java.JavaParser.ClassDeclarationContext;
-import com.srctran.backend.parser.java.JavaParser.ConstDeclarationContext;
-import com.srctran.backend.parser.java.JavaParser.EnumDeclarationContext;
-import com.srctran.backend.parser.java.JavaParser.GenericInterfaceMethodDeclarationContext;
-import com.srctran.backend.parser.java.JavaParser.InterfaceBodyDeclarationContext;
-import com.srctran.backend.parser.java.JavaParser.InterfaceDeclarationContext;
-import com.srctran.backend.parser.java.JavaParser.InterfaceMemberDeclarationContext;
-import com.srctran.backend.parser.java.JavaParser.InterfaceMethodDeclarationContext;
 
 public class InterfaceBodyDeclarationAdapter
     extends JavaAdapter<InterfaceBodyDeclarationContext, InterfaceMemberDeclaration> {

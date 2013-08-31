@@ -24,8 +24,8 @@ import com.bacoder.parser.java.adapter.PackageDeclarationAdapter;
 import com.bacoder.parser.java.api.Annotation;
 import com.bacoder.parser.java.api.NameValuePair;
 import com.bacoder.parser.java.api.PackageDeclaration;
-import com.srctran.backend.parser.java.JavaParser;
-import com.srctran.backend.parser.java.JavaParser.PackageDeclarationContext;
+import com.bacoder.parser.java.JavaParser;
+import com.bacoder.parser.java.JavaParser.PackageDeclarationContext;
 
 @Test
 public class TestPackage extends JavaBaseTest {

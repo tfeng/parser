@@ -16,11 +16,11 @@
 package com.bacoder.parser.java.adapter;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser.BlockContext;
+import com.bacoder.parser.java.JavaParser.BlockStatementContext;
 import com.bacoder.parser.java.api.Block;
 import com.bacoder.parser.java.api.BlockStatement;
 import com.google.common.base.Function;
-import com.srctran.backend.parser.java.JavaParser.BlockContext;
-import com.srctran.backend.parser.java.JavaParser.BlockStatementContext;
 
 public class BlockAdapter extends JavaAdapter<BlockContext, Block> {
 

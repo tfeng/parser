@@ -16,8 +16,8 @@
 package com.bacoder.parser.java.adapter;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser.LastFormalParameterContext;
 import com.bacoder.parser.java.api.FormalParameter;
-import com.srctran.backend.parser.java.JavaParser.LastFormalParameterContext;
 
 public class VariableFormalParameterAdapter
     extends AbstractFormalParameterAdapter<LastFormalParameterContext, FormalParameter> {

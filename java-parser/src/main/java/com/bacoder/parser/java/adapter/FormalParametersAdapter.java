@@ -18,12 +18,12 @@ package com.bacoder.parser.java.adapter;
 import java.util.List;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser.FormalParameterContext;
+import com.bacoder.parser.java.JavaParser.FormalParameterListContext;
+import com.bacoder.parser.java.JavaParser.FormalParametersContext;
+import com.bacoder.parser.java.JavaParser.LastFormalParameterContext;
 import com.bacoder.parser.java.api.FormalParameter;
 import com.google.common.base.Function;
-import com.srctran.backend.parser.java.JavaParser.FormalParameterContext;
-import com.srctran.backend.parser.java.JavaParser.FormalParameterListContext;
-import com.srctran.backend.parser.java.JavaParser.FormalParametersContext;
-import com.srctran.backend.parser.java.JavaParser.LastFormalParameterContext;
 
 public class FormalParametersAdapter
     extends JavaAdapter<FormalParametersContext, List<FormalParameter>> {

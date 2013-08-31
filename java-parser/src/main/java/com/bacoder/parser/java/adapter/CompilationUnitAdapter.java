@@ -18,14 +18,14 @@ package com.bacoder.parser.java.adapter;
 import java.util.List;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser.CompilationUnitContext;
+import com.bacoder.parser.java.JavaParser.ImportDeclarationContext;
+import com.bacoder.parser.java.JavaParser.PackageDeclarationContext;
+import com.bacoder.parser.java.JavaParser.TypeDeclarationContext;
 import com.bacoder.parser.java.api.CompilationUnit;
 import com.bacoder.parser.java.api.ImportDeclaration;
 import com.bacoder.parser.java.api.TypeDeclaration;
 import com.google.common.base.Function;
-import com.srctran.backend.parser.java.JavaParser.CompilationUnitContext;
-import com.srctran.backend.parser.java.JavaParser.ImportDeclarationContext;
-import com.srctran.backend.parser.java.JavaParser.PackageDeclarationContext;
-import com.srctran.backend.parser.java.JavaParser.TypeDeclarationContext;
 
 public class CompilationUnitAdapter extends JavaAdapter<CompilationUnitContext, CompilationUnit> {
 

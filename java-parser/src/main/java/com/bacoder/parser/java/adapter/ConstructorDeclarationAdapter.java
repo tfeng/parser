@@ -18,13 +18,13 @@ package com.bacoder.parser.java.adapter;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser;
+import com.bacoder.parser.java.JavaParser.BlockContext;
+import com.bacoder.parser.java.JavaParser.ConstructorBodyContext;
+import com.bacoder.parser.java.JavaParser.ConstructorDeclarationContext;
+import com.bacoder.parser.java.JavaParser.FormalParametersContext;
+import com.bacoder.parser.java.JavaParser.QualifiedNameListContext;
 import com.bacoder.parser.java.api.ConstructorDeclaration;
-import com.srctran.backend.parser.java.JavaParser;
-import com.srctran.backend.parser.java.JavaParser.BlockContext;
-import com.srctran.backend.parser.java.JavaParser.ConstructorBodyContext;
-import com.srctran.backend.parser.java.JavaParser.ConstructorDeclarationContext;
-import com.srctran.backend.parser.java.JavaParser.FormalParametersContext;
-import com.srctran.backend.parser.java.JavaParser.QualifiedNameListContext;
 
 public class ConstructorDeclarationAdapter
     extends JavaAdapter<ConstructorDeclarationContext, ConstructorDeclaration> {

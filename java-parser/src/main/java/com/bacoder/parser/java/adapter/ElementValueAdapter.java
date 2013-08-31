@@ -16,11 +16,11 @@
 package com.bacoder.parser.java.adapter;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser.AnnotationContext;
+import com.bacoder.parser.java.JavaParser.ElementValueArrayInitializerContext;
+import com.bacoder.parser.java.JavaParser.ElementValueContext;
+import com.bacoder.parser.java.JavaParser.ExpressionContext;
 import com.bacoder.parser.java.api.AnnotationValue;
-import com.srctran.backend.parser.java.JavaParser.AnnotationContext;
-import com.srctran.backend.parser.java.JavaParser.ElementValueArrayInitializerContext;
-import com.srctran.backend.parser.java.JavaParser.ElementValueContext;
-import com.srctran.backend.parser.java.JavaParser.ExpressionContext;
 
 public class ElementValueAdapter extends JavaAdapter<ElementValueContext, AnnotationValue> {
 

@@ -18,10 +18,10 @@ package com.bacoder.parser.java.adapter;
 import java.util.List;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser.TypeParameterContext;
+import com.bacoder.parser.java.JavaParser.TypeParametersContext;
 import com.bacoder.parser.java.api.TypeParameter;
 import com.google.common.base.Function;
-import com.srctran.backend.parser.java.JavaParser.TypeParameterContext;
-import com.srctran.backend.parser.java.JavaParser.TypeParametersContext;
 
 public class TypeParametersAdapter extends JavaAdapter<TypeParametersContext, List<TypeParameter>> {
 

@@ -17,11 +17,11 @@ package com.bacoder.parser.java.adapter;
 
 import java.util.List;
 
-import com.google.common.base.Function;
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser.TypeArgumentContext;
+import com.bacoder.parser.java.JavaParser.TypeArgumentsContext;
 import com.bacoder.parser.java.api.TypeArgument;
-import com.srctran.backend.parser.java.JavaParser.TypeArgumentContext;
-import com.srctran.backend.parser.java.JavaParser.TypeArgumentsContext;
+import com.google.common.base.Function;
 
 public class TypeArgumentsAdapter extends JavaAdapter<TypeArgumentsContext, List<TypeArgument>> {
 

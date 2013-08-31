@@ -20,11 +20,11 @@ import java.util.List;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser.VariableDeclaratorContext;
+import com.bacoder.parser.java.JavaParser.VariableDeclaratorsContext;
 import com.bacoder.parser.java.api.Type;
 import com.bacoder.parser.java.api.VariableDeclaration;
 import com.google.common.base.Function;
-import com.srctran.backend.parser.java.JavaParser.VariableDeclaratorContext;
-import com.srctran.backend.parser.java.JavaParser.VariableDeclaratorsContext;
 
 public class VariableDeclaratorsAdapter
     extends JavaAdapter<VariableDeclaratorsContext, List<VariableDeclaration>> {

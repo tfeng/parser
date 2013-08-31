@@ -16,12 +16,12 @@
 package com.bacoder.parser.java.adapter;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser;
+import com.bacoder.parser.java.JavaParser.TypeArgumentContext;
+import com.bacoder.parser.java.JavaParser.TypeContext;
 import com.bacoder.parser.java.api.Type;
 import com.bacoder.parser.java.api.TypeArgument;
 import com.bacoder.parser.java.api.WildcardTypeArgument;
-import com.srctran.backend.parser.java.JavaParser;
-import com.srctran.backend.parser.java.JavaParser.TypeArgumentContext;
-import com.srctran.backend.parser.java.JavaParser.TypeContext;
 
 public class TypeArgumentAdapter extends JavaAdapter<TypeArgumentContext, TypeArgument> {
 

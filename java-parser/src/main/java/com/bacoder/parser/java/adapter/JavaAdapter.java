@@ -23,14 +23,14 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 
 import com.bacoder.parser.core.Adapter;
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser;
+import com.bacoder.parser.java.JavaParser.AnnotationContext;
+import com.bacoder.parser.java.JavaParser.ClassOrInterfaceModifierContext;
+import com.bacoder.parser.java.JavaParser.ModifierContext;
+import com.bacoder.parser.java.JavaParser.VariableModifierContext;
 import com.bacoder.parser.java.api.Annotation;
 import com.bacoder.parser.java.api.NodeWithModifiers;
 import com.google.common.base.Function;
-import com.srctran.backend.parser.java.JavaParser;
-import com.srctran.backend.parser.java.JavaParser.AnnotationContext;
-import com.srctran.backend.parser.java.JavaParser.ClassOrInterfaceModifierContext;
-import com.srctran.backend.parser.java.JavaParser.ModifierContext;
-import com.srctran.backend.parser.java.JavaParser.VariableModifierContext;
 
 public abstract class JavaAdapter<C extends ParseTree, D> extends Adapter<C, D> {
 

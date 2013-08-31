@@ -16,10 +16,10 @@
 package com.bacoder.parser.java.adapter;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser.ArrayInitializerContext;
+import com.bacoder.parser.java.JavaParser.ExpressionContext;
+import com.bacoder.parser.java.JavaParser.VariableInitializerContext;
 import com.bacoder.parser.java.api.VariableInitializer;
-import com.srctran.backend.parser.java.JavaParser.ArrayInitializerContext;
-import com.srctran.backend.parser.java.JavaParser.ExpressionContext;
-import com.srctran.backend.parser.java.JavaParser.VariableInitializerContext;
 
 public class VariableInitializerAdapter
     extends JavaAdapter<VariableInitializerContext, VariableInitializer> {

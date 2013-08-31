@@ -20,19 +20,19 @@ import java.util.List;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser;
+import com.bacoder.parser.java.JavaParser.ClassBodyDeclarationContext;
+import com.bacoder.parser.java.JavaParser.EnumBodyDeclarationsContext;
+import com.bacoder.parser.java.JavaParser.EnumConstantContext;
+import com.bacoder.parser.java.JavaParser.EnumConstantsContext;
+import com.bacoder.parser.java.JavaParser.EnumDeclarationContext;
+import com.bacoder.parser.java.JavaParser.TypeContext;
+import com.bacoder.parser.java.JavaParser.TypeListContext;
 import com.bacoder.parser.java.api.ClassMemberDeclaration;
 import com.bacoder.parser.java.api.EnumConstant;
 import com.bacoder.parser.java.api.EnumDeclaration;
 import com.bacoder.parser.java.api.Type;
 import com.google.common.base.Function;
-import com.srctran.backend.parser.java.JavaParser;
-import com.srctran.backend.parser.java.JavaParser.ClassBodyDeclarationContext;
-import com.srctran.backend.parser.java.JavaParser.EnumBodyDeclarationsContext;
-import com.srctran.backend.parser.java.JavaParser.EnumConstantContext;
-import com.srctran.backend.parser.java.JavaParser.EnumConstantsContext;
-import com.srctran.backend.parser.java.JavaParser.EnumDeclarationContext;
-import com.srctran.backend.parser.java.JavaParser.TypeContext;
-import com.srctran.backend.parser.java.JavaParser.TypeListContext;
 
 public class EnumDeclarationAdapter extends JavaAdapter<EnumDeclarationContext, EnumDeclaration> {
 

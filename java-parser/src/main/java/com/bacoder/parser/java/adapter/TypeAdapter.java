@@ -19,12 +19,12 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser;
+import com.bacoder.parser.java.JavaParser.ClassOrInterfaceTypeContext;
+import com.bacoder.parser.java.JavaParser.PrimitiveTypeContext;
+import com.bacoder.parser.java.JavaParser.TypeContext;
 import com.bacoder.parser.java.api.ArrayType;
 import com.bacoder.parser.java.api.Type;
-import com.srctran.backend.parser.java.JavaParser;
-import com.srctran.backend.parser.java.JavaParser.ClassOrInterfaceTypeContext;
-import com.srctran.backend.parser.java.JavaParser.PrimitiveTypeContext;
-import com.srctran.backend.parser.java.JavaParser.TypeContext;
 
 public class TypeAdapter extends JavaAdapter<TypeContext, Type> {
 

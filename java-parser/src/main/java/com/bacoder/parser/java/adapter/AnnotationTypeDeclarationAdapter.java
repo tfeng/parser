@@ -18,13 +18,13 @@ package com.bacoder.parser.java.adapter;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser;
+import com.bacoder.parser.java.JavaParser.AnnotationTypeBodyContext;
+import com.bacoder.parser.java.JavaParser.AnnotationTypeDeclarationContext;
+import com.bacoder.parser.java.JavaParser.AnnotationTypeElementDeclarationContext;
 import com.bacoder.parser.java.api.AnnotationDeclaration;
 import com.bacoder.parser.java.api.AnnotationMemberDeclaration;
 import com.google.common.base.Function;
-import com.srctran.backend.parser.java.JavaParser;
-import com.srctran.backend.parser.java.JavaParser.AnnotationTypeBodyContext;
-import com.srctran.backend.parser.java.JavaParser.AnnotationTypeDeclarationContext;
-import com.srctran.backend.parser.java.JavaParser.AnnotationTypeElementDeclarationContext;
 
 public class AnnotationTypeDeclarationAdapter
     extends JavaAdapter<AnnotationTypeDeclarationContext, AnnotationDeclaration> {

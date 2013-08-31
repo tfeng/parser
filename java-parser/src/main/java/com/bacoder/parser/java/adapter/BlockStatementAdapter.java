@@ -16,13 +16,13 @@
 package com.bacoder.parser.java.adapter;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser.BlockStatementContext;
+import com.bacoder.parser.java.JavaParser.LocalVariableDeclarationContext;
+import com.bacoder.parser.java.JavaParser.LocalVariableDeclarationStatementContext;
+import com.bacoder.parser.java.JavaParser.StatementContext;
+import com.bacoder.parser.java.JavaParser.TypeDeclarationContext;
 import com.bacoder.parser.java.api.BlockStatement;
 import com.bacoder.parser.java.api.LocalVariableDeclaration;
-import com.srctran.backend.parser.java.JavaParser.BlockStatementContext;
-import com.srctran.backend.parser.java.JavaParser.LocalVariableDeclarationContext;
-import com.srctran.backend.parser.java.JavaParser.LocalVariableDeclarationStatementContext;
-import com.srctran.backend.parser.java.JavaParser.StatementContext;
-import com.srctran.backend.parser.java.JavaParser.TypeDeclarationContext;
 
 public class BlockStatementAdapter extends JavaAdapter<BlockStatementContext, BlockStatement> {
 

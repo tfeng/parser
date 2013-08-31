@@ -16,12 +16,12 @@
 package com.bacoder.parser.java.adapter;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser.ConstDeclarationContext;
+import com.bacoder.parser.java.JavaParser.ConstantDeclaratorContext;
+import com.bacoder.parser.java.JavaParser.TypeContext;
 import com.bacoder.parser.java.api.ConstDeclaration;
 import com.bacoder.parser.java.api.VariableDeclaration;
 import com.google.common.base.Function;
-import com.srctran.backend.parser.java.JavaParser.ConstDeclarationContext;
-import com.srctran.backend.parser.java.JavaParser.ConstantDeclaratorContext;
-import com.srctran.backend.parser.java.JavaParser.TypeContext;
 
 public class ConstDeclarationAdapter
     extends JavaAdapter<ConstDeclarationContext, ConstDeclaration> {

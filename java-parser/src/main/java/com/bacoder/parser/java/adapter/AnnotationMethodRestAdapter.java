@@ -18,11 +18,11 @@ package com.bacoder.parser.java.adapter;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser;
+import com.bacoder.parser.java.JavaParser.AnnotationMethodRestContext;
+import com.bacoder.parser.java.JavaParser.DefaultValueContext;
+import com.bacoder.parser.java.JavaParser.ElementValueContext;
 import com.bacoder.parser.java.api.AnnotationMethodDeclaration;
-import com.srctran.backend.parser.java.JavaParser;
-import com.srctran.backend.parser.java.JavaParser.AnnotationMethodRestContext;
-import com.srctran.backend.parser.java.JavaParser.DefaultValueContext;
-import com.srctran.backend.parser.java.JavaParser.ElementValueContext;
 
 public class AnnotationMethodRestAdapter
     extends JavaAdapter<AnnotationMethodRestContext, AnnotationMethodDeclaration> {

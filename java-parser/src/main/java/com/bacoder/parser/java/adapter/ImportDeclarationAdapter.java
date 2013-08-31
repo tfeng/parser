@@ -16,10 +16,10 @@
 package com.bacoder.parser.java.adapter;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser;
+import com.bacoder.parser.java.JavaParser.ImportDeclarationContext;
+import com.bacoder.parser.java.JavaParser.QualifiedNameContext;
 import com.bacoder.parser.java.api.ImportDeclaration;
-import com.srctran.backend.parser.java.JavaParser;
-import com.srctran.backend.parser.java.JavaParser.ImportDeclarationContext;
-import com.srctran.backend.parser.java.JavaParser.QualifiedNameContext;
 
 public class ImportDeclarationAdapter
     extends JavaAdapter<ImportDeclarationContext, ImportDeclaration> {

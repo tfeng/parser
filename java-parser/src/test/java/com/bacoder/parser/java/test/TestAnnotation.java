@@ -23,8 +23,8 @@ import org.testng.annotations.Test;
 
 import com.bacoder.parser.java.adapter.AnnotationAdapter;
 import com.bacoder.parser.java.api.Annotation;
-import com.srctran.backend.parser.java.JavaParser;
-import com.srctran.backend.parser.java.JavaParser.AnnotationContext;
+import com.bacoder.parser.java.JavaParser;
+import com.bacoder.parser.java.JavaParser.AnnotationContext;
 
 @Test
 public class TestAnnotation extends JavaBaseTest {

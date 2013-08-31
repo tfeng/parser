@@ -19,16 +19,16 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser;
+import com.bacoder.parser.java.JavaParser.FormalParametersContext;
+import com.bacoder.parser.java.JavaParser.InterfaceMethodDeclarationContext;
+import com.bacoder.parser.java.JavaParser.QualifiedNameListContext;
+import com.bacoder.parser.java.JavaParser.TypeContext;
 import com.bacoder.parser.java.api.ArrayType;
 import com.bacoder.parser.java.api.InterfaceMethodDeclaration;
-import com.bacoder.parser.java.api.TypeOrVoid;
 import com.bacoder.parser.java.api.Type;
+import com.bacoder.parser.java.api.TypeOrVoid;
 import com.bacoder.parser.java.api.VoidType;
-import com.srctran.backend.parser.java.JavaParser;
-import com.srctran.backend.parser.java.JavaParser.FormalParametersContext;
-import com.srctran.backend.parser.java.JavaParser.InterfaceMethodDeclarationContext;
-import com.srctran.backend.parser.java.JavaParser.QualifiedNameListContext;
-import com.srctran.backend.parser.java.JavaParser.TypeContext;
 
 public class InterfaceMethodDeclarationAdapter
     extends JavaAdapter<InterfaceMethodDeclarationContext, InterfaceMethodDeclaration> {

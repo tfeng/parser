@@ -18,16 +18,16 @@ package com.bacoder.parser.java.adapter;
 import java.util.List;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser.AnnotationContext;
+import com.bacoder.parser.java.JavaParser.AnnotationNameContext;
+import com.bacoder.parser.java.JavaParser.ElementValueContext;
+import com.bacoder.parser.java.JavaParser.ElementValuePairContext;
+import com.bacoder.parser.java.JavaParser.ElementValuePairsContext;
+import com.bacoder.parser.java.JavaParser.QualifiedNameContext;
 import com.bacoder.parser.java.api.Annotation;
 import com.bacoder.parser.java.api.AnnotationValue;
 import com.bacoder.parser.java.api.NameValuePair;
 import com.google.common.base.Function;
-import com.srctran.backend.parser.java.JavaParser.AnnotationContext;
-import com.srctran.backend.parser.java.JavaParser.AnnotationNameContext;
-import com.srctran.backend.parser.java.JavaParser.ElementValueContext;
-import com.srctran.backend.parser.java.JavaParser.ElementValuePairContext;
-import com.srctran.backend.parser.java.JavaParser.ElementValuePairsContext;
-import com.srctran.backend.parser.java.JavaParser.QualifiedNameContext;
 
 public class AnnotationAdapter extends JavaAdapter<AnnotationContext, Annotation> {
 

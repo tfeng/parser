@@ -17,11 +17,11 @@ package com.bacoder.parser.java.adapter;
 
 import java.util.List;
 
-import com.google.common.base.Function;
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser.QualifiedNameContext;
+import com.bacoder.parser.java.JavaParser.QualifiedNameListContext;
 import com.bacoder.parser.java.api.QualifiedName;
-import com.srctran.backend.parser.java.JavaParser.QualifiedNameContext;
-import com.srctran.backend.parser.java.JavaParser.QualifiedNameListContext;
+import com.google.common.base.Function;
 
 public class QualifiedNamesAdapter
     extends JavaAdapter<QualifiedNameListContext, List<QualifiedName>> {

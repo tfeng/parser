@@ -20,13 +20,13 @@ import java.util.List;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser;
+import com.bacoder.parser.java.JavaParser.TypeBoundContext;
+import com.bacoder.parser.java.JavaParser.TypeContext;
+import com.bacoder.parser.java.JavaParser.TypeParameterContext;
 import com.bacoder.parser.java.api.Type;
 import com.bacoder.parser.java.api.TypeParameter;
 import com.google.common.base.Function;
-import com.srctran.backend.parser.java.JavaParser;
-import com.srctran.backend.parser.java.JavaParser.TypeBoundContext;
-import com.srctran.backend.parser.java.JavaParser.TypeContext;
-import com.srctran.backend.parser.java.JavaParser.TypeParameterContext;
 
 public class TypeParameterAdapter extends JavaAdapter<TypeParameterContext, TypeParameter> {
 

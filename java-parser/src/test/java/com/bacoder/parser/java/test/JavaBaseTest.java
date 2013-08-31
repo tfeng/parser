@@ -24,8 +24,8 @@ import com.bacoder.parser.java.adapter.JavaAdapters;
 import com.bacoder.parser.java.api.NodeWithModifiers;
 import com.bacoder.parser.java.api.QualifiedName;
 import com.bacoder.parser.testutil.BaseTest;
-import com.srctran.backend.parser.java.JavaLexer;
-import com.srctran.backend.parser.java.JavaParser;
+import com.bacoder.parser.java.JavaLexer;
+import com.bacoder.parser.java.JavaParser;
 
 public abstract class JavaBaseTest extends BaseTest {
 

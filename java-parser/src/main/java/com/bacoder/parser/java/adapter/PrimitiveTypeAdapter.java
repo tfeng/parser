@@ -18,10 +18,10 @@ package com.bacoder.parser.java.adapter;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser;
+import com.bacoder.parser.java.JavaParser.PrimitiveTypeContext;
 import com.bacoder.parser.java.api.PrimitiveType;
 import com.bacoder.parser.java.api.PrimitiveType.Type;
-import com.srctran.backend.parser.java.JavaParser;
-import com.srctran.backend.parser.java.JavaParser.PrimitiveTypeContext;
 
 public class PrimitiveTypeAdapter extends JavaAdapter<PrimitiveTypeContext, PrimitiveType>{
 

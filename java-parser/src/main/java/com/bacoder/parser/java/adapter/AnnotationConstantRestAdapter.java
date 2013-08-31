@@ -18,10 +18,10 @@ package com.bacoder.parser.java.adapter;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser.AnnotationConstantRestContext;
+import com.bacoder.parser.java.JavaParser.VariableDeclaratorsContext;
 import com.bacoder.parser.java.api.ConstDeclaration;
 import com.bacoder.parser.java.api.Type;
-import com.srctran.backend.parser.java.JavaParser.AnnotationConstantRestContext;
-import com.srctran.backend.parser.java.JavaParser.VariableDeclaratorsContext;
 
 public class AnnotationConstantRestAdapter
     extends JavaAdapter<AnnotationConstantRestContext, ConstDeclaration> {

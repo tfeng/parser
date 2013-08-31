@@ -18,10 +18,10 @@ package com.bacoder.parser.java.adapter;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser;
+import com.bacoder.parser.java.JavaParser.ElementValueContext;
+import com.bacoder.parser.java.JavaParser.ElementValuePairContext;
 import com.bacoder.parser.java.api.NameValuePair;
-import com.srctran.backend.parser.java.JavaParser;
-import com.srctran.backend.parser.java.JavaParser.ElementValueContext;
-import com.srctran.backend.parser.java.JavaParser.ElementValuePairContext;
 
 public class ElementValuePairAdapter extends JavaAdapter<ElementValuePairContext, NameValuePair>{
 

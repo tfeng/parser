@@ -18,15 +18,15 @@ package com.bacoder.parser.java.adapter;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser;
+import com.bacoder.parser.java.JavaParser.ClassBodyContext;
+import com.bacoder.parser.java.JavaParser.ClassDeclarationContext;
+import com.bacoder.parser.java.JavaParser.TypeContext;
+import com.bacoder.parser.java.JavaParser.TypeListContext;
+import com.bacoder.parser.java.JavaParser.TypeParametersContext;
 import com.bacoder.parser.java.api.ClassDeclaration;
 import com.bacoder.parser.java.api.Identifier;
 import com.google.common.base.Function;
-import com.srctran.backend.parser.java.JavaParser;
-import com.srctran.backend.parser.java.JavaParser.ClassBodyContext;
-import com.srctran.backend.parser.java.JavaParser.ClassDeclarationContext;
-import com.srctran.backend.parser.java.JavaParser.TypeContext;
-import com.srctran.backend.parser.java.JavaParser.TypeListContext;
-import com.srctran.backend.parser.java.JavaParser.TypeParametersContext;
 
 public class ClassDeclarationAdapter
     extends JavaAdapter<ClassDeclarationContext, ClassDeclaration> {

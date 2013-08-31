@@ -19,13 +19,13 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser;
+import com.bacoder.parser.java.JavaParser.VariableDeclaratorContext;
+import com.bacoder.parser.java.JavaParser.VariableDeclaratorIdContext;
+import com.bacoder.parser.java.JavaParser.VariableInitializerContext;
 import com.bacoder.parser.java.api.ArrayType;
 import com.bacoder.parser.java.api.Type;
 import com.bacoder.parser.java.api.VariableDeclaration;
-import com.srctran.backend.parser.java.JavaParser;
-import com.srctran.backend.parser.java.JavaParser.VariableDeclaratorContext;
-import com.srctran.backend.parser.java.JavaParser.VariableDeclaratorIdContext;
-import com.srctran.backend.parser.java.JavaParser.VariableInitializerContext;
 
 public class VariableDeclaratorAdapter
     extends JavaAdapter<VariableDeclaratorContext, VariableDeclaration> {

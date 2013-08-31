@@ -20,15 +20,15 @@ import java.util.List;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser;
+import com.bacoder.parser.java.JavaParser.InterfaceBodyContext;
+import com.bacoder.parser.java.JavaParser.InterfaceBodyDeclarationContext;
+import com.bacoder.parser.java.JavaParser.InterfaceDeclarationContext;
+import com.bacoder.parser.java.JavaParser.TypeListContext;
+import com.bacoder.parser.java.JavaParser.TypeParametersContext;
 import com.bacoder.parser.java.api.InterfaceDeclaration;
 import com.bacoder.parser.java.api.InterfaceMemberDeclaration;
 import com.google.common.base.Function;
-import com.srctran.backend.parser.java.JavaParser;
-import com.srctran.backend.parser.java.JavaParser.InterfaceBodyContext;
-import com.srctran.backend.parser.java.JavaParser.InterfaceBodyDeclarationContext;
-import com.srctran.backend.parser.java.JavaParser.InterfaceDeclarationContext;
-import com.srctran.backend.parser.java.JavaParser.TypeListContext;
-import com.srctran.backend.parser.java.JavaParser.TypeParametersContext;
 
 public class InterfaceDeclarationAdapter
     extends JavaAdapter<InterfaceDeclarationContext, InterfaceDeclaration> {

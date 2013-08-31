@@ -18,9 +18,9 @@ package com.bacoder.parser.java.adapter;
 import java.util.List;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser.NonWildcardTypeArgumentsContext;
+import com.bacoder.parser.java.JavaParser.TypeListContext;
 import com.bacoder.parser.java.api.Type;
-import com.srctran.backend.parser.java.JavaParser.NonWildcardTypeArgumentsContext;
-import com.srctran.backend.parser.java.JavaParser.TypeListContext;
 
 public class NonWildcardTypeArgumentsAdapter
     extends JavaAdapter<NonWildcardTypeArgumentsContext, List<Type>> {

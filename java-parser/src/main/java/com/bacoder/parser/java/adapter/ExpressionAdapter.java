@@ -26,6 +26,27 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser;
+import com.bacoder.parser.java.JavaParser.ArgumentsContext;
+import com.bacoder.parser.java.JavaParser.ArrayCreatorRestContext;
+import com.bacoder.parser.java.JavaParser.ArrayInitializerContext;
+import com.bacoder.parser.java.JavaParser.ClassBodyContext;
+import com.bacoder.parser.java.JavaParser.ClassCreatorRestContext;
+import com.bacoder.parser.java.JavaParser.CreatedNameContext;
+import com.bacoder.parser.java.JavaParser.CreatorContext;
+import com.bacoder.parser.java.JavaParser.ExplicitGenericInvocationContext;
+import com.bacoder.parser.java.JavaParser.ExplicitGenericInvocationSuffixContext;
+import com.bacoder.parser.java.JavaParser.ExpressionContext;
+import com.bacoder.parser.java.JavaParser.ExpressionListContext;
+import com.bacoder.parser.java.JavaParser.InnerCreatorContext;
+import com.bacoder.parser.java.JavaParser.NonWildcardTypeArgumentsContext;
+import com.bacoder.parser.java.JavaParser.NonWildcardTypeArgumentsOrDiamondContext;
+import com.bacoder.parser.java.JavaParser.PrimaryContext;
+import com.bacoder.parser.java.JavaParser.PrimitiveTypeContext;
+import com.bacoder.parser.java.JavaParser.SuperSuffixContext;
+import com.bacoder.parser.java.JavaParser.TypeArgumentsContext;
+import com.bacoder.parser.java.JavaParser.TypeArgumentsOrDiamondContext;
+import com.bacoder.parser.java.JavaParser.TypeContext;
 import com.bacoder.parser.java.api.ArrayAccess;
 import com.bacoder.parser.java.api.ArrayCreation;
 import com.bacoder.parser.java.api.ArrayCreationDimension;
@@ -55,27 +76,6 @@ import com.bacoder.parser.java.api.TypeCast;
 import com.bacoder.parser.java.api.TypeWithArguments;
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableMap;
-import com.srctran.backend.parser.java.JavaParser;
-import com.srctran.backend.parser.java.JavaParser.ArgumentsContext;
-import com.srctran.backend.parser.java.JavaParser.ArrayCreatorRestContext;
-import com.srctran.backend.parser.java.JavaParser.ArrayInitializerContext;
-import com.srctran.backend.parser.java.JavaParser.ClassBodyContext;
-import com.srctran.backend.parser.java.JavaParser.ClassCreatorRestContext;
-import com.srctran.backend.parser.java.JavaParser.CreatedNameContext;
-import com.srctran.backend.parser.java.JavaParser.CreatorContext;
-import com.srctran.backend.parser.java.JavaParser.ExplicitGenericInvocationContext;
-import com.srctran.backend.parser.java.JavaParser.ExplicitGenericInvocationSuffixContext;
-import com.srctran.backend.parser.java.JavaParser.ExpressionContext;
-import com.srctran.backend.parser.java.JavaParser.ExpressionListContext;
-import com.srctran.backend.parser.java.JavaParser.InnerCreatorContext;
-import com.srctran.backend.parser.java.JavaParser.NonWildcardTypeArgumentsContext;
-import com.srctran.backend.parser.java.JavaParser.NonWildcardTypeArgumentsOrDiamondContext;
-import com.srctran.backend.parser.java.JavaParser.PrimaryContext;
-import com.srctran.backend.parser.java.JavaParser.PrimitiveTypeContext;
-import com.srctran.backend.parser.java.JavaParser.SuperSuffixContext;
-import com.srctran.backend.parser.java.JavaParser.TypeArgumentsContext;
-import com.srctran.backend.parser.java.JavaParser.TypeArgumentsOrDiamondContext;
-import com.srctran.backend.parser.java.JavaParser.TypeContext;
 
 public class ExpressionAdapter extends JavaAdapter<ExpressionContext, Expression> {
 
@@ -190,11 +190,11 @@ public class ExpressionAdapter extends JavaAdapter<ExpressionContext, Expression
     if (context.getChildCount() == 2
         && context.getChild(1) instanceof TerminalNode
         && POSTFIX_OPERATOR_MAP.containsKey(
-            ((TerminalNode) context.getChild(0)).getSymbol().getType())) {
+            ((TerminalNode) context.getChild(1)).getSymbol().getType())) {
       PostfixExpression postfixExpression = createNode(context, PostfixExpression.class);
 
       postfixExpression.setOperator(
-          POSTFIX_OPERATOR_MAP.get(((TerminalNode) context.getChild(0)).getSymbol().getType()));
+          POSTFIX_OPERATOR_MAP.get(((TerminalNode) context.getChild(1)).getSymbol().getType()));
 
       ExpressionContext expressionContext = getChild(context, ExpressionContext.class);
       if (expressionContext != null) {
@@ -353,11 +353,11 @@ public class ExpressionAdapter extends JavaAdapter<ExpressionContext, Expression
   protected Expression processCreator(ExpressionContext context) {
     CreatorContext creatorContext = getChild(context, CreatorContext.class);
     if (creatorContext != null) {
-      List<Type> nonWildcardTypeArguments = null;
+      List<Type> nonWildcardTypeArguments = Collections.emptyList();
       InstantiableType instantiableType = null;
-      List<Expression> arguments = null;
-      List<ClassMemberDeclaration> classMemberDeclarations = null;
-      List<ArrayCreationDimension> arrayDimensions = null;
+      List<Expression> arguments = Collections.emptyList();
+      List<ClassMemberDeclaration> classMemberDeclarations = Collections.emptyList();
+      List<ArrayCreationDimension> arrayDimensions = Collections.emptyList();
       ArrayInitializer arrayInitializer = null;
 
       NonWildcardTypeArgumentsContext nonWildcardTypeArgumentsContext =

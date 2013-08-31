@@ -16,10 +16,10 @@
 package com.bacoder.parser.java.adapter;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser.FieldDeclarationContext;
+import com.bacoder.parser.java.JavaParser.TypeContext;
+import com.bacoder.parser.java.JavaParser.VariableDeclaratorsContext;
 import com.bacoder.parser.java.api.FieldDeclaration;
-import com.srctran.backend.parser.java.JavaParser.FieldDeclarationContext;
-import com.srctran.backend.parser.java.JavaParser.TypeContext;
-import com.srctran.backend.parser.java.JavaParser.VariableDeclaratorsContext;
 
 public class FieldDeclarationAdapter
     extends JavaAdapter<FieldDeclarationContext, FieldDeclaration> {

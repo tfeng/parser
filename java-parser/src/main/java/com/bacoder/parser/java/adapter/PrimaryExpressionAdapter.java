@@ -21,6 +21,14 @@ import java.util.Map;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser;
+import com.bacoder.parser.java.JavaParser.ArgumentsContext;
+import com.bacoder.parser.java.JavaParser.ExplicitGenericInvocationSuffixContext;
+import com.bacoder.parser.java.JavaParser.ExpressionContext;
+import com.bacoder.parser.java.JavaParser.LiteralContext;
+import com.bacoder.parser.java.JavaParser.NonWildcardTypeArgumentsContext;
+import com.bacoder.parser.java.JavaParser.PrimaryContext;
+import com.bacoder.parser.java.JavaParser.TypeContext;
 import com.bacoder.parser.java.api.ClassExpression;
 import com.bacoder.parser.java.api.Expression;
 import com.bacoder.parser.java.api.Invocation;
@@ -31,14 +39,6 @@ import com.bacoder.parser.java.api.ThisInvocation;
 import com.bacoder.parser.java.api.Type;
 import com.bacoder.parser.java.api.VoidType;
 import com.google.common.collect.ImmutableMap;
-import com.srctran.backend.parser.java.JavaParser;
-import com.srctran.backend.parser.java.JavaParser.ArgumentsContext;
-import com.srctran.backend.parser.java.JavaParser.ExplicitGenericInvocationSuffixContext;
-import com.srctran.backend.parser.java.JavaParser.ExpressionContext;
-import com.srctran.backend.parser.java.JavaParser.LiteralContext;
-import com.srctran.backend.parser.java.JavaParser.NonWildcardTypeArgumentsContext;
-import com.srctran.backend.parser.java.JavaParser.PrimaryContext;
-import com.srctran.backend.parser.java.JavaParser.TypeContext;
 
 public class PrimaryExpressionAdapter extends JavaAdapter<PrimaryContext, Expression> {
 

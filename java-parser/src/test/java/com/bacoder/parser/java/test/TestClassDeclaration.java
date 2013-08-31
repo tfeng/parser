@@ -24,8 +24,8 @@ import org.testng.annotations.Test;
 import com.bacoder.parser.java.adapter.TypeDeclarationAdapter;
 import com.bacoder.parser.java.api.ClassDeclaration;
 import com.bacoder.parser.java.api.TypeDeclaration;
-import com.srctran.backend.parser.java.JavaParser;
-import com.srctran.backend.parser.java.JavaParser.TypeDeclarationContext;
+import com.bacoder.parser.java.JavaParser;
+import com.bacoder.parser.java.JavaParser.TypeDeclarationContext;
 
 @Test
 public class TestClassDeclaration extends JavaBaseTest {

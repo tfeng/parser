@@ -19,12 +19,12 @@ import java.util.List;
 
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-import com.google.common.base.Function;
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaParser;
+import com.bacoder.parser.java.JavaParser.QualifiedNameContext;
 import com.bacoder.parser.java.api.Identifier;
 import com.bacoder.parser.java.api.QualifiedName;
-import com.srctran.backend.parser.java.JavaParser;
-import com.srctran.backend.parser.java.JavaParser.QualifiedNameContext;
+import com.google.common.base.Function;
 
 public class QualifiedNameAdapter extends JavaAdapter<QualifiedNameContext, QualifiedName> {
 
