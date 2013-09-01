@@ -12,11 +12,11 @@ public class TestProgram1 {
 
   public static final main(String[] args) {
     final int v;
-    
+
     for (int i = 0; i < v; i++) {
       System.out.println(i > 0 ? true : "Hello");
     }
-    
+
     for (Element element : new List() { private void elements() {} }) {
       element = element.getIndex() + 1;
     }
