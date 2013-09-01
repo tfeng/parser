@@ -83,24 +83,30 @@ public abstract class Adapter<C extends ParseTree, D> {
   @SuppressWarnings("unchecked")
   protected <T extends ParseTree> void forEachChild(ParserRuleContext context, Class<T> clazz,
       Function<T, Void> function) {
-    for (ParseTree child : context.children) {
-      if (clazz.isInstance(child)) {
-        function.apply((T) child);
+    if (context.children != null) {
+      for (ParseTree child : context.children) {
+        if (clazz.isInstance(child)) {
+          function.apply((T) child);
+        }
       }
     }
   }
 
   protected void forEachChild(ParserRuleContext context, Function<ParseTree, Void> function) {
-    for (ParseTree child : context.children) {
-      function.apply(child);
+    if (context.children != null) {
+      for (ParseTree child : context.children) {
+        function.apply(child);
+      }
     }
   }
 
   @SuppressWarnings("unchecked")
   protected <T extends ParseTree> T getChild(ParserRuleContext context, Class<T> clazz) {
-    for (ParseTree child : context.children) {
-      if (clazz.isInstance(child)) {
-        return (T) child;
+    if (context.children != null) {
+      for (ParseTree child : context.children) {
+        if (clazz.isInstance(child)) {
+          return (T) child;
+        }
       }
     }
     return null;
@@ -110,9 +116,11 @@ public abstract class Adapter<C extends ParseTree, D> {
   protected <T extends ParserRuleContext> List<T> getChildren(ParserRuleContext context,
       Class<T> clazz) {
     List<T> list = new ArrayList<T>();
-    for (ParseTree child : context.children) {
-      if (clazz.isInstance(child)) {
-        list.add((T) child);
+    if (context.children != null) {
+      for (ParseTree child : context.children) {
+        if (clazz.isInstance(child)) {
+          list.add((T) child);
+        }
       }
     }
     return list;
@@ -170,12 +178,14 @@ public abstract class Adapter<C extends ParseTree, D> {
   protected <T extends ParseTree, S> List<S> transform(ParserRuleContext context, Class<T> clazz,
       Function<T, S> function) {
     List<S> list = new ArrayList<S>();
-    for (ParseTree child : context.children) {
-      if (clazz.isInstance(child)) {
-        @SuppressWarnings("unchecked")
-        S result = function.apply((T) child);
-        if (result != null) {
-          list.add(result);
+    if (context.children != null) {
+      for (ParseTree child : context.children) {
+        if (clazz.isInstance(child)) {
+          @SuppressWarnings("unchecked")
+          S result = function.apply((T) child);
+          if (result != null) {
+            list.add(result);
+          }
         }
       }
     }
@@ -184,12 +194,14 @@ public abstract class Adapter<C extends ParseTree, D> {
 
   protected <T extends ParseTree, S> S transformOne(ParserRuleContext context, Class<T> clazz,
       Function<T, S> function) {
-    for (ParseTree child : context.children) {
-      if (clazz.isInstance(child)) {
-        @SuppressWarnings("unchecked")
-        S result = function.apply((T) child);
-        if (result != null) {
-          return result;
+    if (context.children != null) {
+      for (ParseTree child : context.children) {
+        if (clazz.isInstance(child)) {
+          @SuppressWarnings("unchecked")
+          S result = function.apply((T) child);
+          if (result != null) {
+            return result;
+          }
         }
       }
     }

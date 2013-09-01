@@ -1,6 +1,6 @@
 public class TestProgram3 {
 
-  private int a[3][2][];
+  private int a[][][] = new int[3][2][];
 
   public String a(int[] p[])[][] {
     int[] i[] = {

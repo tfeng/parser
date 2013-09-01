@@ -3,20 +3,39 @@
     <Identifier sl="1" sc="13" el="1" ec="24">
       <text>TestProgram3</text>
     </Identifier>
-    <FieldDeclaration sl="3" sc="10" el="3" ec="23">
+    <FieldDeclaration sl="3" sc="10" el="3" ec="39">
       <PrimitiveType sl="3" sc="10" el="3" ec="12">
         <type>INT</type>
       </PrimitiveType>
-      <VariableDeclaration sl="3" sc="14" el="3" ec="22">
+      <VariableDeclaration sl="3" sc="14" el="3" ec="38">
         <Identifier sl="3" sc="14" el="3" ec="14">
           <text>a</text>
         </Identifier>
-        <ArrayDimension sl="3" sc="15" el="3" ec="17">
+        <ArrayDimension sl="3" sc="15" el="3" ec="16">
         </ArrayDimension>
-        <ArrayDimension sl="3" sc="18" el="3" ec="20">
+        <ArrayDimension sl="3" sc="17" el="3" ec="18">
         </ArrayDimension>
-        <ArrayDimension sl="3" sc="21" el="3" ec="22">
+        <ArrayDimension sl="3" sc="19" el="3" ec="20">
         </ArrayDimension>
+        <ArrayCreation sl="3" sc="24" el="3" ec="38">
+          <PrimitiveType sl="3" sc="28" el="3" ec="30">
+            <type>INT</type>
+          </PrimitiveType>
+          <ArrayCreationDimension sl="3" sc="31" el="3" ec="33">
+            <Literal sl="3" sc="32" el="3" ec="32">
+              <text>3</text>
+              <type>INTEGER</type>
+            </Literal>
+          </ArrayCreationDimension>
+          <ArrayCreationDimension sl="3" sc="34" el="3" ec="36">
+            <Literal sl="3" sc="35" el="3" ec="35">
+              <text>2</text>
+              <type>INTEGER</type>
+            </Literal>
+          </ArrayCreationDimension>
+          <ArrayCreationDimension sl="3" sc="37" el="3" ec="38">
+          </ArrayCreationDimension>
+        </ArrayCreation>
       </VariableDeclaration>
     </FieldDeclaration>
     <ClassMethodDeclaration sl="5" sc="9" el="11" ec="2">
