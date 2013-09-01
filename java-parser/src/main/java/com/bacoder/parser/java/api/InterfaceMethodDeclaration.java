@@ -23,6 +23,8 @@ import com.bacoder.parser.core.Visitors;
 public class InterfaceMethodDeclaration extends NodeWithModifiers
     implements InterfaceMemberDeclaration {
 
+  private List<ArrayDimension> dimensions = Collections.emptyList();
+
   private List<FormalParameter> formalParameters = Collections.emptyList();
 
   private Identifier name;
@@ -32,6 +34,10 @@ public class InterfaceMethodDeclaration extends NodeWithModifiers
   private List<QualifiedName> throwsExceptions = Collections.emptyList();
 
   private List<TypeParameter> typeParameters = Collections.emptyList();
+
+  public List<ArrayDimension> getDimensions() {
+    return dimensions;
+  }
 
   public List<FormalParameter> getFormalParameters() {
     return formalParameters;
@@ -55,6 +61,10 @@ public class InterfaceMethodDeclaration extends NodeWithModifiers
 
   public boolean isVoid() {
     return returnType instanceof VoidType;
+  }
+
+  public void setDimensions(List<ArrayDimension> dimensions) {
+    this.dimensions = dimensions;
   }
 
   public void setFormalParameters(List<FormalParameter> formalParameters) {
@@ -91,6 +101,9 @@ public class InterfaceMethodDeclaration extends NodeWithModifiers
     }
     for (FormalParameter formalParameter : formalParameters) {
       formalParameter.visit(visitors);
+    }
+    for (ArrayDimension dimension : dimensions) {
+      dimension.visit(visitors);
     }
     for (QualifiedName throwsException : throwsExceptions) {
       throwsException.visit(visitors);

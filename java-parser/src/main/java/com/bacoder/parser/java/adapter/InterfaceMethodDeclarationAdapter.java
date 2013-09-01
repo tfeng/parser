@@ -15,7 +15,6 @@
  */
 package com.bacoder.parser.java.adapter;
 
-import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import com.bacoder.parser.core.Adapters;
@@ -24,10 +23,7 @@ import com.bacoder.parser.java.JavaParser.FormalParametersContext;
 import com.bacoder.parser.java.JavaParser.InterfaceMethodDeclarationContext;
 import com.bacoder.parser.java.JavaParser.QualifiedNameListContext;
 import com.bacoder.parser.java.JavaParser.TypeContext;
-import com.bacoder.parser.java.api.ArrayType;
 import com.bacoder.parser.java.api.InterfaceMethodDeclaration;
-import com.bacoder.parser.java.api.Type;
-import com.bacoder.parser.java.api.TypeOrVoid;
 import com.bacoder.parser.java.api.VoidType;
 
 public class InterfaceMethodDeclarationAdapter
@@ -41,14 +37,13 @@ public class InterfaceMethodDeclarationAdapter
   public InterfaceMethodDeclaration adapt(InterfaceMethodDeclarationContext context) {
     InterfaceMethodDeclaration interfaceDeclaration = createNode(context);
 
-    TypeOrVoid type = null;
     TypeContext typeContext = getChild(context, TypeContext.class);
     if (typeContext != null) {
-      type = getAdapter(TypeAdapter.class).adapt(typeContext);
+      interfaceDeclaration.setReturnType(getAdapter(TypeAdapter.class).adapt(typeContext));
     } else {
       TerminalNode voidNode = getTerminalNode(context, JavaParser.VOID);
       if (voidNode != null) {
-        type = createNode(voidNode, VoidType.class);
+        interfaceDeclaration.setReturnType(createNode(voidNode, VoidType.class));
       }
     }
 
@@ -64,18 +59,7 @@ public class InterfaceMethodDeclarationAdapter
           getAdapter(FormalParametersAdapter.class).adapt(formalParametersContext));
     }
 
-    for (ParseTree node : context.children) {
-      if (!(type instanceof Type)) {
-        break;
-      }
-      if (node instanceof TerminalNode
-          && ((TerminalNode) node).getSymbol().getType() == JavaParser.RBRACK) {
-        ArrayType arrayType = createNode(typeContext, node, ArrayType.class);
-        arrayType.setElementType((Type) type);
-        type = arrayType;
-      }
-    }
-    interfaceDeclaration.setReturnType(type);
+    interfaceDeclaration.setDimensions(getAdapter(ArrayDimensionsAdapter.class).adapt(context));
 
     QualifiedNameListContext qualifiedNameListContext =
         getChild(context, QualifiedNameListContext.class);

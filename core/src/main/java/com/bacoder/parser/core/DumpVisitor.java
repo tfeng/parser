@@ -48,7 +48,9 @@ public class DumpVisitor implements Visitor<Node> {
 
       Field [] fields =  node.getClass().getDeclaredFields();
       for (Field field : fields) {
-        if (field.getType().isPrimitive() || String.class.isAssignableFrom(field.getType())) {
+        if (field.getType().isPrimitive()
+            || field.getType().isEnum()
+            || String.class.isAssignableFrom(field.getType())) {
           String propertyName = field.getName();
           Object value;
           try {

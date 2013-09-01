@@ -27,6 +27,7 @@ public class JavaAdapters extends Adapters {
     setAdapter(AnnotationTypeElementDeclarationAdapter.class,
         new AnnotationTypeElementDeclarationAdapter(this));
     setAdapter(ArgumentsAdapter.class, new ArgumentsAdapter(this));
+    setAdapter(ArrayDimensionsAdapter.class, new ArrayDimensionsAdapter(this));
     setAdapter(ArrayInitializerAdapter.class, new ArrayInitializerAdapter(this));
     setAdapter(BlockAdapter.class, new BlockAdapter(this));
     setAdapter(BlockStatementAdapter.class, new BlockStatementAdapter(this));

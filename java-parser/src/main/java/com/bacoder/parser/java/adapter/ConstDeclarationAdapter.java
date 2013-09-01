@@ -43,8 +43,7 @@ public class ConstDeclarationAdapter
         new Function<ConstantDeclaratorContext, VariableDeclaration>() {
           @Override
           public VariableDeclaration apply(ConstantDeclaratorContext context) {
-            return getAdapter(ConstDeclaratorAdapter.class).adapt(context,
-                constDeclaration.getType(), typeContext);
+            return getAdapter(ConstDeclaratorAdapter.class).adapt(context);
           }
         }));
 

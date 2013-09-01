@@ -1,0 +1,139 @@
+<CompilationUnit sl="1" sc="0" el="20" ec="0">
+  <PackageDeclaration sl="1" sc="0" el="1" ec="20">
+    <QualifiedName sl="1" sc="8" el="1" ec="19">
+      <Identifier sl="1" sc="8" el="1" ec="19">
+        <text>TestPrograms</text>
+      </Identifier>
+    </QualifiedName>
+  </PackageDeclaration>
+  <ClassDeclaration sl="3" sc="0" el="20" ec="0">
+    <Identifier sl="3" sc="13" el="3" ec="24">
+      <text>TestProgram2</text>
+    </Identifier>
+    <FieldDeclaration sl="5" sc="10" el="13" ec="3">
+      <ClassOrInterfaceType sl="5" sc="10" el="5" ec="15">
+        <Identifier sl="5" sc="10" el="5" ec="15">
+          <text>Object</text>
+        </Identifier>
+      </ClassOrInterfaceType>
+      <VariableDeclaration sl="5" sc="17" el="13" ec="2">
+        <Identifier sl="5" sc="17" el="5" ec="17">
+          <text>o</text>
+        </Identifier>
+        <ClassInstantiation sl="5" sc="21" el="13" ec="2">
+          <TypeWithArguments sl="5" sc="25" el="5" ec="30">
+            <IdentifierWithTypeArguments sl="5" sc="25" el="5" ec="30">
+              <Identifier sl="5" sc="25" el="5" ec="30">
+                <text>Object</text>
+              </Identifier>
+            </IdentifierWithTypeArguments>
+          </TypeWithArguments>
+          <BlockDeclaration sl="6" sc="4" el="8" ec="4">
+            <Block sl="6" sc="4" el="8" ec="4">
+              <ExpressionStatement sl="7" sc="6" el="7" ec="29">
+                <MethodInvocation sl="7" sc="6" el="7" ec="29">
+                  <ScopedExpression sl="7" sc="6" el="7" ec="15">
+                    <Identifier sl="7" sc="6" el="7" ec="11">
+                      <text>System</text>
+                    </Identifier>
+                    <Identifier sl="7" sc="13" el="7" ec="15">
+                      <text>out</text>
+                    </Identifier>
+                  </ScopedExpression>
+                  <Identifier sl="7" sc="17" el="7" ec="23">
+                    <text>println</text>
+                  </Identifier>
+                  <ThisExpression sl="7" sc="25" el="7" ec="28">
+                  </ThisExpression>
+                </MethodInvocation>
+              </ExpressionStatement>
+            </Block>
+          </BlockDeclaration>
+          <ClassMethodDeclaration sl="10" sc="11" el="12" ec="4">
+            <VoidType sl="10" sc="11" el="10" ec="14">
+            </VoidType>
+            <Identifier sl="10" sc="16" el="10" ec="21">
+              <text>method</text>
+            </Identifier>
+            <Block sl="10" sc="25" el="12" ec="4">
+            </Block>
+          </ClassMethodDeclaration>
+        </ClassInstantiation>
+      </VariableDeclaration>
+    </FieldDeclaration>
+    <ClassMethodDeclaration sl="15" sc="16" el="19" ec="2">
+      <VoidType sl="15" sc="16" el="15" ec="19">
+      </VoidType>
+      <Identifier sl="15" sc="21" el="15" ec="24">
+        <text>main</text>
+      </Identifier>
+      <FormalParameter sl="15" sc="26" el="15" ec="38">
+        <ClassOrInterfaceType sl="15" sc="26" el="15" ec="31">
+          <Identifier sl="15" sc="26" el="15" ec="31">
+            <text>String</text>
+          </Identifier>
+          <ArrayDimension sl="15" sc="32" el="15" ec="33">
+          </ArrayDimension>
+        </ClassOrInterfaceType>
+        <Identifier sl="15" sc="35" el="15" ec="38">
+          <text>args</text>
+        </Identifier>
+      </FormalParameter>
+      <Block sl="15" sc="41" el="19" ec="2">
+        <LocalVariableDeclaration sl="16" sc="4" el="18" ec="5">
+          <PrimitiveType sl="16" sc="4" el="16" ec="6">
+            <type>INT</type>
+            <ArrayDimension sl="16" sc="7" el="16" ec="8">
+            </ArrayDimension>
+          </PrimitiveType>
+          <VariableDeclaration sl="16" sc="10" el="18" ec="4">
+            <Identifier sl="16" sc="10" el="16" ec="10">
+              <text>a</text>
+            </Identifier>
+            <ArrayDimension sl="16" sc="11" el="16" ec="12">
+            </ArrayDimension>
+            <ArrayCreation sl="16" sc="16" el="18" ec="4">
+              <PrimitiveType sl="16" sc="20" el="16" ec="22">
+                <type>INT</type>
+              </PrimitiveType>
+              <ArrayCreationDimension sl="16" sc="23" el="16" ec="24">
+              </ArrayCreationDimension>
+              <ArrayCreationDimension sl="16" sc="25" el="16" ec="26">
+              </ArrayCreationDimension>
+              <ArrayInitializer sl="16" sc="28" el="18" ec="4">
+                <ArrayInitializer sl="17" sc="6" el="17" ec="12">
+                  <Literal sl="17" sc="7" el="17" ec="7">
+                    <text>0</text>
+                    <type>INTEGER</type>
+                  </Literal>
+                  <Literal sl="17" sc="9" el="17" ec="9">
+                    <text>1</text>
+                    <type>INTEGER</type>
+                  </Literal>
+                  <Literal sl="17" sc="11" el="17" ec="11">
+                    <text>2</text>
+                    <type>INTEGER</type>
+                  </Literal>
+                </ArrayInitializer>
+                <ArrayInitializer sl="17" sc="15" el="17" ec="21">
+                  <Literal sl="17" sc="16" el="17" ec="16">
+                    <text>3</text>
+                    <type>INTEGER</type>
+                  </Literal>
+                  <Literal sl="17" sc="18" el="17" ec="18">
+                    <text>4</text>
+                    <type>INTEGER</type>
+                  </Literal>
+                  <Literal sl="17" sc="20" el="17" ec="20">
+                    <text>5</text>
+                    <type>INTEGER</type>
+                  </Literal>
+                </ArrayInitializer>
+              </ArrayInitializer>
+            </ArrayCreation>
+          </VariableDeclaration>
+        </LocalVariableDeclaration>
+      </Block>
+    </ClassMethodDeclaration>
+  </ClassDeclaration>
+</CompilationUnit>

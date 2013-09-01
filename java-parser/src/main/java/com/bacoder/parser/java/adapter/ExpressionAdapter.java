@@ -357,7 +357,7 @@ public class ExpressionAdapter extends JavaAdapter<ExpressionContext, Expression
       InstantiableType instantiableType = null;
       List<Expression> arguments = Collections.emptyList();
       List<ClassMemberDeclaration> classMemberDeclarations = Collections.emptyList();
-      List<ArrayCreationDimension> arrayDimensions = Collections.emptyList();
+      List<ArrayCreationDimension> arrayDimensions = null;
       ArrayInitializer arrayInitializer = null;
 
       NonWildcardTypeArgumentsContext nonWildcardTypeArgumentsContext =

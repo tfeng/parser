@@ -1,4 +1,4 @@
-public class TestProgram1Code {
+public class TestProgram1 {
 
   private boolean b;
   private byte by;

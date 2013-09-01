@@ -43,9 +43,6 @@ public class GenericVisitor implements Visitor<JavaNode> {
   public void after(ArrayInitializer arrayInitializer) {
   }
 
-  public void after(ArrayType arrayType) {
-  }
-
   public void after(AssertStatement assertStatement) {
   }
 
@@ -256,9 +253,6 @@ public class GenericVisitor implements Visitor<JavaNode> {
   public void before(ArrayInitializer arrayInitializer) {
   }
 
-  public void before(ArrayType arrayType) {
-  }
-
   public void before(AssertStatement assertStatement) {
   }
 
@@ -463,8 +457,6 @@ public class GenericVisitor implements Visitor<JavaNode> {
       after((ArrayCreationDimension) node);
     } else if (node instanceof ArrayInitializer) {
       after((ArrayInitializer) node);
-    } else if (node instanceof ArrayType) {
-      after((ArrayType) node);
     } else if (node instanceof AssertStatement) {
       after((AssertStatement) node);
     } else if (node instanceof Block) {
@@ -610,8 +602,6 @@ public class GenericVisitor implements Visitor<JavaNode> {
       before((ArrayCreationDimension) node);
     } else if (node instanceof ArrayInitializer) {
       before((ArrayInitializer) node);
-    } else if (node instanceof ArrayType) {
-      before((ArrayType) node);
     } else if (node instanceof AssertStatement) {
       before((AssertStatement) node);
     } else if (node instanceof Block) {

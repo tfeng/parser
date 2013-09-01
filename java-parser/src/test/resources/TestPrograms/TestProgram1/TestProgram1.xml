@@ -1,14 +1,13 @@
 <CompilationUnit sl="1" sc="0" el="24" ec="0">
   <ClassDeclaration sl="1" sc="0" el="24" ec="0">
-    <Identifier sl="1" sc="13" el="1" ec="28">
-      <text>TestProgram1Code</text>
+    <Identifier sl="1" sc="13" el="1" ec="24">
+      <text>TestProgram1</text>
     </Identifier>
     <FieldDeclaration sl="3" sc="10" el="3" ec="19">
       <PrimitiveType sl="3" sc="10" el="3" ec="16">
+        <type>BOOLEAN</type>
       </PrimitiveType>
       <VariableDeclaration sl="3" sc="18" el="3" ec="18">
-        <PrimitiveType sl="3" sc="10" el="3" ec="16">
-        </PrimitiveType>
         <Identifier sl="3" sc="18" el="3" ec="18">
           <text>b</text>
         </Identifier>
@@ -16,10 +15,9 @@
     </FieldDeclaration>
     <FieldDeclaration sl="4" sc="10" el="4" ec="17">
       <PrimitiveType sl="4" sc="10" el="4" ec="13">
+        <type>BYTE</type>
       </PrimitiveType>
       <VariableDeclaration sl="4" sc="15" el="4" ec="16">
-        <PrimitiveType sl="4" sc="10" el="4" ec="13">
-        </PrimitiveType>
         <Identifier sl="4" sc="15" el="4" ec="16">
           <text>by</text>
         </Identifier>
@@ -27,10 +25,9 @@
     </FieldDeclaration>
     <FieldDeclaration sl="5" sc="10" el="5" ec="16">
       <PrimitiveType sl="5" sc="10" el="5" ec="13">
+        <type>CHAR</type>
       </PrimitiveType>
       <VariableDeclaration sl="5" sc="15" el="5" ec="15">
-        <PrimitiveType sl="5" sc="10" el="5" ec="13">
-        </PrimitiveType>
         <Identifier sl="5" sc="15" el="5" ec="15">
           <text>c</text>
         </Identifier>
@@ -38,10 +35,9 @@
     </FieldDeclaration>
     <FieldDeclaration sl="6" sc="10" el="6" ec="18">
       <PrimitiveType sl="6" sc="10" el="6" ec="15">
+        <type>DOUBLE</type>
       </PrimitiveType>
       <VariableDeclaration sl="6" sc="17" el="6" ec="17">
-        <PrimitiveType sl="6" sc="10" el="6" ec="15">
-        </PrimitiveType>
         <Identifier sl="6" sc="17" el="6" ec="17">
           <text>d</text>
         </Identifier>
@@ -49,10 +45,9 @@
     </FieldDeclaration>
     <FieldDeclaration sl="7" sc="10" el="7" ec="17">
       <PrimitiveType sl="7" sc="10" el="7" ec="14">
+        <type>FLOAT</type>
       </PrimitiveType>
       <VariableDeclaration sl="7" sc="16" el="7" ec="16">
-        <PrimitiveType sl="7" sc="10" el="7" ec="14">
-        </PrimitiveType>
         <Identifier sl="7" sc="16" el="7" ec="16">
           <text>f</text>
         </Identifier>
@@ -60,10 +55,9 @@
     </FieldDeclaration>
     <FieldDeclaration sl="8" sc="10" el="8" ec="15">
       <PrimitiveType sl="8" sc="10" el="8" ec="12">
+        <type>INT</type>
       </PrimitiveType>
       <VariableDeclaration sl="8" sc="14" el="8" ec="14">
-        <PrimitiveType sl="8" sc="10" el="8" ec="12">
-        </PrimitiveType>
         <Identifier sl="8" sc="14" el="8" ec="14">
           <text>i</text>
         </Identifier>
@@ -71,10 +65,9 @@
     </FieldDeclaration>
     <FieldDeclaration sl="9" sc="10" el="9" ec="16">
       <PrimitiveType sl="9" sc="10" el="9" ec="13">
+        <type>LONG</type>
       </PrimitiveType>
       <VariableDeclaration sl="9" sc="15" el="9" ec="15">
-        <PrimitiveType sl="9" sc="10" el="9" ec="13">
-        </PrimitiveType>
         <Identifier sl="9" sc="15" el="9" ec="15">
           <text>l</text>
         </Identifier>
@@ -82,10 +75,9 @@
     </FieldDeclaration>
     <FieldDeclaration sl="10" sc="10" el="10" ec="18">
       <PrimitiveType sl="10" sc="10" el="10" ec="14">
+        <type>SHORT</type>
       </PrimitiveType>
       <VariableDeclaration sl="10" sc="16" el="10" ec="17">
-        <PrimitiveType sl="10" sc="10" el="10" ec="14">
-        </PrimitiveType>
         <Identifier sl="10" sc="16" el="10" ec="17">
           <text>sh</text>
         </Identifier>
@@ -98,16 +90,12 @@
         </Identifier>
       </ClassOrInterfaceType>
       <VariableDeclaration sl="11" sc="17" el="11" ec="24">
-        <ClassOrInterfaceType sl="11" sc="10" el="11" ec="15">
-          <Identifier sl="11" sc="10" el="11" ec="15">
-            <text>String</text>
-          </Identifier>
-        </ClassOrInterfaceType>
         <Identifier sl="11" sc="17" el="11" ec="17">
           <text>s</text>
         </Identifier>
         <Literal sl="11" sc="21" el="11" ec="24">
           <text>null</text>
+          <type>NULL</type>
         </Literal>
       </VariableDeclaration>
     </FieldDeclaration>
@@ -116,13 +104,13 @@
         <text>main</text>
       </Identifier>
       <FormalParameter sl="13" sc="27" el="13" ec="39">
-        <ArrayType sl="13" sc="27" el="13" ec="34">
-          <ClassOrInterfaceType sl="13" sc="27" el="13" ec="32">
-            <Identifier sl="13" sc="27" el="13" ec="32">
-              <text>String</text>
-            </Identifier>
-          </ClassOrInterfaceType>
-        </ArrayType>
+        <ClassOrInterfaceType sl="13" sc="27" el="13" ec="32">
+          <Identifier sl="13" sc="27" el="13" ec="32">
+            <text>String</text>
+          </Identifier>
+          <ArrayDimension sl="13" sc="33" el="13" ec="34">
+          </ArrayDimension>
+        </ClassOrInterfaceType>
         <Identifier sl="13" sc="36" el="13" ec="39">
           <text>args</text>
         </Identifier>
@@ -130,10 +118,9 @@
       <Block sl="13" sc="42" el="23" ec="2">
         <LocalVariableDeclaration sl="14" sc="4" el="14" ec="15">
           <PrimitiveType sl="14" sc="10" el="14" ec="12">
+            <type>INT</type>
           </PrimitiveType>
           <VariableDeclaration sl="14" sc="14" el="14" ec="14">
-            <PrimitiveType sl="14" sc="10" el="14" ec="12">
-            </PrimitiveType>
             <Identifier sl="14" sc="14" el="14" ec="14">
               <text>v</text>
             </Identifier>
@@ -143,19 +130,20 @@
           <LoopControl sl="16" sc="9" el="16" ec="29">
             <LocalVariableDeclaration sl="16" sc="9" el="16" ec="17">
               <PrimitiveType sl="16" sc="9" el="16" ec="11">
+                <type>INT</type>
               </PrimitiveType>
               <VariableDeclaration sl="16" sc="13" el="16" ec="17">
-                <PrimitiveType sl="16" sc="9" el="16" ec="11">
-                </PrimitiveType>
                 <Identifier sl="16" sc="13" el="16" ec="13">
                   <text>i</text>
                 </Identifier>
                 <Literal sl="16" sc="17" el="16" ec="17">
                   <text>0</text>
+                  <type>INTEGER</type>
                 </Literal>
               </VariableDeclaration>
             </LocalVariableDeclaration>
             <InfixExpression sl="16" sc="20" el="16" ec="24">
+              <operator><</operator>
               <Identifier sl="16" sc="20" el="16" ec="20">
                 <text>i</text>
               </Identifier>
@@ -164,6 +152,7 @@
               </Identifier>
             </InfixExpression>
             <PostfixExpression sl="16" sc="27" el="16" ec="29">
+              <operator>++</operator>
               <Identifier sl="16" sc="27" el="16" ec="27">
                 <text>i</text>
               </Identifier>
@@ -185,18 +174,22 @@
                 </Identifier>
                 <TernaryExpression sl="17" sc="25" el="17" ec="46">
                   <InfixExpression sl="17" sc="25" el="17" ec="29">
+                    <operator>></operator>
                     <Identifier sl="17" sc="25" el="17" ec="25">
                       <text>i</text>
                     </Identifier>
                     <Literal sl="17" sc="29" el="17" ec="29">
                       <text>0</text>
+                      <type>INTEGER</type>
                     </Literal>
                   </InfixExpression>
                   <Literal sl="17" sc="33" el="17" ec="36">
                     <text>true</text>
+                    <type>BOOLEAN</type>
                   </Literal>
                   <Literal sl="17" sc="40" el="17" ec="46">
                     <text>"Hello"</text>
+                    <type>STRING</type>
                   </Literal>
                 </TernaryExpression>
               </MethodInvocation>
@@ -213,7 +206,7 @@
             <Identifier sl="20" sc="17" el="20" ec="23">
               <text>element</text>
             </Identifier>
-            <ArrayCreation sl="20" sc="27" el="20" ec="67">
+            <ClassInstantiation sl="20" sc="27" el="20" ec="67">
               <TypeWithArguments sl="20" sc="31" el="20" ec="34">
                 <IdentifierWithTypeArguments sl="20" sc="31" el="20" ec="34">
                   <Identifier sl="20" sc="31" el="20" ec="34">
@@ -221,15 +214,26 @@
                   </Identifier>
                 </IdentifierWithTypeArguments>
               </TypeWithArguments>
-            </ArrayCreation>
+              <ClassMethodDeclaration sl="20" sc="48" el="20" ec="65">
+                <VoidType sl="20" sc="48" el="20" ec="51">
+                </VoidType>
+                <Identifier sl="20" sc="53" el="20" ec="60">
+                  <text>elements</text>
+                </Identifier>
+                <Block sl="20" sc="64" el="20" ec="65">
+                </Block>
+              </ClassMethodDeclaration>
+            </ClassInstantiation>
           </ForEachControl>
           <Block sl="20" sc="70" el="22" ec="4">
             <ExpressionStatement sl="21" sc="6" el="21" ec="37">
               <InfixExpression sl="21" sc="6" el="21" ec="37">
+                <operator>=</operator>
                 <Identifier sl="21" sc="6" el="21" ec="12">
                   <text>element</text>
                 </Identifier>
                 <InfixExpression sl="21" sc="16" el="21" ec="37">
+                  <operator>+</operator>
                   <MethodInvocation sl="21" sc="16" el="21" ec="33">
                     <Identifier sl="21" sc="16" el="21" ec="22">
                       <text>element</text>
@@ -240,6 +244,7 @@
                   </MethodInvocation>
                   <Literal sl="21" sc="37" el="21" ec="37">
                     <text>1</text>
+                    <type>INTEGER</type>
                   </Literal>
                 </InfixExpression>
               </InfixExpression>

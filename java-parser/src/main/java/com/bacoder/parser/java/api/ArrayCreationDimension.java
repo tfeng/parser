@@ -17,7 +17,7 @@ package com.bacoder.parser.java.api;
 
 import com.bacoder.parser.core.Visitors;
 
-public class ArrayCreationDimension extends JavaNode {
+public class ArrayCreationDimension extends ArrayDimension {
 
   private Expression size;
 
@@ -31,6 +31,7 @@ public class ArrayCreationDimension extends JavaNode {
 
   @Override
   protected void visitChildren(Visitors visitors) {
+    super.visitChildren(visitors);
     if (size != null) {
       size.visit(visitors);
     }

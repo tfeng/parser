@@ -15,15 +15,24 @@
  */
 package com.bacoder.parser.java.api;
 
+import java.util.Collections;
+import java.util.List;
+
 import com.bacoder.parser.core.Visitors;
 
 public class VariableDeclaration extends JavaNode {
+
+  private List<ArrayDimension> dimensions = Collections.emptyList();
 
   private VariableInitializer initializer;
 
   private Identifier name;
 
   private Type type;
+
+  public List<ArrayDimension> getDimensions() {
+    return dimensions;
+  }
 
   public VariableInitializer getInitializer() {
     return initializer;
@@ -35,6 +44,10 @@ public class VariableDeclaration extends JavaNode {
 
   public Type getType() {
     return type;
+  }
+
+  public void setDimensions(List<ArrayDimension> dimensions) {
+    this.dimensions = dimensions;
   }
 
   public void setInitializer(VariableInitializer initializer) {
@@ -56,6 +69,9 @@ public class VariableDeclaration extends JavaNode {
     }
     if (name != null) {
       name.visit(visitors);
+    }
+    for (ArrayDimension dimension : dimensions) {
+      dimension.visit(visitors);
     }
     if (initializer != null) {
       initializer.visit(visitors);

@@ -15,6 +15,9 @@
  */
 package com.bacoder.parser.java.api;
 
+import java.util.Collections;
+import java.util.List;
+
 import com.bacoder.parser.core.Visitors;
 
 public class PrimitiveType extends JavaNode implements InstantiableType, Type {
@@ -30,10 +33,20 @@ public class PrimitiveType extends JavaNode implements InstantiableType, Type {
     SHORT
   }
 
+  private List<ArrayDimension> dimensions = Collections.emptyList();
+
   private Type type;
+
+  public List<ArrayDimension> getDimensions() {
+    return dimensions;
+  }
 
   public Type getType() {
     return type;
+  }
+
+  public void setDimensions(List<ArrayDimension> dimensions) {
+    this.dimensions = dimensions;
   }
 
   public void setType(Type type) {
@@ -42,5 +55,8 @@ public class PrimitiveType extends JavaNode implements InstantiableType, Type {
 
   @Override
   protected void visitChildren(Visitors visitors) {
+    for (ArrayDimension dimension : dimensions) {
+      dimension.visit(visitors);
+    }
   }
 }

@@ -15,7 +15,6 @@
  */
 package com.bacoder.parser.java.adapter;
 
-import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import com.bacoder.parser.core.Adapters;
@@ -26,10 +25,7 @@ import com.bacoder.parser.java.JavaParser.MethodBodyContext;
 import com.bacoder.parser.java.JavaParser.MethodDeclarationContext;
 import com.bacoder.parser.java.JavaParser.QualifiedNameListContext;
 import com.bacoder.parser.java.JavaParser.TypeContext;
-import com.bacoder.parser.java.api.ArrayType;
 import com.bacoder.parser.java.api.ClassMethodDeclaration;
-import com.bacoder.parser.java.api.Type;
-import com.bacoder.parser.java.api.TypeOrVoid;
 import com.bacoder.parser.java.api.VoidType;
 
 public class MethodDeclarationAdapter
@@ -43,14 +39,13 @@ public class MethodDeclarationAdapter
   public ClassMethodDeclaration adapt(MethodDeclarationContext context) {
     ClassMethodDeclaration methodDeclaration = createNode(context);
 
-    TypeOrVoid type = null;
     TypeContext typeContext = getChild(context, TypeContext.class);
     if (typeContext != null) {
-      type = getAdapter(TypeAdapter.class).adapt(typeContext);
+      methodDeclaration.setReturnType(getAdapter(TypeAdapter.class).adapt(typeContext));
     } else {
       TerminalNode voidNode = getTerminalNode(context, JavaParser.VOID);
       if (voidNode != null) {
-        type = createNode(voidNode, VoidType.class);
+        methodDeclaration.setReturnType(createNode(voidNode, VoidType.class));
       }
     }
 
@@ -66,18 +61,7 @@ public class MethodDeclarationAdapter
           getAdapter(FormalParametersAdapter.class).adapt(formalParametersContext));
     }
 
-    for (ParseTree node : context.children) {
-      if (!(type instanceof Type)) {
-        break;
-      }
-      if (node instanceof TerminalNode
-          && ((TerminalNode) node).getSymbol().getType() == JavaParser.RBRACK) {
-        ArrayType arrayType = createNode(typeContext, node, ArrayType.class);
-        arrayType.setElementType((Type) type);
-        type = arrayType;
-      }
-    }
-    methodDeclaration.setReturnType(type);
+    methodDeclaration.setDimensions(getAdapter(ArrayDimensionsAdapter.class).adapt(context));
 
     QualifiedNameListContext qualifiedNameListContext =
         getChild(context, QualifiedNameListContext.class);

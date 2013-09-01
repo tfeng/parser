@@ -15,7 +15,6 @@
  */
 package com.bacoder.parser.java.adapter;
 
-import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import com.bacoder.parser.core.Adapters;
@@ -23,8 +22,6 @@ import com.bacoder.parser.java.JavaParser;
 import com.bacoder.parser.java.JavaParser.VariableDeclaratorContext;
 import com.bacoder.parser.java.JavaParser.VariableDeclaratorIdContext;
 import com.bacoder.parser.java.JavaParser.VariableInitializerContext;
-import com.bacoder.parser.java.api.ArrayType;
-import com.bacoder.parser.java.api.Type;
 import com.bacoder.parser.java.api.VariableDeclaration;
 
 public class VariableDeclaratorAdapter
@@ -36,11 +33,6 @@ public class VariableDeclaratorAdapter
 
   @Override
   public VariableDeclaration adapt(VariableDeclaratorContext context) {
-    throw new RuntimeException("Not supported");
-  }
-
-  public VariableDeclaration adapt(VariableDeclaratorContext context, Type baseType,
-      ParseTree baseTypeContext) {
     VariableDeclaration variableDeclarator = createNode(context);
 
     VariableDeclaratorIdContext variableDeclaratorIdContext =
@@ -51,18 +43,10 @@ public class VariableDeclaratorAdapter
       if (identifierNode != null) {
         variableDeclarator.setName(getAdapter(IdentifierAdapter.class).adapt(identifierNode));
       }
-    }
 
-    Type type = baseType;
-    for (ParseTree node : variableDeclaratorIdContext.children) {
-      if (node instanceof TerminalNode
-          && ((TerminalNode) node).getSymbol().getType() == JavaParser.RBRACK) {
-        ArrayType arrayType = createNode(baseTypeContext, node, ArrayType.class);
-        arrayType.setElementType(type);
-        type = arrayType;
-      }
+      variableDeclarator.setDimensions(
+          getAdapter(ArrayDimensionsAdapter.class).adapt(variableDeclaratorIdContext));
     }
-    variableDeclarator.setType(type);
 
     VariableInitializerContext variableInitializerContext =
         getChild(context, VariableInitializerContext.class);

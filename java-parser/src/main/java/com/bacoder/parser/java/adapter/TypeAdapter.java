@@ -15,15 +15,12 @@
  */
 package com.bacoder.parser.java.adapter;
 
-import org.antlr.v4.runtime.tree.ParseTree;
-import org.antlr.v4.runtime.tree.TerminalNode;
-
 import com.bacoder.parser.core.Adapters;
-import com.bacoder.parser.java.JavaParser;
 import com.bacoder.parser.java.JavaParser.ClassOrInterfaceTypeContext;
 import com.bacoder.parser.java.JavaParser.PrimitiveTypeContext;
 import com.bacoder.parser.java.JavaParser.TypeContext;
-import com.bacoder.parser.java.api.ArrayType;
+import com.bacoder.parser.java.api.ClassOrInterfaceType;
+import com.bacoder.parser.java.api.PrimitiveType;
 import com.bacoder.parser.java.api.Type;
 
 public class TypeAdapter extends JavaAdapter<TypeContext, Type> {
@@ -34,28 +31,22 @@ public class TypeAdapter extends JavaAdapter<TypeContext, Type> {
 
   @Override
   public Type adapt(TypeContext context) {
-    Type type = null;
-
     ClassOrInterfaceTypeContext classOrInterfaceTypeContext =
         getChild(context, ClassOrInterfaceTypeContext.class);
     if (classOrInterfaceTypeContext != null) {
-      type = getAdapter(ClassOrInterfaceTypeAdapter.class).adapt(classOrInterfaceTypeContext);
+      ClassOrInterfaceType type =
+          getAdapter(ClassOrInterfaceTypeAdapter.class).adapt(classOrInterfaceTypeContext);
+      type.setDimensions(getAdapter(ArrayDimensionsAdapter.class).adapt(context));
+      return type;
     }
 
     PrimitiveTypeContext primitiveTypeContext = getChild(context, PrimitiveTypeContext.class);
     if (primitiveTypeContext != null) {
-      type = getAdapter(PrimitiveTypeAdapter.class).adapt(primitiveTypeContext);
+      PrimitiveType type = getAdapter(PrimitiveTypeAdapter.class).adapt(primitiveTypeContext);
+      type.setDimensions(getAdapter(ArrayDimensionsAdapter.class).adapt(context));
+      return type;
     }
 
-    for (ParseTree node : context.children) {
-      if (node instanceof TerminalNode
-          && ((TerminalNode) node).getSymbol().getType() == JavaParser.RBRACK) {
-        ArrayType arrayType = createNode(context, node, ArrayType.class);
-        arrayType.setElementType(type);
-        type = arrayType;
-      }
-    }
-
-    return type;
+    return null;
   }
 }

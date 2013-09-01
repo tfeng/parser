@@ -44,8 +44,7 @@ public class VariableDeclaratorsAdapter
         new Function<VariableDeclaratorContext, VariableDeclaration>() {
           @Override
           public VariableDeclaration apply(VariableDeclaratorContext context) {
-            return getAdapter(VariableDeclaratorAdapter.class).adapt(context, baseType,
-                baseTypeContext);
+            return getAdapter(VariableDeclaratorAdapter.class).adapt(context);
           }
         });
   }

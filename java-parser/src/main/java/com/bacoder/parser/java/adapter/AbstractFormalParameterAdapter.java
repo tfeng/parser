@@ -16,16 +16,13 @@
 package com.bacoder.parser.java.adapter;
 
 import org.antlr.v4.runtime.ParserRuleContext;
-import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import com.bacoder.parser.core.Adapters;
 import com.bacoder.parser.java.JavaParser;
 import com.bacoder.parser.java.JavaParser.TypeContext;
 import com.bacoder.parser.java.JavaParser.VariableDeclaratorIdContext;
-import com.bacoder.parser.java.api.ArrayType;
 import com.bacoder.parser.java.api.FormalParameter;
-import com.bacoder.parser.java.api.Type;
 
 public abstract class AbstractFormalParameterAdapter<C extends ParserRuleContext,
     D extends FormalParameter> extends JavaAdapter<C, D> {
@@ -40,10 +37,9 @@ public abstract class AbstractFormalParameterAdapter<C extends ParserRuleContext
 
     setVariableModifiers(context, formalParameter);
 
-    Type type = null;
     TypeContext typeContext = getChild(context, TypeContext.class);
     if (typeContext != null) {
-      type = getAdapter(TypeAdapter.class).adapt(typeContext);
+      formalParameter.setType(getAdapter(TypeAdapter.class).adapt(typeContext));
     }
 
     VariableDeclaratorIdContext variableDeclaratorIdContext =
@@ -55,17 +51,9 @@ public abstract class AbstractFormalParameterAdapter<C extends ParserRuleContext
         formalParameter.setName(getAdapter(IdentifierAdapter.class).adapt(identifierNode));
       }
 
-      for (ParseTree node : context.children) {
-        if (node instanceof TerminalNode
-            && ((TerminalNode) node).getSymbol().getType() == JavaParser.RBRACK) {
-          ArrayType arrayType = createNode(typeContext, node, ArrayType.class);
-          arrayType.setElementType(type);
-          type = arrayType;
-        }
-      }
+      formalParameter.setDimensions(
+          getAdapter(ArrayDimensionsAdapter.class).adapt(variableDeclaratorIdContext));
     }
-
-    formalParameter.setType(type);
 
     return formalParameter;
   }

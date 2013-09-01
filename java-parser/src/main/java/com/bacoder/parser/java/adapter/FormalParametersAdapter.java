@@ -15,6 +15,7 @@
  */
 package com.bacoder.parser.java.adapter;
 
+import java.util.Collections;
 import java.util.List;
 
 import com.bacoder.parser.core.Adapters;
@@ -58,6 +59,6 @@ public class FormalParametersAdapter
       return formalParameters;
     }
 
-    return null;
+    return Collections.emptyList();
   }
 }

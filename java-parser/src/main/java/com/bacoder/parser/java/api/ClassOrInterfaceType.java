@@ -22,11 +22,17 @@ import com.bacoder.parser.core.Visitors;
 
 public class ClassOrInterfaceType extends JavaNode implements Type {
 
+  private List<ArrayDimension> dimensions = Collections.emptyList();
+
   private Identifier name;
 
   private ClassOrInterfaceType scope;
 
   private List<TypeArgument> typeArguments = Collections.emptyList();
+
+  public List<ArrayDimension> getDimensions() {
+    return dimensions;
+  }
 
   public Identifier getName() {
     return name;
@@ -38,6 +44,10 @@ public class ClassOrInterfaceType extends JavaNode implements Type {
 
   public List<TypeArgument> getTypeArguments() {
     return typeArguments;
+  }
+
+  public void setDimensions(List<ArrayDimension> dimensions) {
+    this.dimensions = dimensions;
   }
 
   public void setName(Identifier name) {
@@ -62,6 +72,9 @@ public class ClassOrInterfaceType extends JavaNode implements Type {
     }
     for (TypeArgument typeArgument : typeArguments) {
       typeArgument.visit(visitors);
+    }
+    for (ArrayDimension dimension : dimensions) {
+      dimension.visit(visitors);
     }
   }
 }

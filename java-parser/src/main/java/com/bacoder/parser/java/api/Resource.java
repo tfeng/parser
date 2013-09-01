@@ -15,15 +15,24 @@
  */
 package com.bacoder.parser.java.api;
 
+import java.util.Collections;
+import java.util.List;
+
 import com.bacoder.parser.core.Visitors;
 
 public class Resource extends NodeWithModifiers {
+
+  private List<ArrayDimension> dimensions = Collections.emptyList();
 
   private Expression initializer;
 
   private Identifier name;
 
   private Type type;
+
+  public List<ArrayDimension> getDimensions() {
+    return dimensions;
+  }
 
   public Expression getInitializer() {
     return initializer;
@@ -35,6 +44,10 @@ public class Resource extends NodeWithModifiers {
 
   public Type getType() {
     return type;
+  }
+
+  public void setDimensions(List<ArrayDimension> dimensions) {
+    this.dimensions = dimensions;
   }
 
   public void setInitializer(Expression initializer) {
@@ -57,6 +70,9 @@ public class Resource extends NodeWithModifiers {
     }
     if (name != null) {
       name.visit(visitors);
+    }
+    for (ArrayDimension dimension : dimensions) {
+      dimension.visit(visitors);
     }
     if (initializer != null) {
       initializer.visit(visitors);

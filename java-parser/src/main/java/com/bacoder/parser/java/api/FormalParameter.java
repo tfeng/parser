@@ -15,15 +15,24 @@
  */
 package com.bacoder.parser.java.api;
 
+import java.util.Collections;
+import java.util.List;
+
 import com.bacoder.parser.core.Visitors;
 
 public class FormalParameter extends NodeWithModifiers {
+
+  private List<ArrayDimension> dimensions = Collections.emptyList();
 
   private boolean isVariable;
 
   private Identifier name;
 
   private Type type;
+
+  public List<ArrayDimension> getDimensions() {
+    return dimensions;
+  }
 
   public Identifier getName() {
     return name;
@@ -35,6 +44,10 @@ public class FormalParameter extends NodeWithModifiers {
 
   public boolean isVariable() {
     return isVariable;
+  }
+
+  public void setDimensions(List<ArrayDimension> dimensions) {
+    this.dimensions = dimensions;
   }
 
   public void setName(Identifier name) {
@@ -57,6 +70,9 @@ public class FormalParameter extends NodeWithModifiers {
     }
     if (name != null) {
       name.visit(visitors);
+    }
+    for (ArrayDimension dimension : dimensions) {
+      dimension.visit(visitors);
     }
   }
 }

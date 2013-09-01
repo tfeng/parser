@@ -18,7 +18,6 @@ package com.bacoder.parser.java.adapter;
 import java.util.List;
 
 import org.antlr.v4.runtime.ParserRuleContext;
-import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import com.bacoder.parser.core.Adapters;
@@ -49,7 +48,6 @@ import com.bacoder.parser.java.JavaParser.SwitchBlockStatementGroupContext;
 import com.bacoder.parser.java.JavaParser.SwitchLabelContext;
 import com.bacoder.parser.java.JavaParser.TypeContext;
 import com.bacoder.parser.java.JavaParser.VariableDeclaratorIdContext;
-import com.bacoder.parser.java.api.ArrayType;
 import com.bacoder.parser.java.api.AssertStatement;
 import com.bacoder.parser.java.api.BlockStatement;
 import com.bacoder.parser.java.api.BreakStatement;
@@ -73,7 +71,6 @@ import com.bacoder.parser.java.api.SwitchStatement;
 import com.bacoder.parser.java.api.SynchronizedStatement;
 import com.bacoder.parser.java.api.ThrowStatement;
 import com.bacoder.parser.java.api.TryStatement;
-import com.bacoder.parser.java.api.Type;
 import com.bacoder.parser.java.api.WhileStatement;
 import com.google.common.base.Function;
 
@@ -440,10 +437,10 @@ public class StatementAdapter extends JavaAdapter<StatementContext, Statement> {
 
                 ClassOrInterfaceTypeContext classOrInterfaceTypeContext =
                     getChild(context, ClassOrInterfaceTypeContext.class);
-                Type type = null;
                 if (classOrInterfaceTypeContext != null) {
-                  type = getAdapter(ClassOrInterfaceTypeAdapter.class).adapt(
-                      classOrInterfaceTypeContext);
+                  resource.setType(
+                      getAdapter(ClassOrInterfaceTypeAdapter.class).adapt(
+                          classOrInterfaceTypeContext));
                 }
 
                 VariableDeclaratorIdContext variableDeclaratorIdContext =
@@ -454,18 +451,10 @@ public class StatementAdapter extends JavaAdapter<StatementContext, Statement> {
                   if (identifierNode != null) {
                     resource.setName(getAdapter(IdentifierAdapter.class).adapt(identifierNode));
                   }
-                }
 
-                for (ParseTree node : variableDeclaratorIdContext.children) {
-                  if (node instanceof TerminalNode
-                      && ((TerminalNode) node).getSymbol().getType() == JavaParser.RBRACK) {
-                    ArrayType arrayType =
-                        createNode(classOrInterfaceTypeContext, node, ArrayType.class);
-                    arrayType.setElementType(type);
-                    type = arrayType;
-                  }
+                  resource.setDimensions(
+                      getAdapter(ArrayDimensionsAdapter.class).adapt(variableDeclaratorIdContext));
                 }
-                resource.setType(type);
 
                 ExpressionContext expressionContext = getChild(context, ExpressionContext.class);
                 if (expressionContext != null) {
