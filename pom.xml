@@ -129,6 +129,9 @@
             <includes>
               <include>**/*.java</include>
             </includes>
+            <excludes>
+              <exclude>**/TestProgram*.java</exclude>
+            </excludes>
           </configuration>
           <executions>
             <execution>
