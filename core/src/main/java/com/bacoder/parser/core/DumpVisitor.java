@@ -21,6 +21,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.commons.lang.StringEscapeUtils;
 
 import com.google.common.base.Strings;
 
@@ -71,7 +72,8 @@ public class DumpVisitor implements Visitor<Node> {
           try {
             value = PropertyUtils.getSimpleProperty(node, propertyName);
             String property = String.format("%s<%s>%s</%s>\n", Strings.repeat(indent, level + 1),
-                propertyName, value == null ? "" : value.toString(), propertyName);
+                propertyName, value == null ? "" : StringEscapeUtils.escapeXml(value.toString()),
+                propertyName);
             try {
               outputStream.write(property.getBytes());
             } catch (IOException e) {

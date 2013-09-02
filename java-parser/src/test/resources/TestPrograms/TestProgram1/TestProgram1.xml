@@ -143,7 +143,7 @@
               </VariableDeclaration>
             </LocalVariableDeclaration>
             <InfixExpression sl="16" sc="20" el="16" ec="24">
-              <operator><</operator>
+              <operator>&lt;</operator>
               <Identifier sl="16" sc="20" el="16" ec="20">
                 <text>i</text>
               </Identifier>
@@ -174,7 +174,7 @@
                 </Identifier>
                 <TernaryExpression sl="17" sc="25" el="17" ec="46">
                   <InfixExpression sl="17" sc="25" el="17" ec="29">
-                    <operator>></operator>
+                    <operator>&gt;</operator>
                     <Identifier sl="17" sc="25" el="17" ec="25">
                       <text>i</text>
                     </Identifier>
@@ -188,7 +188,7 @@
                     <type>BOOLEAN</type>
                   </Literal>
                   <Literal sl="17" sc="40" el="17" ec="46">
-                    <text>"Hello"</text>
+                    <text>&quot;Hello&quot;</text>
                     <type>STRING</type>
                   </Literal>
                 </TernaryExpression>

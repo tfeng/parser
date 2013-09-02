@@ -484,7 +484,7 @@
         </ExpressionStatement>
         <ExpressionStatement sl="54" sc="4" el="54" ec="9">
           <InfixExpression sl="54" sc="4" el="54" ec="9">
-            <operator><<</operator>
+            <operator>&lt;&lt;</operator>
             <Literal sl="54" sc="4" el="54" ec="4">
               <text>1</text>
               <type>INTEGER</type>
@@ -497,7 +497,7 @@
         </ExpressionStatement>
         <ExpressionStatement sl="55" sc="4" el="55" ec="10">
           <InfixExpression sl="55" sc="4" el="55" ec="10">
-            <operator>>>></operator>
+            <operator>&gt;&gt;&gt;</operator>
             <Literal sl="55" sc="4" el="55" ec="4">
               <text>1</text>
               <type>INTEGER</type>
@@ -510,7 +510,7 @@
         </ExpressionStatement>
         <ExpressionStatement sl="56" sc="4" el="56" ec="9">
           <InfixExpression sl="56" sc="4" el="56" ec="9">
-            <operator>>></operator>
+            <operator>&gt;&gt;</operator>
             <Literal sl="56" sc="4" el="56" ec="4">
               <text>1</text>
               <type>INTEGER</type>
@@ -523,7 +523,7 @@
         </ExpressionStatement>
         <ExpressionStatement sl="57" sc="4" el="57" ec="9">
           <InfixExpression sl="57" sc="4" el="57" ec="9">
-            <operator><=</operator>
+            <operator>&lt;=</operator>
             <Literal sl="57" sc="4" el="57" ec="4">
               <text>1</text>
               <type>INTEGER</type>
@@ -536,7 +536,7 @@
         </ExpressionStatement>
         <ExpressionStatement sl="58" sc="4" el="58" ec="9">
           <InfixExpression sl="58" sc="4" el="58" ec="9">
-            <operator>>=</operator>
+            <operator>&gt;=</operator>
             <Literal sl="58" sc="4" el="58" ec="4">
               <text>1</text>
               <type>INTEGER</type>
@@ -549,7 +549,7 @@
         </ExpressionStatement>
         <ExpressionStatement sl="59" sc="4" el="59" ec="8">
           <InfixExpression sl="59" sc="4" el="59" ec="8">
-            <operator><</operator>
+            <operator>&lt;</operator>
             <Literal sl="59" sc="4" el="59" ec="4">
               <text>1</text>
               <type>INTEGER</type>
@@ -562,7 +562,7 @@
         </ExpressionStatement>
         <ExpressionStatement sl="60" sc="4" el="60" ec="8">
           <InfixExpression sl="60" sc="4" el="60" ec="8">
-            <operator>></operator>
+            <operator>&gt;</operator>
             <Literal sl="60" sc="4" el="60" ec="4">
               <text>1</text>
               <type>INTEGER</type>
@@ -614,7 +614,7 @@
         </ExpressionStatement>
         <ExpressionStatement sl="64" sc="4" el="64" ec="8">
           <InfixExpression sl="64" sc="4" el="64" ec="8">
-            <operator>&</operator>
+            <operator>&amp;</operator>
             <Literal sl="64" sc="4" el="64" ec="4">
               <text>1</text>
               <type>INTEGER</type>
@@ -653,7 +653,7 @@
         </ExpressionStatement>
         <ExpressionStatement sl="67" sc="4" el="67" ec="9">
           <InfixExpression sl="67" sc="4" el="67" ec="9">
-            <operator>&&</operator>
+            <operator>&amp;&amp;</operator>
             <Literal sl="67" sc="4" el="67" ec="4">
               <text>1</text>
               <type>INTEGER</type>
@@ -760,7 +760,7 @@
         </ExpressionStatement>
         <ExpressionStatement sl="77" sc="4" el="77" ec="9">
           <InfixExpression sl="77" sc="4" el="77" ec="9">
-            <operator>&=</operator>
+            <operator>&amp;=</operator>
             <Literal sl="77" sc="4" el="77" ec="4">
               <text>1</text>
               <type>INTEGER</type>
@@ -799,7 +799,7 @@
         </ExpressionStatement>
         <ExpressionStatement sl="80" sc="4" el="80" ec="10">
           <InfixExpression sl="80" sc="4" el="80" ec="10">
-            <operator>>>=</operator>
+            <operator>&gt;&gt;=</operator>
             <Literal sl="80" sc="4" el="80" ec="4">
               <text>1</text>
               <type>INTEGER</type>
@@ -812,7 +812,7 @@
         </ExpressionStatement>
         <ExpressionStatement sl="81" sc="4" el="81" ec="11">
           <InfixExpression sl="81" sc="4" el="81" ec="11">
-            <operator>>>>=</operator>
+            <operator>&gt;&gt;&gt;=</operator>
             <Literal sl="81" sc="4" el="81" ec="4">
               <text>1</text>
               <type>INTEGER</type>
@@ -825,7 +825,7 @@
         </ExpressionStatement>
         <ExpressionStatement sl="82" sc="4" el="82" ec="10">
           <InfixExpression sl="82" sc="4" el="82" ec="10">
-            <operator><<=</operator>
+            <operator>&lt;&lt;=</operator>
             <Literal sl="82" sc="4" el="82" ec="4">
               <text>1</text>
               <type>INTEGER</type>
