@@ -95,7 +95,7 @@
         </Identifier>
         <Literal sl="11" sc="21" el="11" ec="24">
           <text>null</text>
-          <type>NULL</type>
+          <type>null</type>
         </Literal>
       </VariableDeclaration>
     </FieldDeclaration>
@@ -138,7 +138,7 @@
                 </Identifier>
                 <Literal sl="16" sc="17" el="16" ec="17">
                   <text>0</text>
-                  <type>INTEGER</type>
+                  <type>int</type>
                 </Literal>
               </VariableDeclaration>
             </LocalVariableDeclaration>
@@ -180,16 +180,16 @@
                     </Identifier>
                     <Literal sl="17" sc="29" el="17" ec="29">
                       <text>0</text>
-                      <type>INTEGER</type>
+                      <type>int</type>
                     </Literal>
                   </InfixExpression>
                   <Literal sl="17" sc="33" el="17" ec="36">
                     <text>true</text>
-                    <type>BOOLEAN</type>
+                    <type>boolean</type>
                   </Literal>
                   <Literal sl="17" sc="40" el="17" ec="46">
                     <text>&quot;Hello&quot;</text>
-                    <type>STRING</type>
+                    <type>String</type>
                   </Literal>
                 </TernaryExpression>
               </MethodInvocation>
@@ -244,7 +244,7 @@
                   </MethodInvocation>
                   <Literal sl="21" sc="37" el="21" ec="37">
                     <text>1</text>
-                    <type>INTEGER</type>
+                    <type>int</type>
                   </Literal>
                 </InfixExpression>
               </InfixExpression>

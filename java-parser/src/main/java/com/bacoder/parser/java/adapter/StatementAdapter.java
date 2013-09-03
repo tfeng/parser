@@ -164,15 +164,15 @@ public class StatementAdapter extends JavaAdapter<StatementContext, Statement> {
               if (expressionContext != null) {
                 return getAdapter(ExpressionAdapter.class).adapt(expressionContext);
               }
-            }
 
-            EnumConstantNameContext enumConstantNameContext =
-                getChild(constantExpressionContext, EnumConstantNameContext.class);
-            if (enumConstantNameContext != null) {
-              TerminalNode identifierNode =
-                  getTerminalNode(enumConstantNameContext, JavaParser.Identifier);
-              if (identifierNode != null) {
-                return getAdapter(IdentifierAdapter.class).adapt(identifierNode);
+              EnumConstantNameContext enumConstantNameContext =
+                  getChild(constantExpressionContext, EnumConstantNameContext.class);
+              if (enumConstantNameContext != null) {
+                TerminalNode identifierNode =
+                    getTerminalNode(enumConstantNameContext, JavaParser.Identifier);
+                if (identifierNode != null) {
+                  return getAdapter(IdentifierAdapter.class).adapt(identifierNode);
+                }
               }
             }
 

@@ -49,7 +49,7 @@
         <ExpressionStatement sl="10" sc="4" el="10" ec="4">
           <Literal sl="10" sc="4" el="10" ec="4">
             <text>1</text>
-            <type>INTEGER</type>
+            <type>int</type>
           </Literal>
         </ExpressionStatement>
         <ExpressionStatement sl="11" sc="4" el="11" ec="4">
@@ -76,7 +76,7 @@
           <ThisInvocation sl="15" sc="4" el="15" ec="10">
             <Literal sl="15" sc="9" el="15" ec="9">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </ThisInvocation>
         </ExpressionStatement>
@@ -84,7 +84,7 @@
           <SuperInvocation sl="16" sc="4" el="16" ec="11">
             <Literal sl="16" sc="10" el="16" ec="10">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </SuperInvocation>
         </ExpressionStatement>
@@ -97,7 +97,7 @@
             </Identifier>
             <Literal sl="17" sc="15" el="17" ec="15">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </MethodInvocation>
         </ExpressionStatement>
@@ -108,7 +108,7 @@
             </Identifier>
             <Literal sl="18" sc="9" el="18" ec="9">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </GeneralInvocation>
         </ExpressionStatement>
@@ -125,7 +125,7 @@
             </ClassOrInterfaceType>
             <Literal sl="20" sc="24" el="20" ec="24">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </SuperInvocation>
         </ExpressionStatement>
@@ -141,7 +141,7 @@
             </Identifier>
             <Literal sl="21" sc="29" el="21" ec="29">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </SuperInvocation>
         </ExpressionStatement>
@@ -157,7 +157,7 @@
             </Identifier>
             <Literal sl="22" sc="23" el="22" ec="23">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </MethodInvocation>
         </ExpressionStatement>
@@ -195,7 +195,7 @@
               </TypeWithArguments>
               <Literal sl="26" sc="34" el="26" ec="34">
                 <text>1</text>
-                <type>INTEGER</type>
+                <type>int</type>
               </Literal>
             </ClassInstantiation>
           </ScopedExpression>
@@ -220,7 +220,7 @@
               </TypeWithArguments>
               <Literal sl="27" sc="48" el="27" ec="48">
                 <text>1</text>
-                <type>INTEGER</type>
+                <type>int</type>
               </Literal>
             </ClassInstantiation>
           </ScopedExpression>
@@ -233,7 +233,7 @@
             <SuperInvocation sl="28" sc="17" el="28" ec="24">
               <Literal sl="28" sc="23" el="28" ec="23">
                 <text>1</text>
-                <type>INTEGER</type>
+                <type>int</type>
               </Literal>
             </SuperInvocation>
           </ScopedExpression>
@@ -254,7 +254,7 @@
               </Identifier>
               <Literal sl="29" sc="36" el="29" ec="36">
                 <text>1</text>
-                <type>INTEGER</type>
+                <type>int</type>
               </Literal>
             </MethodInvocation>
           </ScopedExpression>
@@ -263,11 +263,11 @@
           <ArrayAccess sl="31" sc="4" el="31" ec="7">
             <Literal sl="31" sc="4" el="31" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="31" sc="6" el="31" ec="6">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </ArrayAccess>
         </ExpressionStatement>
@@ -278,15 +278,15 @@
             </Identifier>
             <Literal sl="32" sc="9" el="32" ec="9">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="32" sc="12" el="32" ec="12">
               <text>2</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="32" sc="15" el="32" ec="15">
               <text>3</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </GeneralInvocation>
         </ExpressionStatement>
@@ -301,15 +301,15 @@
             </TypeWithArguments>
             <Literal sl="33" sc="21" el="33" ec="21">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="33" sc="24" el="33" ec="24">
               <text>2</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="33" sc="27" el="33" ec="27">
               <text>3</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <FieldDeclaration sl="34" sc="14" el="34" ec="19">
               <PrimitiveType sl="34" sc="14" el="34" ec="16">
@@ -341,7 +341,7 @@
             </ClassOrInterfaceType>
             <Literal sl="38" sc="19" el="38" ec="19">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </TypeCast>
         </ExpressionStatement>
@@ -350,7 +350,7 @@
             <operator>++</operator>
             <Literal sl="40" sc="4" el="40" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </PostfixExpression>
         </ExpressionStatement>
@@ -359,7 +359,7 @@
             <operator>--</operator>
             <Literal sl="41" sc="4" el="41" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </PostfixExpression>
         </ExpressionStatement>
@@ -368,7 +368,7 @@
             <operator>+</operator>
             <Literal sl="42" sc="5" el="42" ec="5">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </PrefixExpression>
         </ExpressionStatement>
@@ -377,7 +377,7 @@
             <operator>-</operator>
             <Literal sl="43" sc="5" el="43" ec="5">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </PrefixExpression>
         </ExpressionStatement>
@@ -386,7 +386,7 @@
             <operator>++</operator>
             <Literal sl="44" sc="6" el="44" ec="6">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </PrefixExpression>
         </ExpressionStatement>
@@ -395,7 +395,7 @@
             <operator>--</operator>
             <Literal sl="45" sc="6" el="45" ec="6">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </PrefixExpression>
         </ExpressionStatement>
@@ -404,7 +404,7 @@
             <operator>~</operator>
             <Literal sl="46" sc="5" el="46" ec="5">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </PrefixExpression>
         </ExpressionStatement>
@@ -413,7 +413,7 @@
             <operator>!</operator>
             <Literal sl="47" sc="5" el="47" ec="5">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </PrefixExpression>
         </ExpressionStatement>
@@ -422,11 +422,11 @@
             <operator>*</operator>
             <Literal sl="49" sc="4" el="49" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="49" sc="8" el="49" ec="8">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </InfixExpression>
         </ExpressionStatement>
@@ -435,11 +435,11 @@
             <operator>/</operator>
             <Literal sl="50" sc="4" el="50" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="50" sc="8" el="50" ec="8">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </InfixExpression>
         </ExpressionStatement>
@@ -448,11 +448,11 @@
             <operator>%</operator>
             <Literal sl="51" sc="4" el="51" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="51" sc="8" el="51" ec="8">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </InfixExpression>
         </ExpressionStatement>
@@ -461,11 +461,11 @@
             <operator>+</operator>
             <Literal sl="52" sc="4" el="52" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="52" sc="8" el="52" ec="8">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </InfixExpression>
         </ExpressionStatement>
@@ -474,11 +474,11 @@
             <operator>-</operator>
             <Literal sl="53" sc="4" el="53" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="53" sc="8" el="53" ec="8">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </InfixExpression>
         </ExpressionStatement>
@@ -487,11 +487,11 @@
             <operator>&lt;&lt;</operator>
             <Literal sl="54" sc="4" el="54" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="54" sc="9" el="54" ec="9">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </InfixExpression>
         </ExpressionStatement>
@@ -500,11 +500,11 @@
             <operator>&gt;&gt;&gt;</operator>
             <Literal sl="55" sc="4" el="55" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="55" sc="10" el="55" ec="10">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </InfixExpression>
         </ExpressionStatement>
@@ -513,11 +513,11 @@
             <operator>&gt;&gt;</operator>
             <Literal sl="56" sc="4" el="56" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="56" sc="9" el="56" ec="9">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </InfixExpression>
         </ExpressionStatement>
@@ -526,11 +526,11 @@
             <operator>&lt;=</operator>
             <Literal sl="57" sc="4" el="57" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="57" sc="9" el="57" ec="9">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </InfixExpression>
         </ExpressionStatement>
@@ -539,11 +539,11 @@
             <operator>&gt;=</operator>
             <Literal sl="58" sc="4" el="58" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="58" sc="9" el="58" ec="9">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </InfixExpression>
         </ExpressionStatement>
@@ -552,11 +552,11 @@
             <operator>&lt;</operator>
             <Literal sl="59" sc="4" el="59" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="59" sc="8" el="59" ec="8">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </InfixExpression>
         </ExpressionStatement>
@@ -565,11 +565,11 @@
             <operator>&gt;</operator>
             <Literal sl="60" sc="4" el="60" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="60" sc="8" el="60" ec="8">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </InfixExpression>
         </ExpressionStatement>
@@ -577,7 +577,7 @@
           <InstanceOf sl="61" sc="4" el="61" ec="28">
             <Literal sl="61" sc="4" el="61" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <ClassOrInterfaceType sl="61" sc="17" el="61" ec="28">
               <Identifier sl="61" sc="17" el="61" ec="28">
@@ -591,11 +591,11 @@
             <operator>==</operator>
             <Literal sl="62" sc="4" el="62" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="62" sc="9" el="62" ec="9">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </InfixExpression>
         </ExpressionStatement>
@@ -604,11 +604,11 @@
             <operator>!=</operator>
             <Literal sl="63" sc="4" el="63" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="63" sc="9" el="63" ec="9">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </InfixExpression>
         </ExpressionStatement>
@@ -617,11 +617,11 @@
             <operator>&amp;</operator>
             <Literal sl="64" sc="4" el="64" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="64" sc="8" el="64" ec="8">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </InfixExpression>
         </ExpressionStatement>
@@ -630,11 +630,11 @@
             <operator>^</operator>
             <Literal sl="65" sc="4" el="65" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="65" sc="8" el="65" ec="8">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </InfixExpression>
         </ExpressionStatement>
@@ -643,11 +643,11 @@
             <operator>|</operator>
             <Literal sl="66" sc="4" el="66" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="66" sc="8" el="66" ec="8">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </InfixExpression>
         </ExpressionStatement>
@@ -656,11 +656,11 @@
             <operator>&amp;&amp;</operator>
             <Literal sl="67" sc="4" el="67" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="67" sc="9" el="67" ec="9">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </InfixExpression>
         </ExpressionStatement>
@@ -669,11 +669,11 @@
             <operator>||</operator>
             <Literal sl="68" sc="4" el="68" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="68" sc="9" el="68" ec="9">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </InfixExpression>
         </ExpressionStatement>
@@ -681,15 +681,15 @@
           <TernaryExpression sl="70" sc="4" el="70" ec="15">
             <Literal sl="70" sc="4" el="70" ec="7">
               <text>true</text>
-              <type>BOOLEAN</type>
+              <type>boolean</type>
             </Literal>
             <Literal sl="70" sc="11" el="70" ec="11">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="70" sc="15" el="70" ec="15">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </TernaryExpression>
         </ExpressionStatement>
@@ -698,11 +698,11 @@
             <operator>=</operator>
             <Literal sl="72" sc="4" el="72" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="72" sc="8" el="72" ec="8">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </InfixExpression>
         </ExpressionStatement>
@@ -711,11 +711,11 @@
             <operator>+=</operator>
             <Literal sl="73" sc="4" el="73" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="73" sc="9" el="73" ec="9">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </InfixExpression>
         </ExpressionStatement>
@@ -724,11 +724,11 @@
             <operator>-=</operator>
             <Literal sl="74" sc="4" el="74" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="74" sc="9" el="74" ec="9">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </InfixExpression>
         </ExpressionStatement>
@@ -737,11 +737,11 @@
             <operator>*=</operator>
             <Literal sl="75" sc="4" el="75" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="75" sc="9" el="75" ec="9">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </InfixExpression>
         </ExpressionStatement>
@@ -750,11 +750,11 @@
             <operator>/=</operator>
             <Literal sl="76" sc="4" el="76" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="76" sc="9" el="76" ec="9">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </InfixExpression>
         </ExpressionStatement>
@@ -763,11 +763,11 @@
             <operator>&amp;=</operator>
             <Literal sl="77" sc="4" el="77" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="77" sc="9" el="77" ec="9">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </InfixExpression>
         </ExpressionStatement>
@@ -776,11 +776,11 @@
             <operator>|=</operator>
             <Literal sl="78" sc="4" el="78" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="78" sc="9" el="78" ec="9">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </InfixExpression>
         </ExpressionStatement>
@@ -789,11 +789,11 @@
             <operator>^=</operator>
             <Literal sl="79" sc="4" el="79" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="79" sc="9" el="79" ec="9">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </InfixExpression>
         </ExpressionStatement>
@@ -802,11 +802,11 @@
             <operator>&gt;&gt;=</operator>
             <Literal sl="80" sc="4" el="80" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="80" sc="10" el="80" ec="10">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </InfixExpression>
         </ExpressionStatement>
@@ -815,11 +815,11 @@
             <operator>&gt;&gt;&gt;=</operator>
             <Literal sl="81" sc="4" el="81" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="81" sc="11" el="81" ec="11">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </InfixExpression>
         </ExpressionStatement>
@@ -828,11 +828,11 @@
             <operator>&lt;&lt;=</operator>
             <Literal sl="82" sc="4" el="82" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="82" sc="10" el="82" ec="10">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </InfixExpression>
         </ExpressionStatement>
@@ -841,11 +841,11 @@
             <operator>%=</operator>
             <Literal sl="83" sc="4" el="83" ec="4">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
             <Literal sl="83" sc="9" el="83" ec="9">
               <text>1</text>
-              <type>INTEGER</type>
+              <type>int</type>
             </Literal>
           </InfixExpression>
         </ExpressionStatement>

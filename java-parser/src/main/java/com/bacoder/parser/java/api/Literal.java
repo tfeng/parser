@@ -20,12 +20,23 @@ import com.bacoder.parser.core.Visitors;
 public class Literal extends JavaNode implements Expression {
 
   public static enum Type {
-    BOOLEAN,
-    CHARACTER,
-    FLOATING_POINT,
-    INTEGER,
-    NULL,
-    STRING
+    BOOLEAN("boolean"),
+    CHARACTER("char"),
+    FLOATING_POINT("float"),
+    INTEGER("int"),
+    NULL("null"),
+    STRING("String");
+
+    private String name;
+
+    private Type(String name) {
+      this.name = name;
+    }
+
+    @Override
+    public String toString() {
+      return name;
+    }
   }
 
   private String text;

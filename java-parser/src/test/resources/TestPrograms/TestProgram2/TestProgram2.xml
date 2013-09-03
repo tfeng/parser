@@ -104,29 +104,29 @@
                 <ArrayInitializer sl="17" sc="6" el="17" ec="12">
                   <Literal sl="17" sc="7" el="17" ec="7">
                     <text>0</text>
-                    <type>INTEGER</type>
+                    <type>int</type>
                   </Literal>
                   <Literal sl="17" sc="9" el="17" ec="9">
                     <text>1</text>
-                    <type>INTEGER</type>
+                    <type>int</type>
                   </Literal>
                   <Literal sl="17" sc="11" el="17" ec="11">
                     <text>2</text>
-                    <type>INTEGER</type>
+                    <type>int</type>
                   </Literal>
                 </ArrayInitializer>
                 <ArrayInitializer sl="17" sc="15" el="17" ec="21">
                   <Literal sl="17" sc="16" el="17" ec="16">
                     <text>3</text>
-                    <type>INTEGER</type>
+                    <type>int</type>
                   </Literal>
                   <Literal sl="17" sc="18" el="17" ec="18">
                     <text>4</text>
-                    <type>INTEGER</type>
+                    <type>int</type>
                   </Literal>
                   <Literal sl="17" sc="20" el="17" ec="20">
                     <text>5</text>
-                    <type>INTEGER</type>
+                    <type>int</type>
                   </Literal>
                 </ArrayInitializer>
               </ArrayInitializer>
