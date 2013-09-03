@@ -20,6 +20,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.BailErrorStrategy;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -33,7 +34,7 @@ import com.bacoder.parser.javaproperties.api.KeyValue;
 import com.bacoder.parser.javaproperties.api.Properties;
 
 @Test
-public class TestJavaPropertiesParser {
+public class TestSimpleProperties {
 
   public void testColons() {
     String input = "# Comment: colon\nkey1:value1\nkey2 :value2\nkey3: value3\nkey4 : value4\nkey5:value5:";
@@ -112,10 +113,29 @@ public class TestJavaPropertiesParser {
     verify(properties, input);
   }
 
+  public void testEmptyLines() {
+    String input = "\n\n\r\n";
+    Properties properties = parse(input);
+    verify(properties, input);
+  }
+
+  public void testPoundSigns() {
+    String input = "property#1 = value1\n  property\\#2 = value#2";
+    Properties properties = parse(input);
+    verify(properties, input);
+  }
+
+  public void testLineReturns() {
+    String input = "property\\\n1 = value\\\n1\nproperty\\\n2 = value\\\n  2\nproperty\\\n  3 = value\\\n  3";
+    Properties properties = parse(input);
+    verify(properties, input);
+  }
+
   private JavaPropertiesParser getParser(String input) {
     JavaPropertiesLexer lexer = new JavaPropertiesLexer(new ANTLRInputStream(input));
     CommonTokenStream tokenStream = new CommonTokenStream(lexer);
     JavaPropertiesParser parser = new JavaPropertiesParser(tokenStream);
+    parser.setErrorHandler(new BailErrorStrategy());
     return parser;
   }
 
@@ -140,10 +160,13 @@ public class TestJavaPropertiesParser {
     for (KeyValue keyValue : properties.getKeyValues()) {
       String key = keyValue.getKey().getSanitizedText();
       Assert.assertTrue(expected.containsKey(key),
-          "Key does not exist in expected Java properties");
+          String.format("Key \"%s\" does not exist in expected Java properties", key));
       String value = keyValue.getValue().getSanitizedText();
       Assert.assertEquals(value, expected.get(key),
-          "Value does not match expected Java property value");
+          String.format("Value \"%s\" does not match expected Java property value \"%s\"", value,
+              expected.get(key)));
     }
+
+    Assert.assertEquals(properties.getKeyValues().size(), expected.size());
   }
 }

@@ -62,25 +62,37 @@ public class DumpVisitor implements Visitor<Node> {
     try {
       outputStream.write(tag.getBytes());
 
-      Field [] fields =  node.getClass().getDeclaredFields();
-      for (Field field : fields) {
-        if (field.getType().isPrimitive()
-            || field.getType().isEnum()
-            || String.class.isAssignableFrom(field.getType())) {
-          String propertyName = field.getName();
-          Object value;
-          try {
-            value = PropertyUtils.getSimpleProperty(node, propertyName);
-            String property = String.format("%s<%s>%s</%s>\n", Strings.repeat(indent, level + 1),
-                propertyName, value == null ? "" : StringEscapeUtils.escapeXml(value.toString()),
-                propertyName);
+      Class<? extends Node> clazz = node.getClass();
+      if (clazz.getAnnotation(DumpTextWithToString.class) != null) {
+        String property = String.format("%s<text>%s</text>\n", Strings.repeat(indent, level + 1),
+            node.toString());
+        try {
+          outputStream.write(property.getBytes());
+        } catch (IOException e) {
+          throw new RuntimeException("Unable to write \'" + property + "\'", e);
+        }
+      } else {
+        Field [] fields =  node.getClass().getDeclaredFields();
+        for (Field field : fields) {
+          Class<?> type = field.getType();
+          if (type.isPrimitive()
+              || type.isEnum()
+              || String.class.isAssignableFrom(type)) {
+            String propertyName = field.getName();
+            Object value;
             try {
-              outputStream.write(property.getBytes());
-            } catch (IOException e) {
-              throw new RuntimeException("Unable to write \'" + property + "\'", e);
+              value = PropertyUtils.getSimpleProperty(node, propertyName);
+              String property = String.format("%s<%s>%s</%s>\n", Strings.repeat(indent, level + 1),
+                  propertyName, value == null ? "" : StringEscapeUtils.escapeXml(value.toString()),
+                  propertyName);
+              try {
+                outputStream.write(property.getBytes());
+              } catch (IOException e) {
+                throw new RuntimeException("Unable to write \'" + property + "\'", e);
+              }
+            } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+              // Ignore the field.
             }
-          } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-            // Ignore the field.
           }
         }
       }

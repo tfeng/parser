@@ -15,12 +15,26 @@
  */
 package com.bacoder.parser.testutil;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileFilter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.testng.Assert;
 
 import com.bacoder.parser.core.Adapter;
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.core.DumpVisitors;
 import com.bacoder.parser.core.Node;
+import com.bacoder.parser.core.Pair;
 
 public abstract class BaseTest {
 
@@ -51,6 +65,27 @@ public abstract class BaseTest {
     Assert.assertEquals(node.getEndColumn(), endColumn);
   }
 
+  protected List<Pair<File, File>> findTestCases(String testRootPath,
+      final String sourceExtension) {
+    URL rootUrl = getClass().getClassLoader().getResource(testRootPath);
+    File root = new File(rootUrl.getFile());
+    final List<Pair<File, File>> testCases = new ArrayList<Pair<File, File>>();
+    root.listFiles(new FileFilter() {
+      @Override
+      public boolean accept(File file) {
+        if (file.isDirectory()) {
+          File javaFile = new File(file, file.getName() + "." + sourceExtension);
+          File xmlFile = new File(file, file.getName() + ".xml");
+          if (javaFile.canRead() && xmlFile.canRead()) {
+            testCases.add(new Pair<File, File>(javaFile, xmlFile));
+          }
+        }
+        return false;
+      }
+    });
+    return testCases;
+  }
+
   protected <A extends Adapter<? extends ParseTree, ?>> A getAdapter(Class<A> clazz) {
     try {
       return clazz.getConstructor(Adapters.class).newInstance(getAdapters());
@@ -60,6 +95,24 @@ public abstract class BaseTest {
   }
 
   protected abstract Adapters getAdapters();
+
+  protected void verifyAST(Node node, File xmlFile)
+      throws FileNotFoundException, UnsupportedEncodingException {
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    node.visit(new DumpVisitors(outputStream));
+    String actual = outputStream.toString("UTF-8").trim();
+
+    InputStream inputStream = new FileInputStream(xmlFile);
+    Scanner scanner = new Scanner(inputStream, "UTF-8");
+    String expected = "";
+    try {
+      expected = scanner.useDelimiter("\\Z").next().trim();
+    } finally {
+      scanner.close();
+    }
+
+    Assert.assertEquals(actual, expected);
+  }
 
   private int countLines(String input) {
     return input.length() - input.replace("\n", "").length() + 1;

@@ -15,17 +15,25 @@
  */
 package com.bacoder.parser.java.test;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
 import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.BailErrorStrategy;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.testng.Assert;
 
 import com.bacoder.parser.core.Adapters;
+import com.bacoder.parser.java.JavaLexer;
+import com.bacoder.parser.java.JavaParser;
+import com.bacoder.parser.java.adapter.CompilationUnitAdapter;
 import com.bacoder.parser.java.adapter.JavaAdapters;
+import com.bacoder.parser.java.api.CompilationUnit;
 import com.bacoder.parser.java.api.NodeWithModifiers;
 import com.bacoder.parser.java.api.QualifiedName;
 import com.bacoder.parser.testutil.BaseTest;
-import com.bacoder.parser.java.JavaLexer;
-import com.bacoder.parser.java.JavaParser;
 
 public abstract class JavaBaseTest extends BaseTest {
 
@@ -61,6 +69,20 @@ public abstract class JavaBaseTest extends BaseTest {
     JavaLexer lexer = new JavaLexer(new ANTLRInputStream(input));
     CommonTokenStream tokenStream = new CommonTokenStream(lexer);
     JavaParser parser = new JavaParser(tokenStream);
+    parser.setErrorHandler(new BailErrorStrategy());
     return parser;
+  }
+
+  protected CompilationUnit getProgram(File programFile) throws IOException {
+    InputStream inputStream = new FileInputStream(programFile);
+    try {
+      JavaLexer lexer = new JavaLexer(new ANTLRInputStream(inputStream));
+      CommonTokenStream tokenStream = new CommonTokenStream(lexer);
+      JavaParser parser = new JavaParser(tokenStream);
+      parser.setErrorHandler(new BailErrorStrategy());
+      return getAdapter(CompilationUnitAdapter.class).adapt(parser.compilationUnit());
+    } finally {
+      inputStream.close();
+    }
   }
 }

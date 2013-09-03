@@ -1,0 +1,42 @@
+<Properties sl="1" sc="0" el="20" ec="1">
+  <Comment sl="1" sc="0" el="1" ec="0">
+  </Comment>
+  <Comment sl="2" sc="0" el="2" ec="58">
+  </Comment>
+  <Comment sl="3" sc="0" el="3" ec="0">
+  </Comment>
+  <Comment sl="4" sc="0" el="4" ec="64">
+  </Comment>
+  <Comment sl="5" sc="0" el="5" ec="65">
+  </Comment>
+  <Comment sl="6" sc="0" el="6" ec="40">
+  </Comment>
+  <Comment sl="7" sc="0" el="7" ec="0">
+  </Comment>
+  <Comment sl="8" sc="0" el="8" ec="47">
+  </Comment>
+  <Comment sl="9" sc="0" el="9" ec="0">
+  </Comment>
+  <Comment sl="10" sc="0" el="10" ec="68">
+  </Comment>
+  <Comment sl="11" sc="0" el="11" ec="66">
+  </Comment>
+  <Comment sl="12" sc="0" el="12" ec="73">
+  </Comment>
+  <Comment sl="13" sc="0" el="13" ec="68">
+  </Comment>
+  <Comment sl="14" sc="0" el="14" ec="31">
+  </Comment>
+  <Comment sl="15" sc="0" el="15" ec="0">
+  </Comment>
+  <Comment sl="17" sc="0" el="17" ec="20">
+  </Comment>
+  <KeyValue sl="18" sc="0" el="20" ec="1">
+    <Key sl="18" sc="0" el="19" ec="1">
+      <text>property.2</text>
+    </Key>
+    <Value sl="19" sc="5" el="20" ec="1">
+      <text>value.2</text>
+    </Value>
+  </KeyValue>
+</Properties>

@@ -1,0 +1,28 @@
+<Properties sl="1" sc="0" el="8" ec="54">
+  <Comment sl="1" sc="0" el="1" ec="0">
+  </Comment>
+  <Comment sl="2" sc="0" el="2" ec="14">
+  </Comment>
+  <Comment sl="3" sc="0" el="3" ec="0">
+  </Comment>
+  <Comment sl="4" sc="0" el="4" ec="19">
+  </Comment>
+  <Comment sl="5" sc="0" el="5" ec="0">
+  </Comment>
+  <KeyValue sl="7" sc="0" el="7" ec="42">
+    <Key sl="7" sc="0" el="7" ec="14">
+      <text>my.properties.1</text>
+    </Key>
+    <Value sl="7" sc="18" el="7" ec="42">
+      <text>This is {0}'s properties.</text>
+    </Value>
+  </KeyValue>
+  <KeyValue sl="8" sc="0" el="8" ec="53">
+    <Key sl="8" sc="0" el="8" ec="14">
+      <text>my.properties.2</text>
+    </Key>
+    <Value sl="8" sc="18" el="8" ec="53">
+      <text>This is {0}'s properties number {1}.</text>
+    </Value>
+  </KeyValue>
+</Properties>

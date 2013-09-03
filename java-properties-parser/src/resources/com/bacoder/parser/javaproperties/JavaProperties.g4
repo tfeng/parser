@@ -11,32 +11,39 @@ line
   ;
 
 keyValue
-  :  key (Space Space* (Colon | Equals)? Space* | Colon Space* | Equals Space*) value
+  :  key (Space+ (Colon | Equals)? Space* | Colon Space* | Equals Space*) value
   ;
 
 comment
-  : Comment
+  :  CommentChar valueChar*
   ;
 
 lineBreak
-  : LineBreak
+  :  LineBreak
   ;
 
 key
-  :  keyChar+
+  :  keyCharFirst keyChar+
+  ;
+
+keyCharFirst
+  :  AnyChar
+  |  Backslash (Colon | Equals | Space | LineBreak Space*)?
   ;
 
 keyChar
   :  AnyChar
-  |  Backslash (Colon | Equals | Space | LineBreak)?
+  |  CommentChar
+  |  Backslash (Colon | Equals | Space | LineBreak Space*)?
   ;
 
 value
-  : valueChar*
+  :  valueChar*
   ;
 
 valueChar
-  :  AnyChar 
+  :  AnyChar
+  |  CommentChar
   |  Unicode
   |  Backslash (Space | LineBreak)?
   |  Colon
@@ -50,17 +57,27 @@ eol
   ;
 
 AnyChar
-  :  ~(':' | '\\' | '=' | ' ' | '\t' | '\f' | '\r' | '\n')
+  :  ~[:\\= \t\f\r\n!#]
   ;
 
-Unicode : '\\u' [0-9]+;
+Unicode
+  :  '\\u' [0-9]+
+  ;
 
-Backslash : '\\';
-Colon     : ':';
-Equals    : '=';
+Backslash
+  :  '\\'
+  ;
 
-Comment
-  :  ('!' | '#') ~('\r' | '\n')*
+Colon
+  :  ':'
+  ;
+
+Equals
+  :  '='
+  ;
+
+CommentChar
+  :  [!#]
   ;
 
 LineBreak
@@ -69,7 +86,5 @@ LineBreak
   ;
 
 Space
-  :  ' ' 
-  |  '\t' 
-  |  '\f'
+  :  [ \t\f]
   ;

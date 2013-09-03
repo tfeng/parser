@@ -18,11 +18,11 @@ package com.bacoder.parser.javaproperties.api;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.bacoder.parser.core.DumpTextWithToString;
 import com.bacoder.parser.core.TextNode;
 
+@DumpTextWithToString
 public abstract class KeyOrValueNode extends TextNode {
-
-  private static final Pattern UNICODE_PATTERN = Pattern.compile("\\\\u([0-9]{4})");
 
   private static final String[][] SPECIAL_CHAR_MAP = {
     {"\\ ", " "},
@@ -30,10 +30,13 @@ public abstract class KeyOrValueNode extends TextNode {
     {"\\\f", "\f"},
     {"\\\r", "\r"},
     {"\\\n", "\n"},
-    {"\n", ""},
-    {"\r\n", ""},
-    {"\r", ""}
+    {"\\!", "!"},
+    {"\\#", "#"}
   };
+
+  private static final Pattern NEW_LINE_PATTERN = Pattern.compile("(\\n|\\r\\n|\\r)\\s*");
+
+  private static final Pattern UNICODE_PATTERN = Pattern.compile("\\\\u([0-9]{4})");
 
   public String getSanitizedText() {
     String result = getText();
@@ -41,7 +44,12 @@ public abstract class KeyOrValueNode extends TextNode {
       result = result.replace(part[0], part[1]);
     }
 
-    Matcher matcher = UNICODE_PATTERN.matcher(result);
+    Matcher matcher = NEW_LINE_PATTERN.matcher(result);
+    if (matcher.find()) {
+      result = matcher.replaceAll("");
+    }
+
+    matcher = UNICODE_PATTERN.matcher(result);
     if (matcher.find()) {
       StringBuffer buffer = new StringBuffer();
       do {
@@ -53,5 +61,10 @@ public abstract class KeyOrValueNode extends TextNode {
     }
 
     return result;
+  }
+
+  @Override
+  public String toString() {
+    return getSanitizedText();
   }
 }
