@@ -30,6 +30,7 @@ public abstract class KeyOrValueNode extends TextNode {
     {"\\\f", "\f"},
     {"\\\r", "\r"},
     {"\\\n", "\n"},
+    {"\\\"", "\""},
     {"\\!", "!"},
     {"\\#", "#"}
   };

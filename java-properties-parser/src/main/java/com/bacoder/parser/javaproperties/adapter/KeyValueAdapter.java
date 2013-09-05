@@ -21,6 +21,7 @@ import com.bacoder.parser.javaproperties.JavaPropertiesParser.KeyContext;
 import com.bacoder.parser.javaproperties.JavaPropertiesParser.KeyValueContext;
 import com.bacoder.parser.javaproperties.JavaPropertiesParser.ValueContext;
 import com.bacoder.parser.javaproperties.api.KeyValue;
+import com.bacoder.parser.javaproperties.api.Value;
 
 public class KeyValueAdapter extends Adapter<KeyValueContext, KeyValue> {
 
@@ -31,11 +32,24 @@ public class KeyValueAdapter extends Adapter<KeyValueContext, KeyValue> {
   @Override
   public KeyValue adapt(KeyValueContext context) {
     KeyContext keyContext = getChild(context, KeyContext.class);
-    ValueContext valueContext = getChild(context, ValueContext.class);
-    if (keyContext != null && valueContext != null) {
+    if (keyContext != null) {
       KeyValue keyValue = createNode(context);
       keyValue.setKey(getAdapter(KeyAdapter.class).adapt(keyContext));
-      keyValue.setValue(getAdapter(ValueAdapter.class).adapt(valueContext));
+      ValueContext valueContext = getChild(context, ValueContext.class);
+      if (valueContext == null) {
+        Value value = createNode(context, Value.class);
+        int endLine = context.getStop().getLine();
+        int endColumn =
+            context.getStop().getCharPositionInLine() + context.getStop().getText().length() - 1;
+        value.setStartLine(endLine);
+        value.setStartColumn(endColumn);
+        value.setEndLine(endLine);
+        value.setEndColumn(endColumn - 1);
+        value.setText("");
+        keyValue.setValue(value);
+      } else {
+        keyValue.setValue(getAdapter(ValueAdapter.class).adapt(valueContext));
+      }
       return keyValue;
     } else {
       return null;

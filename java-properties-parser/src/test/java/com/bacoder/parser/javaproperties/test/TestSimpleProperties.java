@@ -126,7 +126,7 @@ public class TestSimpleProperties {
   }
 
   public void testLineReturns() {
-    String input = "property\\\n1 = value\\\n1\nproperty\\\n2 = value\\\n  2\nproperty\\\n  3 = value\\\n  3";
+    String input = "property\\\n1 = value\\\n1\nproperty\\\n2 = value\\\n  2\nproperty\\\n  3 = value\\\n  3\nproperty4 = value\n   4";
     Properties properties = parse(input);
     verify(properties, input);
   }

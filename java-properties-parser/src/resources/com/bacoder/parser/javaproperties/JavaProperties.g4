@@ -11,7 +11,7 @@ line
   ;
 
 keyValue
-  :  key (Space+ (Colon | Equals)? Space* | Colon Space* | Equals Space*) value
+  :  key ((Space+ (Colon | Equals)? Space* | Colon Space* | Equals Space*) value)?
   ;
 
 comment
@@ -23,7 +23,7 @@ lineBreak
   ;
 
 key
-  :  keyCharFirst keyChar+
+  :  keyCharFirst keyChar*
   ;
 
 keyCharFirst
