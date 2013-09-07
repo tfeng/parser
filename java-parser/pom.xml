@@ -81,8 +81,9 @@
         <artifactId>antlr4-maven-plugin</artifactId>
         <configuration>
           <sourceDirectory>src/resources</sourceDirectory>
-          <listener>true</listener>
-          <visitor>true</visitor>
+          <listener>false</listener>
+          <visitor>false</visitor>
+          <force-atn>true</force-atn>
         </configuration>
         <executions>
           <execution>

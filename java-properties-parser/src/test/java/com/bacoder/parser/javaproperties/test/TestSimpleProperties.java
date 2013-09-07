@@ -39,7 +39,7 @@ public class TestSimpleProperties {
   public void testColons() {
     String input = "# Comment: colon\nkey1:value1\nkey2 :value2\nkey3: value3\nkey4 : value4\nkey5:value5:";
     Properties properties = parse(input);
-
+    System.gc();
     verify(properties, input);
 
     Assert.assertEquals(properties.getComments().size(), 1);
@@ -48,6 +48,12 @@ public class TestSimpleProperties {
     Assert.assertEquals(properties.getComments().get(0).getStartColumn(), 0);
     Assert.assertEquals(properties.getComments().get(0).getEndLine(), 1);
     Assert.assertEquals(properties.getComments().get(0).getEndColumn(), "# Comment: colon".length() - 1);
+  }
+
+  public void testEmptyLines() {
+    String input = "\n\n\r\n";
+    Properties properties = parse(input);
+    verify(properties, input);
   }
 
   public void testEquals() {
@@ -92,6 +98,18 @@ public class TestSimpleProperties {
     Assert.assertEquals(properties.getComments().get(0).getEndColumn(), "#\tComment".length() + 1);
   }
 
+  public void testLineReturns() {
+    String input = "property\\\n1 = value\\\n1\nproperty\\\n2 = value\\\n  2\nproperty\\\n  3 = value\\\n  3\nproperty4 = value\n   4\nproperty5 = value\\n5property\\n6 = value\\n\\n6";
+    Properties properties = parse(input);
+    verify(properties, input);
+  }
+
+  public void testPoundSigns() {
+    String input = "property#1 = value1\n  property\\#2 = value#2";
+    Properties properties = parse(input);
+    verify(properties, input);
+  }
+
   public void testSpaces() {
     String input = "key1 value1\nkey2  value2\nkey3\tvalue3\nkey4\t value4\n";
     Properties properties = parse(input);
@@ -109,24 +127,6 @@ public class TestSimpleProperties {
 
   public void testUnicode() {
     String input = "键1 = 值1\n键\\\t2 = 值2\n键\\\t3 = 值3\t 完 \nkey4 = val\\u1234ue4";
-    Properties properties = parse(input);
-    verify(properties, input);
-  }
-
-  public void testEmptyLines() {
-    String input = "\n\n\r\n";
-    Properties properties = parse(input);
-    verify(properties, input);
-  }
-
-  public void testPoundSigns() {
-    String input = "property#1 = value1\n  property\\#2 = value#2";
-    Properties properties = parse(input);
-    verify(properties, input);
-  }
-
-  public void testLineReturns() {
-    String input = "property\\\n1 = value\\\n1\nproperty\\\n2 = value\\\n  2\nproperty\\\n  3 = value\\\n  3\nproperty4 = value\n   4";
     Properties properties = parse(input);
     verify(properties, input);
   }

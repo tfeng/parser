@@ -22,12 +22,18 @@ import java.io.InputStream;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.BailErrorStrategy;
+import org.antlr.v4.runtime.CommonTokenFactory;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.UnbufferedCharStream;
+import org.antlr.v4.runtime.UnbufferedTokenStream;
+import org.antlr.v4.runtime.atn.PredictionMode;
 import org.testng.Assert;
 
 import com.bacoder.parser.core.Adapters;
 import com.bacoder.parser.java.JavaLexer;
 import com.bacoder.parser.java.JavaParser;
+import com.bacoder.parser.java.JavaParser.CompilationUnitContext;
 import com.bacoder.parser.java.adapter.CompilationUnitAdapter;
 import com.bacoder.parser.java.adapter.JavaAdapters;
 import com.bacoder.parser.java.api.CompilationUnit;
@@ -70,17 +76,23 @@ public abstract class JavaBaseTest extends BaseTest {
     CommonTokenStream tokenStream = new CommonTokenStream(lexer);
     JavaParser parser = new JavaParser(tokenStream);
     parser.setErrorHandler(new BailErrorStrategy());
+    parser.getInterpreter().setPredictionMode(PredictionMode.SLL);
     return parser;
   }
 
-  protected CompilationUnit getProgram(File programFile) throws IOException {
+  protected CompilationUnit getProgram(final File programFile) throws IOException {
     InputStream inputStream = new FileInputStream(programFile);
     try {
-      JavaLexer lexer = new JavaLexer(new ANTLRInputStream(inputStream));
-      CommonTokenStream tokenStream = new CommonTokenStream(lexer);
+      JavaLexer lexer = new JavaLexer(new UnbufferedCharStream(inputStream));
+      lexer.setTokenFactory(new CommonTokenFactory(true));
+      UnbufferedTokenStream<Token> tokenStream = new UnbufferedTokenStream<Token>(lexer);
       JavaParser parser = new JavaParser(tokenStream);
       parser.setErrorHandler(new BailErrorStrategy());
-      return getAdapter(CompilationUnitAdapter.class).adapt(parser.compilationUnit());
+      parser.getInterpreter().setPredictionMode(PredictionMode.SLL);
+
+      CompilationUnitContext compilationUnit = parser.compilationUnit();
+
+      return getAdapter(CompilationUnitAdapter.class).adapt(compilationUnit);
     } finally {
       inputStream.close();
     }

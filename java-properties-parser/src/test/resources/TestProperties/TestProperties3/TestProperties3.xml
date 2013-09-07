@@ -1,0 +1,18 @@
+<Properties sl="1" sc="0" el="3" ec="26">
+  <KeyValue sl="1" sc="0" el="2" ec="63">
+    <Key sl="1" sc="0" el="1" ec="6">
+      <text>escaped</text>
+    </Key>
+    <Value sl="1" sc="10" el="2" ec="63">
+      <text>These characters are escaped: \t  \n  \f  \r  \"  \''  \\  \w  \W  \s  \S  \v  \V  \h  \H  \d  \D  \b  \B  \X  \R  \\</text>
+    </Value>
+  </KeyValue>
+  <KeyValue sl="3" sc="0" el="3" ec="25">
+    <Key sl="3" sc="0" el="3" ec="10">
+      <text>not.escaped</text>
+    </Key>
+    <Value sl="3" sc="14" el="3" ec="25">
+      <text>Not escaped.</text>
+    </Value>
+  </KeyValue>
+</Properties>

@@ -15,8 +15,7 @@
  */
 package com.bacoder.parser.javaproperties.api;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import org.apache.commons.lang.StringEscapeUtils;
 
 import com.bacoder.parser.core.DumpTextWithToString;
 import com.bacoder.parser.core.TextNode;
@@ -24,41 +23,17 @@ import com.bacoder.parser.core.TextNode;
 @DumpTextWithToString
 public abstract class KeyOrValueNode extends TextNode {
 
-  private static final String[][] SPECIAL_CHAR_MAP = {
-    {"\\ ", " "},
-    {"\\\t", "\t"},
-    {"\\\f", "\f"},
-    {"\\\r", "\r"},
-    {"\\\n", "\n"},
-    {"\\\"", "\""},
-    {"\\!", "!"},
-    {"\\#", "#"}
-  };
-
-  private static final Pattern NEW_LINE_PATTERN = Pattern.compile("(\\n|\\r\\n|\\r)\\s*");
-
-  private static final Pattern UNICODE_PATTERN = Pattern.compile("\\\\u([0-9]{4})");
-
   public String getSanitizedText() {
     String result = getText();
-    for (String[] part : SPECIAL_CHAR_MAP) {
-      result = result.replace(part[0], part[1]);
+
+    if (unescapeNewLines()) {
+      result = result.replaceAll("\\\\\n\\s*", "");
     }
 
-    Matcher matcher = NEW_LINE_PATTERN.matcher(result);
-    if (matcher.find()) {
-      result = matcher.replaceAll("");
-    }
+    result = StringEscapeUtils.unescapeJava(result);
 
-    matcher = UNICODE_PATTERN.matcher(result);
-    if (matcher.find()) {
-      StringBuffer buffer = new StringBuffer();
-      do {
-        String unicode = Character.toString((char) Integer.parseInt(matcher.group(1), 16));
-        matcher.appendReplacement(buffer, unicode);
-      } while (matcher.find());
-      matcher.appendTail(buffer);
-      result = buffer.toString();
+    if (!unescapeNewLines()) {
+      result = result.replaceAll("\\\n\\s*", "");
     }
 
     return result;
@@ -68,4 +43,6 @@ public abstract class KeyOrValueNode extends TextNode {
   public String toString() {
     return getSanitizedText();
   }
+
+  public abstract boolean unescapeNewLines();
 }

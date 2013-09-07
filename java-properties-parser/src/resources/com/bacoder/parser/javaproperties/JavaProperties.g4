@@ -34,7 +34,7 @@ keyCharFirst
 keyChar
   :  AnyChar
   |  CommentChar
-  |  Backslash (Colon | Equals | Space | LineBreak Space*)?
+  |  Backslash (Backslash | Colon | Equals | Space | LineBreak Space*)?
   ;
 
 value
@@ -45,7 +45,7 @@ valueChar
   :  AnyChar
   |  CommentChar
   |  Unicode
-  |  Backslash (Space | LineBreak)?
+  |  Backslash (Backslash | Space | LineBreak)?
   |  Colon
   |  Equals
   |  Space

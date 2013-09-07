@@ -20,6 +20,11 @@ import com.bacoder.parser.core.Visitors;
 public class Value extends KeyOrValueNode {
 
   @Override
+  public boolean unescapeNewLines() {
+    return true;
+  }
+
+  @Override
   protected void visitChildren(Visitors visitors) {
   }
 }
